@@ -1,0 +1,742 @@
+/* ===== Reset ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== Body ===== */
+body {
+    background-color: #FDFBF7;
+    background-image:
+        radial-gradient(ellipse at 15% 15%, rgba(227, 213, 202, 0.35) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 85%, rgba(213, 189, 175, 0.25) 0%, transparent 55%);
+    color: #4A3B32;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 100svh memperhitungkan address bar mobile; fallback ke 100vh */
+    min-height: 100vh;
+    min-height: 100svh;
+    padding: 24px 16px;
+    overflow-x: hidden;
+    text-align: center;
+}
+
+/* ===== Typography ===== */
+h1, h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    color: #3C2F27;
+    margin-bottom: 16px;
+}
+
+h1 { font-size: clamp(1.8rem, 5vw, 2.8rem); line-height: 1.35; }
+h2 { font-size: clamp(1.5rem, 4vw, 2rem); }
+
+p {
+    font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+    line-height: 1.95;
+    margin-bottom: 24px;
+    color: #5A4A40;
+}
+
+.text-content {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto 24px auto;
+}
+
+/* ===== Container — tinggi tetap agar selalu di tengah ===== */
+.container {
+    width: 100%;
+    max-width: 720px;
+    position: relative;
+    /*
+     * Tinggi tetap = container tidak bergerak saat fase berganti.
+     * clamp(min, ideal, max) → min 400px, ideal 80vh, max 560px.
+     */
+    height: clamp(400px, 80svh, 560px);
+}
+
+/* ===== Ornament ===== */
+.ornament {
+    color: #C9A99A;
+    font-size: 0.85rem;
+    letter-spacing: 10px;
+    margin-bottom: 18px;
+    opacity: 0.65;
+}
+
+/* ===== Divider ===== */
+.divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 0 auto 20px auto;
+    width: min(280px, 80%);
+    color: #D5BDAF;
+    font-size: 1rem;
+}
+
+.divider::before {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(213, 189, 175, 0.7));
+}
+
+.divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to left, transparent, rgba(213, 189, 175, 0.7));
+}
+
+/* ===== Phase Management ===== */
+/*
+ * Semua phase mengisi container sepenuhnya (inset: 0).
+ * Konten di dalam di-center dengan flexbox — tidak ada lagi
+ * toggle position: absolute ↔ relative yang menyebabkan layout shift.
+ */
+.phase {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 28px 20px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.85s ease-in-out, visibility 0.85s ease-in-out;
+}
+
+.phase.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    /* Posisi tetap absolute — tidak ada layout shift */
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ===== Input Group ===== */
+.input-group {
+    width: 100%;
+    margin-top: 28px;
+}
+
+.hint {
+    font-size: 0.85rem;
+    color: #8C7B6C;
+    margin-bottom: 12px;
+}
+
+.hint-small {
+    opacity: 0.6;
+}
+
+input[type="password"] {
+    display: block;
+    margin: 0 auto 20px auto;
+    padding: 14px 28px;
+    /*
+     * Minimal 16px mencegah iOS zoom saat field difokus.
+     */
+    font-size: 16px;
+    border: 1.5px solid #E3D5CA;
+    border-radius: 40px;
+    background-color: rgba(253, 251, 247, 0.9);
+    color: #4A3B32;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.35s, box-shadow 0.35s;
+    font-family: 'Poppins', sans-serif;
+    width: min(270px, 90%);
+    letter-spacing: 4px;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+input[type="password"]:focus {
+    border-color: #C9A99A;
+    box-shadow: 0 0 0 4px rgba(213, 189, 175, 0.2), 0 4px 20px rgba(213, 189, 175, 0.2);
+}
+
+input[type="password"]::placeholder {
+    letter-spacing: 1px;
+    color: #C4B5AC;
+}
+
+/* ===== Buttons ===== */
+button {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    padding: 13px 34px;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border: none;
+    letter-spacing: 0.3px;
+    /* Hapus delay tap 300ms di mobile */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    /* Minimum area sentuh 44px sesuai rekomendasi Apple/Google */
+    min-height: 44px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #D5BDAF 0%, #C4A99A 100%);
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(196, 169, 154, 0.4);
+}
+
+.btn-primary:hover,
+.btn-primary:active {
+    background: linear-gradient(135deg, #C9A99A 0%, #B89489 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(196, 169, 154, 0.55);
+}
+
+.btn-glow {
+    animation: gentleGlow 2.8s ease-in-out infinite;
+}
+
+@keyframes gentleGlow {
+    0%, 100% { box-shadow: 0 4px 20px rgba(196, 169, 154, 0.4); }
+    50%       { box-shadow: 0 4px 38px rgba(196, 169, 154, 0.9), 0 0 24px rgba(213, 189, 175, 0.5); }
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 1.5px solid #D5BDAF;
+    color: #4A3B32;
+}
+
+.btn-secondary:hover,
+.btn-secondary:active {
+    background: linear-gradient(135deg, #D5BDAF 0%, #C4A99A 100%);
+    color: #fff;
+    border-color: transparent;
+    transform: translateY(-2px);
+}
+
+.btn-large {
+    padding: 15px 48px;
+    font-size: 1.1rem;
+    margin: 8px;
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 1.5px solid #E3D5CA;
+    color: #A89488;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    width: 100%;
+}
+
+.error {
+    color: #C0706A;
+    font-size: 0.85rem;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+/* ===== Fade In Animation ===== */
+.fade-in {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: fadeInUp 0.85s ease forwards;
+}
+
+.delay-1 { animation-delay: 0.4s; }
+.delay-2 { animation-delay: 0.85s; }
+.delay-3 { animation-delay: 1.3s; }
+
+@keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Typewriter Title ===== */
+.main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    color: #3C2F27;
+    min-height: 1.4em;
+    margin-bottom: 16px;
+    line-height: 1.35;
+}
+
+.cursor {
+    display: inline-block;
+    width: 2px;
+    height: 0.82em;
+    background-color: #7A6055;
+    margin-left: 3px;
+    vertical-align: text-bottom;
+    animation: blink 0.75s step-end infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+}
+
+/* ===== Final Question ===== */
+.final-question {
+    font-size: clamp(1.6rem, 4.5vw, 2.6rem);
+    line-height: 1.45;
+    font-style: italic;
+    color: #3C2F27;
+    margin-bottom: 0;
+}
+
+/* ===== Success Screen ===== */
+.heart-container {
+    margin: 0 auto 6px auto;
+}
+
+.big-heart {
+    display: inline-block;
+    font-size: clamp(3rem, 8vw, 4rem);
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    14%       { transform: scale(1.28); }
+    28%       { transform: scale(1); }
+    42%       { transform: scale(1.28); }
+    70%       { transform: scale(1); }
+}
+
+.bounce {
+    animation: bounceIn 0.95s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    opacity: 0;
+}
+
+@keyframes bounceIn {
+    0%   { transform: scale(0.3); opacity: 0; }
+    50%  { transform: scale(1.1); opacity: 1; }
+    70%  { transform: scale(0.94); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.success-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: #9C8A80;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+    margin-bottom: 10px;
+}
+
+.date-stamp {
+    font-size: 0.72rem;
+    color: #C4B5AC;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 4px;
+    margin-bottom: 0;
+}
+
+/* ===== Floating Petals ===== */
+.petal {
+    position: fixed;
+    top: -5%;
+    pointer-events: none;
+    -webkit-user-select: none;
+    user-select: none;
+    z-index: 0;
+    color: #C9A99A;
+    animation: petalFall linear infinite;
+    will-change: transform, opacity;
+}
+
+@keyframes petalFall {
+    0%   { opacity: 0;   transform: translateX(0)    translateY(0)      rotate(0deg); }
+    8%   { opacity: 0.7; }
+    92%  { opacity: 0.4; }
+    100% { opacity: 0;   transform: translateX(55px) translateY(115vh)  rotate(380deg); }
+}
+
+/* ===== Floating Hearts ===== */
+.floating-heart {
+    position: fixed;
+    pointer-events: none;
+    z-index: 10;
+    animation: floatUp linear forwards;
+    will-change: transform, opacity;
+}
+
+@keyframes floatUp {
+    0%   { transform: translateY(0) scale(0.4); opacity: 1; }
+    60%  { opacity: 0.9; }
+    100% { transform: translateY(-75vh) scale(0.9); opacity: 0; }
+}
+
+/* ===== Phase Label (subtitle kecil fase 2 & 3) ===== */
+.phase-label {
+    font-size: clamp(0.88rem, 2.5vw, 1.05rem) !important;
+    color: #A89488 !important;
+    font-style: italic;
+    margin-bottom: 4px;
+    letter-spacing: 0.4px;
+}
+
+/* ===== Progress Dots ===== */
+.babak-progress {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 14px;
+    flex-shrink: 0;
+}
+
+.babak-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #E3D5CA;
+    transition: background 0.4s ease, transform 0.4s ease;
+    flex-shrink: 0;
+}
+
+.babak-dot.active {
+    background: #C9A99A;
+    transform: scale(1.4);
+}
+
+/* ===== Babak Wrapper ===== */
+.babak-wrapper {
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+/* ===== Babak Card ===== */
+.babak-card {
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    overflow-y: auto;
+    padding: 6px 14px 8px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+    scrollbar-width: thin;
+    scrollbar-color: #D5BDAF transparent;
+}
+
+.babak-card::-webkit-scrollbar       { width: 3px; }
+.babak-card::-webkit-scrollbar-track { background: transparent; }
+.babak-card::-webkit-scrollbar-thumb { background: #D5BDAF; border-radius: 2px; }
+
+.babak-card.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.babak-card p {
+    font-size: clamp(0.9rem, 2.4vw, 1rem);
+    line-height: 1.9;
+    margin-bottom: 14px;
+    color: #5A4A40;
+    text-align: left;
+}
+
+.babak-card p:last-child { margin-bottom: 0; }
+
+/* ===== Fase 2, 3, 4 & 5: layout dari atas ===== */
+#phase-2,
+#phase-3,
+#phase-4,
+#phase-5 {
+    justify-content: flex-start;
+    padding-top: 26px;
+    padding-bottom: 22px;
+}
+
+/* ===== Kartu pertanyaan final (fase 4 halaman 3) ===== */
+.babak-card.is-question {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    padding: 20px 16px;
+}
+
+.babak-card.is-question .final-question {
+    margin-bottom: 0;
+}
+
+.babak-card.is-question .action-buttons {
+    margin-top: 36px;
+}
+
+/* ===== Paragraf jembatan (fase 4 halaman 2) ===== */
+.p4-bridge {
+    font-family: 'Playfair Display', serif !important;
+    font-style: italic !important;
+    font-size: clamp(1rem, 2.8vw, 1.15rem) !important;
+    line-height: 1.9 !important;
+    text-align: center !important;
+    color: #4A3B32 !important;
+    margin-bottom: 28px !important;
+}
+
+/* ===== Tombol navigasi fase 4 & 5 — memudar saat halaman terakhir ===== */
+.p4-nav,
+.p5-nav {
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.p4-nav.p4-nav-hidden,
+.p5-nav.p5-nav-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* ===== Nav tersembunyi di akhir cerita (fase belum dirilis) ===== */
+.nav-end-hidden {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+/* ===== Penutup fase 5 (tanda tangan + tanggal) ===== */
+.p5-closing {
+    margin-top: 28px;
+    text-align: center;
+}
+
+.p5-closing .success-subtitle {
+    margin-bottom: 6px;
+}
+
+.p5-closing .date-stamp {
+    margin-bottom: 0;
+}
+
+/* Media (foto & video dalam babak) */
+.media-frame {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 14px 0;
+}
+
+.story-img,
+.story-video {
+    display: block;
+    max-width: 100%;
+    max-height: 220px;
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+    border: 1.5px solid rgba(213, 189, 175, 0.45);
+    box-shadow: 0 4px 18px rgba(196, 169, 154, 0.25);
+    object-fit: contain;
+}
+
+.story-video {
+    /* video butuh width eksplisit agar browser tahu dimensinya */
+    width: 100%;
+    max-height: 220px;
+    background-color: #F5EBE0;
+}
+
+.babak-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1rem, 3vw, 1.15rem);
+    font-weight: 600;
+    font-style: italic;
+    color: #3C2F27;
+    letter-spacing: 0.2px;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+/* ===== Wattpad Chapter Header ===== */
+.chapter-header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(213, 189, 175, 0.32);
+}
+
+.chapter-num {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #C9A99A;
+    margin-bottom: 8px;
+}
+
+.chapter-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.05rem, 3.2vw, 1.28rem);
+    font-weight: 600;
+    font-style: italic;
+    color: #3C2F27;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* ===== Chapter End — Bersambung ===== */
+.chapter-end {
+    margin-top: 22px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(213, 189, 175, 0.32);
+    text-align: center;
+}
+
+.bersambung {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.88rem;
+    color: #A89488;
+    letter-spacing: 1.2px;
+    margin-bottom: 0;
+}
+
+/* ===== Locked / Coming-soon Chapter Card ===== */
+.chapter-locked-card {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    overflow: hidden !important;
+    padding: 20px 24px !important;
+    background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 7px,
+        rgba(213, 189, 175, 0.055) 7px,
+        rgba(213, 189, 175, 0.055) 14px
+    );
+}
+
+.lock-icon {
+    font-size: 1.75rem;
+    margin-bottom: 18px;
+    opacity: 0.5;
+}
+
+.chapter-coming-soon {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #C9A99A;
+    margin-bottom: 14px;
+}
+
+.chapter-teaser-num {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: #B5A396;
+    margin-bottom: 10px;
+}
+
+.chapter-teaser-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1rem, 3vw, 1.18rem);
+    font-style: italic;
+    color: #7A6B62;
+    opacity: 0.78;
+    line-height: 1.45;
+    margin-bottom: 20px;
+}
+
+.chapter-update-hint {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.72rem;
+    color: #C4B5AC;
+    letter-spacing: 1px;
+    font-style: italic;
+    margin-bottom: 0;
+}
+
+/* ===== Mobile — landscape / layar pendek ===== */
+@media (max-height: 500px) {
+    .container {
+        height: auto;
+        min-height: 0;
+        padding: 20px 0;
+    }
+
+    .phase {
+        position: relative;
+        top: auto; right: auto; bottom: auto; left: auto;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+
+    .phase.active {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    .phase.hidden {
+        display: none !important;
+    }
+}
+
+/* ===== Tablet & HP kecil ===== */
+@media (max-width: 480px) {
+    body { padding: 20px 12px; }
+
+    .btn-large {
+        padding: 14px 32px;
+        font-size: 1rem;
+        width: min(220px, 90%);
+        margin: 6px auto;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .ornament { letter-spacing: 6px; }
+
+    p { margin-bottom: 18px; }
+}
