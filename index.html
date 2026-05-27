@@ -24,9 +24,7 @@
           Ada sesuatu yang ingin aku tunjukkan<br />khusus untuk kamu.
         </p>
         <div class="input-group fade-in delay-2">
-          <p class="hint">
-            Masukkan tanggal ajaibmu <span class="hint-small">(DDMMYYYY)</span>
-          </p>
+          <p class="hint">Masukkan kode ajaib untuk membuka pesan ini</p>
           <input
             type="password"
             id="password-input"
@@ -38,6 +36,79 @@
           <p id="error-msg" class="error hidden">
             Sepertinya ada yang salah, coba ingat lagi ya &#9825;
           </p>
+          <p id="quote-msg" class="quote-msg hidden"></p>
+          <button id="btn-hint" class="btn-hint hidden">
+            Tampilkan Petunjuk
+          </button>
+          <div id="hint-msg" class="hint-msg hidden">
+            <span class="hint-tag">[ Keamanan Lorong Waktu ]</span>
+            <p class="hint-clue">
+              Clue: Lorong waktu ini membutuhkan sandi kenangan agar bisa
+              terbuka. Jika kamu mengingat di mana dan kapan mata (dan suara)
+              kita pertama kali saling menemukan, kamu pasti tahu deretan angka
+              apa yang kusembunyikan di sini.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Fase Announce: Pemberitahuan sebelum Bab I -->
+      <section id="phase-announce" class="phase hidden">
+        <div class="announce-card">
+          <span class="announce-tag">[ Update: Bab I Full Release ]</span>
+          <p class="announce-body">
+            Ada melodi yang sengaja kusiapkan untuk menemanimu di halaman ini.
+          </p>
+          <p class="announce-body">
+            Tolong pastikan perangkatmu tidak dalam mode bisu ya, Cantik.
+          </p>
+          <p class="announce-hint">
+            Jika semua sudah siap, sentuh layar ini dan mari kita mulai
+            menelusuri lorong waktu kita bersama.
+          </p>
+          <span class="announce-pulse">&#10022;</span>
+        </div>
+      </section>
+
+      <!-- Fase Boombox: Radio Rahasia -->
+      <section id="phase-boombox" class="phase hidden">
+        <div class="bb-scene">
+          <div class="bb-antenna">
+            <div class="bb-tip"></div>
+            <div class="bb-stick"></div>
+          </div>
+          <div class="bb-body" id="boombox">
+            <div class="bb-spk"></div>
+            <div class="bb-panel">
+              <div class="bb-lcd"><span id="bb-lcd">RADIO RAHASIA</span></div>
+              <div class="bb-cassette">
+                <div class="bb-reel" id="bb-reel-l"></div>
+                <div class="bb-tape-slot"></div>
+                <div class="bb-reel" id="bb-reel-r"></div>
+              </div>
+              <div class="bb-controls">
+                <p class="bb-label">Masukkan ID Lagu</p>
+                <input
+                  type="text"
+                  id="song-id-input"
+                  class="bb-input"
+                  placeholder="&#183; &#183; &#183; &#183;"
+                  maxlength="8"
+                  inputmode="numeric"
+                  autocomplete="off"
+                />
+                <button type="button" id="btn-play-song" class="bb-play-btn">
+                  &#9654; PUTAR
+                </button>
+                <p id="song-error" class="bb-err hidden">
+                  ~ Bukan itu kodemu ~
+                </p>
+              </div>
+            </div>
+            <div class="bb-spk"></div>
+          </div>
+          <div class="bb-handle"></div>
+          <p class="bb-tagline">Kode rahasia untuk membuka musiknya &#9825;</p>
         </div>
       </section>
 
@@ -53,24 +124,70 @@
           <div class="babak-card active">
             <div class="chapter-header">
               <span class="chapter-num">&#8212; Chapter 1 &#8212;</span>
-              <h3 class="chapter-title">Suara di Antara Piksel</h3>
+              <h3 class="chapter-title">
+                Suara di Antara Piksel dan Sebuah Foto di Layar Kaca
+              </h3>
             </div>
             <p>
-              Masihkah kamu mengingatnya? Kali pertama takdir mempertemukan kita
-              bukan di bawah rintik hujan, melainkan di Mount Kucing, dalam
-              luasnya semesta Roblox. Percayalah, di antara riuhnya orang-orang
-              maya yang berlalu-lalang, ada daya tarik yang berbeda saat aku
-              menemukanmu. Entah apa namanya, aku pun tak punya kuasa untuk
-              menjelaskannya. Ssstt... tolong jangan sebut aku berlebihan kali
-              ini.
+              Mari kita putar waktu sejenak ke tahun lalu, tepatnya pada tanggal
+              13 September 2025. Kala itu, hari-hariku berjalan seperti biasa.
+              Pagi hingga petang kuhabiskan untuk bekerja, mencoba menyelesaikan
+              segala tanggung jawab dengan tenang, meski tak jarang penat dan
+              stres diam-diam menumpuk di pundak.
             </p>
             <p>
-              Tapi percayalah, saat pertama kali mendengar suaramu&mdash;meski
-              dengan segala kepolosanku yang tak tahu rupa aslimu, bahkan sempat
-              ragu apakah kau dan Ela benar-benar perempuan di balik layar
-              itu&mdash;ada benih rasa yang diam-diam mengambil tempat di
-              hatiku. Mungkin semua itu tumbuh sesederhana karena tawamu yang
-              lepas, atau caramu membuat segalanya terasa jauh lebih hidup.
+              Hingga tibalah malam itu&mdash;sebuah malam Minggu. Untuk mengusir
+              jenuh dan sunyi di tengah kota yang entah mengapa terasa asing
+              ini, aku memutuskan untuk login ke Roblox. Aneh memang, di dunia
+              nyata, berinteraksi dengan banyak orang karena urusan pekerjaan
+              seringkali terasa begitu menguras energi. Namun, di dalam semesta
+              game ini, segalanya terasa berbeda. Aku bisa menikmati pelarian
+              sejenak, tertawa lepas, dan menyapa jiwa-jiwa baru tanpa beban.
+            </p>
+            <p>
+              Malam itu, langkah digitalku membawaku masuk ke sebuah map
+              pendakian bernama Mount Kucing. Seperti biasa, aku bermain santai
+              sambil sesekali membantu pemain lain yang kesusahan (ya,
+              hitung-hitung karena aku memang jago saja, hehe). Namun, di tengah
+              rute pendakian itu, pergerakanku terhenti. Aku melihat dua orang
+              pemain yang tampak kebingungan dan kesulitan. Aku pun mendekat dan
+              menawarkan bantuan. Siapa sangka, sapaan sederhana itu dibalas
+              dengan obrolan yang begitu mengalir. Kesan pertamaku malam itu:
+              kalian sangat asyik. Sampai-sampai, di sela-sela pendakian, aku
+              sengaja menjahili kalian.
+            </p>
+            <p>
+              Masihkah kamu mengingatnya? Percayalah, di antara riuhnya
+              orang-orang maya yang berlalu-lalang malam itu, ada daya tarik
+              yang sangat berbeda saat aku menemukanmu. Entah apa namanya, aku
+              pun tak punya kuasa untuk menjelaskannya. Ssstt... tolong jangan
+              sebut aku berlebihan kali ini. Tapi sungguh, saat pertama kali
+              mendengar suaramu&mdash;meski dengan segala kepolosanku yang tak
+              tahu rupa aslimu, bahkan sempat ragu apakah kau dan Ela
+              benar-benar perempuan di balik layar itu&mdash;ada benih rasa yang
+              diam-diam mengambil tempat di hatiku. Mungkin, semua itu tumbuh
+              sesederhana karena tawamu yang lepas, atau caramu membuat
+              segalanya terasa jauh lebih hidup.
+            </p>
+            <p>
+              Menjelang puncak gunung maya tersebut, aku memberanikan diri untuk
+              menawarkan pertemanan, dan betapa leganya aku saat kalian berdua
+              menyambutnya dengan tangan terbuka. Lalu, tibalah kita di puncak
+              Mount Kucing. Saat sesi perayaan itu, kalian berdua memintaku
+              untuk ikut bergabung berfoto bersama.
+            </p>
+            <p>
+              Dan tahukah kamu? Kenangan itu masih kusimpan dengan rapi sampai
+              detik ini. Sejujurnya agak memalukan untuk diakui, tapi waktu itu
+              aku sama sekali tidak mengerti bagaimana cara mengambil screenshot
+              langsung dari dalam game. Alhasil, dengan polosnya aku memotret
+              layar monitorku menggunakan kamera HP, hahaha.
+            </p>
+            <p>
+              Kamu bisa melihat buktinya... foto penuh sejarah itu kusematkan
+              tepat di halaman ini. Sungguh, sebuah pertemuan maya yang tak
+              disengaja, namun menjadi awal dari kisah paling indah dalam
+              hidupku.
             </p>
             <div class="media-frame">
               <img
@@ -83,6 +200,9 @@
 
           <!-- Chapter 2 -->
           <div class="babak-card">
+            <button type="button" class="btn-back-prev">
+              &#8592; Chapter sebelumnya
+            </button>
             <div class="chapter-header">
               <span class="chapter-num">&#8212; Chapter 2 &#8212;</span>
               <h3 class="chapter-title">Ritme Malam dan Sandi Kelakar Kita</h3>
@@ -154,6 +274,221 @@
               lagi. Stop deh, bodo amat, wleee... Momen-momen itulah yang kini
               menjadi hal paling sulit untuk dilupakan.
             </p>
+          </div>
+
+          <!-- Mini-Game: Cari Sapi di Padang Rumput -->
+          <div class="babak-card game-card" data-minigame="true">
+            <button type="button" class="btn-back-prev">
+              &#8592; Chapter sebelumnya
+            </button>
+            <div class="chapter-header">
+              <span class="chapter-num">&#8212; Mini Game &#8212;</span>
+              <h3 class="chapter-title">Cari Sapi di Padang Rumput</h3>
+            </div>
+            <p class="game-intro">
+              Kamu masih ingat jokes kita soal &#8220;Sapi di Padang&#8221;?
+              Sekarang buktikan &#8212; temukan sapi yang bersembunyi di suatu
+              tempat di dalam padang ini. Sentuh dia jika sudah ketemu!
+            </p>
+            <div class="meadow" id="meadow">
+              <span class="mi mi-cow" id="hidden-cow">&#128004;</span>
+            </div>
+            <div class="game-win hidden" id="game-win">
+              <div class="game-win-box">
+                <p class="game-win-icon">&#127881;</p>
+                <p class="game-win-title">Ketemu!</p>
+                <p class="game-win-msg">
+                  Selamat! Kamu menemukan Sapi di Padang Rumput.<br /><span
+                    class="game-win-sub"
+                    >(Bukan sapi padang ya!)</span
+                  >
+                </p>
+                <button type="button" id="btn-game-next" class="btn-primary">
+                  Lanjut ke Chapter 3 &#9825;
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chapter 3 -->
+          <div class="babak-card">
+            <button type="button" class="btn-back-prev">
+              &#8592; Chapter sebelumnya
+            </button>
+            <div class="chapter-header">
+              <span class="chapter-num">&#8212; Chapter 3 &#8212;</span>
+              <h3 class="chapter-title">Jembatan Menuju Nyata</h3>
+            </div>
+            <p>
+              Hari demi hari berganti, lembar cerita kita pun berevolusi. Dari
+              sekadar pesan singkat di dalam game, kita melangkah ke Discord.
+              Aku mulai menjadi seseorang yang keras kepala, tanpa henti merajut
+              obrolan denganmu&mdash;meski aku tahu betul, di awal kau mungkin
+              membalas rentetan pesanku hanya sekadar bentuk kesopanan semata.
+            </p>
+            <p>
+              Kali ini, aku ingin jujur padamu tentang sebuah rahasia kecil.
+              Ketika momen itu akhirnya tiba&mdash;hari di mana kita berencana
+              untuk bertatap muka pertama kalinya dalam acara buka puasa
+              bersama&mdash;sejujurnya situasi saat itu sama sekali tidak
+              berpihak padaku. Secara realistis, aku belum bisa dan sangat tidak
+              memungkinkan untuk pulang ke Samarinda lalu pergi ke Balikpapan
+              demi bertemu dengan kalian di dunia nyata. Namun, aku memilih
+              untuk menantang kemustahilan itu. Bagiku, hari itu adalah momentum
+              krusial; sebuah langkah awal untuk membuktikan bahwa perasaanku
+              padamu bukanlah sekadar bualan fiksi di balik layar kaca. Aku
+              mengusahakan segalanya dengan segenap daya, hingga entah bagaimana
+              keajaiban itu datang: cutiku disetujui. Aku bisa pulang, dan tentu
+              saja, tujuan utamaku tak lain hanyalah untuk menemuimu.
+            </p>
+            <p>
+              Melihatmu secara langsung di tengah riuhnya tawa teman-teman yang
+              lain... detik itu juga membungkam segala keraguanku. Mataku seolah
+              hanya menemukan satu titik fokus: kamu. Walaupun, jika boleh
+              jujur, di balik tatapan itu ada debar jantung yang tak karuan. Aku
+              terlalu gugup untuk benar-benar menatap kedua matamu berlama-lama.
+              Kalau kamu menyadarinya, mungkin kamu melihatku beberapa kali
+              memalingkan wajah dengan canggung karena terlalu gugup, haha.
+              Ternyata, menatap langsung mata seseorang yang kita suka adalah
+              hal yang luar biasa sulit.
+            </p>
+            <p>
+              Tetapi ketahuilah, Cantik... di saat kamu sedang tertawa atau
+              berpaling ke arah lain, aku sering kali mencuri waktu untuk
+              menatapmu dalam diam. Dan pada detik-detik curi pandang dalam
+              keheningan itulah, aku semakin yakin bahwa perasaanku padamu
+              benar-benar nyata.
+            </p>
+          </div>
+
+          <!-- Chapter 4 -->
+          <div class="babak-card">
+            <button type="button" class="btn-back-prev">
+              &#8592; Chapter sebelumnya
+            </button>
+            <div class="chapter-header">
+              <span class="chapter-num">&#8212; Chapter 4 &#8212;</span>
+              <h3 class="chapter-title">Sepenggal Sesal di Bawah Lampu Kota</h3>
+            </div>
+            <div class="media-frame">
+              <video
+                src="assets/02.mp4"
+                class="story-video"
+                controls
+                playsinline
+              ></video>
+            </div>
+            <p>
+              Foto ini adalah satu-satunya kepingan kenangan yang kumiliki dari
+              hari itu. Sejujurnya, di lubuk hati terdalam, aku sangat ingin
+              memiliki potret yang hanya berisi kita berdua. Namun, apa daya,
+              rasaku kalah oleh gugup dan rasa segan pada yang lain.
+            </p>
+            <p>
+              Ingatkah kamu saat kita hendak berpisah di sekitar H&amp;M? Indra
+              sempat berbisik, seolah bisa membaca isi kepalaku, &ldquo;Kamu
+              nggak mau foto berdua?&rdquo; Jawabku kala itu penuh keraguan yang
+              menutupi gengsi, &ldquo;Pengen sih... tapi yaudahlah, nanti
+              saja.&rdquo; Indra hanya menyela cepat, &ldquo;Kapan lagi,
+              bodoh.&rdquo; Aku terdiam.
+            </p>
+            <p>
+              Dan benar saja, begitu malam merengkuh dan aku terdiam di
+              kesunyian kamar hotel, penyesalan itu datang menyergap. Bayangan
+              hari itu terus berputar, menghantuiku. Di tengah kecamuk pikiran,
+              aku mengirimkan sebuah pesan padamu: &ldquo;Kabari aku kalau sudah
+              sampai dengan selamat, ya.&rdquo;
+            </p>
+            <p>
+              Detik demi detik merayap, menit berganti jam, namun layar ponselku
+              tetap membisu. Kegelisahan mulai menjalar dan menyelimuti rongga
+              dada. Di dalam kepalaku yang bising, aku mulai menerka-nerka hal
+              yang tidak-tidak. Apakah ada sikapku di pertemuan tatap muka
+              pertama ini yang mengganggumu? Apakah ada yang salah dari diriku?
+            </p>
+            <p>
+              Hingga tiba-tiba, sebuah notifikasi memecah keheningan. Namun,
+              bukan namamu yang muncul di layar, melainkan Rereh. Sebuah pesan
+              yang membawa kabar duka yang begitu mengejutkan malam
+              itu&mdash;ayahandanya telah berpulang. (Untuk detail haru yang
+              satu ini, biarlah tidak kumasukkan ke dalam tulisan ini ya, hehe).
+            </p>
+            <p>
+              Tak lama berselang dari kabar itu, barulah pesan darimu akhirnya
+              tiba. Dadaku yang sedari tadi sesak oleh rasa cemas perlahan
+              mengembuskan napas lega. Ternyata, keterdiamanmu sama sekali bukan
+              karena hal-hal buruk yang sempat kutakutkan di kepalaku, melainkan
+              karena situasi duka tak terduga yang sedang menyelimuti malam itu.
+            </p>
+            <p>
+              Keesokan harinya, saat roda kendaraan membawaku melintasi jalan
+              tol kembali pulang menuju Samarinda, hatiku lagi-lagi merutuki
+              diri sendiri. Sambil menatap jalanan yang membentang, suara Indra
+              seolah kembali terngiang, &ldquo;Benar juga, kenapa aku tidak
+              mengajakmu foto berdua semalam?&rdquo; Penyesalan manis itu terasa
+              begitu nyata, tertinggal sebagai jejak rindu di setiap kilometer
+              yang kulewati.
+            </p>
+          </div>
+
+          <!-- Chapter 5 -->
+          <div class="babak-card">
+            <button type="button" class="btn-back-prev">
+              &#8592; Chapter sebelumnya
+            </button>
+            <div class="chapter-header">
+              <span class="chapter-num">&#8212; Chapter 5 &#8212;</span>
+              <h3 class="chapter-title">
+                Sebuah Pertukaran yang Mengubah Semesta
+              </h3>
+            </div>
+            <p>
+              Sejak perpisahan hari itu, komunikasi kita berlabuh di lembaran
+              baru&mdash;obrolan panjang yang berpindah haluan ke WhatsApp.
+              Sebuah &lsquo;pertukaran&rsquo; manis yang sangat sepadan, dan
+              biarlah itu menjadi rahasia kecil kita berdua (terutama jika kau
+              masih ingat betul taktik seperti apa yang kugunakan demi bisa
+              mendapatkan nomormu saat itu, hehe).
+            </p>
+            <p>
+              Waktu pun terus mengalir dengan lembut. Perlahan, kita mulai
+              saling bertukar serpihan hari. Mengirimkan kabar, hingga bertukar
+              PAP tentang hal-hal sederhana&mdash;entah itu aktivitas acak yang
+              sedang dilakukan atau sekadar pamer menu makanan. Sederhana, tapi
+              entah mengapa semuanya tampak begitu manis dan menggemaskan di
+              mataku.
+            </p>
+            <p>
+              Kamu mulai terbuka. Kamu mulai menceritakan kepingan keseharianmu,
+              hiruk-pikuk pekerjaanmu, hingga membagikan keluh kesah dan rasa
+              lelahmu. Percayalah, meskipun kamu sedang mengeluh, selalu ada
+              rasa hangat dan senyum yang diam-diam merekah di wajahku setiap
+              kali melihat indikator &ldquo;typing...&rdquo; darimu muncul di
+              layar.
+            </p>
+            <p>
+              Semakin hari, aku pun semakin berani melempar gombalan-gombalan
+              absurd dan hal-hal aneh hanya demi bisa menghiburmu. Maaf ya kalau
+              terkadang terasa aneh, tapi memang beginilah diriku yang suka
+              sekali mengarang cerita. Tapi satu hal yang harus kamu pegang:
+              dari semua hal yang suka kukarang, perasaanku kepadamu tidak
+              pernah sedikit pun aku rekayasa. Kalau yang satu ini seratus
+              persen realll, jyahhhh!
+            </p>
+            <p>
+              (Hehe, maaf, maaf... tolong berhenti bilang aku lebay di dalam
+              kepalamu. Sudah berapa kali kata &lsquo;lebay&rsquo; itu kau
+              ucapkan dalam hati sejak awal membaca cerita ini? MALESIN
+              BGTTTT...)
+            </p>
+            <p>
+              Sungguh, aku tidak pernah menyangka bahwa sosok di balik layar
+              yang kutemui di dunia maya itu, kini telah berakar kuat menjadi
+              seseorang yang begitu penting dalam setiap denyut nadiku. Sejak
+              hari itu, perlahan namun pasti, kamu menyihir
+              duniaku&mdash;mengubah percakapan biasa dan hal-hal sederhana
+              menjadi sesuatu yang jauh lebih indah dari cerita fiksi mana pun.
+            </p>
             <div class="chapter-end">
               <span class="bersambung"
                 >&#10022; &nbsp; Bersambung... &nbsp; &#10022;</span
@@ -161,53 +496,25 @@
             </div>
           </div>
 
-          <!-- Chapter 3 — Teaser (konten dikunci, update minggu depan) -->
+          <!-- BAB II Spoiler — Phase 3 belum dirilis -->
           <div class="babak-card chapter-locked-card">
             <div class="lock-icon">&#128274;</div>
             <span class="chapter-coming-soon">Coming Soon</span>
-            <span class="chapter-teaser-num">&#8212; Chapter 3 &#8212;</span>
-            <h3 class="chapter-teaser-title">Jembatan Menuju Nyata</h3>
-            <p class="chapter-update-hint">
-              — Segera Hadir, emang sengaja bikin kamu kepo hehe —
-            </p>
-          </div>
-
-          <!--
-          == CHAPTER 3 — 5: Belum dirilis, akan diupdate minggu depan ==
-
-          <div class="babak-card">
-            <div class="chapter-header">
-              <span class="chapter-num">— Chapter 3 —</span>
-              <h3 class="chapter-title">Jembatan Menuju Nyata</h3>
+            <span class="chapter-teaser-num">&#8212; BAB II &#8212;</span>
+            <h3 class="chapter-teaser-title">Alasan Waktu Berhenti Padamu</h3>
+            <div class="spoiler-sections">
+              <p class="spoiler-section-item">1. Magnet Sebuah Kedewasaan</p>
+              <p class="spoiler-section-item">2. Melodi dalam Suaramu</p>
+              <p class="spoiler-section-item">
+                3. Sebuah Fakta Bernama Keindahan
+              </p>
+              <p class="spoiler-section-item">4. Harap di Balik Konyolku</p>
+              <p class="spoiler-section-item">5. Ruang Kosong untukmu</p>
             </div>
-            <p>Hari demi hari berganti, lembar cerita kita pun berevolusi. Dari sekadar pesan singkat di dalam gim, kita melangkah ke Discord. Aku mulai menjadi seseorang yang keras kepala, tanpa henti merajut obrolan denganmu—meski aku tahu, di awal kau mungkin membalas pesanku hanya sekadar bentuk kesopanan semata.</p>
-            <p>Kali ini, aku ingin jujur padamu tentang sebuah rahasia. Ketika momen itu tiba—hari di mana kita akhirnya berencana untuk bertatap muka dalam acara buka puasa bersama—sejujurnya situasi saat itu sama sekali tidak berpihak padaku. Secara realistis, aku belum bisa dan tidak memungkinkan untuk pulang ke Samarinda demi bertemu dengan kalian di dunia nyata. Namun, aku memilih untuk menantang kemustahilan itu. Bagiku, hari itu adalah momentum krusial, sebuah langkah awal untuk membuktikan bahwa perasaanku padamu bukanlah sekadar bualan fiksi di balik layar kaca. Aku mengusahakan segalanya dengan segenap daya, hingga entah bagaimana keajaiban datang: cutiku disetujui. Aku bisa pulang, dan tujuan utamaku tak lain adalah untuk menemuimu.</p>
-            <p>Melihatmu secara langsung di tengah riuhnya tawa teman-teman yang lain... detik itu juga membungkam segala keraguanku. Mataku hanya menemukan satu titik fokus: kamu. Detik itu juga, aku semakin yakin bahwa perasaanku padamu benar-benar nyata.</p>
+            <button type="button" class="btn-back-start">
+              &#8592; Kembali ke Chapter 1
+            </button>
           </div>
-
-          <div class="babak-card">
-            <div class="chapter-header">
-              <span class="chapter-num">— Chapter 4 —</span>
-              <h3 class="chapter-title">Sepenggal Sesal di Bawah Lampu Kota</h3>
-            </div>
-            <div class="media-frame">
-              <video src="assets/02.mp4" class="story-video" controls playsinline></video>
-            </div>
-            <p>Foto ini adalah satu-satunya kepingan kenangan yang kumiliki dari hari itu. Sejujurnya, di lubuk hati terdalam, aku sangat ingin memiliki potret yang hanya berisi kita berdua. Namun, apa daya, rasaku kalah oleh gugup dan rasa segan pada yang lain.</p>
-            <p>Ingatkah kamu saat kita hendak berpisah di sekitar H&M? Indra sempat berbisik, seolah bisa membaca isi kepalaku, "Kamu nggak mau foto berdua?" Jawabku kala itu penuh keraguan yang menutupi gengsi, "Pengen sih... tapi yaudahlah, nanti saja." Indra hanya menyela cepat, "Kapan lagi, bodoh." Aku terdiam.</p>
-            <p>Dan benar saja, penyesalan itu datang menyusulku. Keesokan harinya, saat dalam perjalanan pulang melintasi jalan tol menuju Samarinda, hatiku terus merutuki diri sendiri. "Indra benar, kenapa aku tidak mengajakmu foto berdua?" Penyesalan itu begitu nyata, tertinggal di setiap kilometer yang kulewati.</p>
-          </div>
-
-          <div class="babak-card">
-            <div class="chapter-header">
-              <span class="chapter-num">— Chapter 5 —</span>
-              <h3 class="chapter-title">Sebuah Pertukaran yang Mengubah Semesta</h3>
-            </div>
-            <p>Sejak perpisahan hari itu, komunikasi kita berlabuh di lembaran baru—obrolan panjang via WhatsApp. Sebuah 'pertukaran' yang sangat sepadan dan menjadi rahasia kecil kita, jika kau masih ingat bagaimana caraku berhasil mendapatkan nomormu.</p>
-            <p>Waktu pun terus mengalir dengan lembut. Aku tidak pernah menyangka bahwa sosok yang kutemui di dunia maya itu, kini berakar menjadi seseorang yang begitu penting dalam denyut nadiku. Sejak hari itu, perlahan namun pasti, kamu menyihir duniaku—mengubah hal-hal biasa menjadi sesuatu yang jauh lebih indah dari sekadar cerita fiksi.</p>
-          </div>
-
-          -->
         </div>
 
         <button id="btn-next-2" class="btn-secondary">Lanjut &rarr;</button>
@@ -217,14 +524,16 @@
       <template>
         <section id="phase-3" class="phase hidden">
           <div class="ornament fade-in">&#10022;</div>
-          <h2 class="fade-in phase-label">Mengapa Harus Kamu?</h2>
+          <h2 class="fade-in phase-label">
+            BAB II: Alasan Waktu Berhenti Padamu
+          </h2>
           <div class="divider fade-in delay-1">&#10023;</div>
           <div class="babak-progress" id="p3-dots"></div>
 
           <div class="babak-wrapper">
             <!-- Bagian 1 -->
             <div class="babak-card active">
-              <h3 class="babak-title">1. Magnet Sebuah Kedewasaan</h3>
+              <h3 class="babak-title">Magnet Sebuah Kedewasaan</h3>
               <p>
                 Jika kamu bertanya mengapa kamu begitu istimewa di mataku,
                 jawabannya kutemukan pada caramu memandang dunia. Aku melihat
@@ -238,7 +547,7 @@
 
             <!-- Bagian 2 -->
             <div class="babak-card">
-              <h3 class="babak-title">2. Melodi dalam Suaramu</h3>
+              <h3 class="babak-title">Melodi dalam Suaramu</h3>
               <p>
                 Lalu, ada suaramu. Entah magis apa yang bersembunyi di balik
                 setiap nada bicaramu, namun ia selalu berhasil menawanku.
@@ -252,7 +561,7 @@
 
             <!-- Bagian 3 -->
             <div class="babak-card">
-              <h3 class="babak-title">3. Sebuah Fakta Bernama Keindahan</h3>
+              <h3 class="babak-title">Sebuah Fakta Bernama Keindahan</h3>
               <p>
                 Dan tentu saja... karena kamu begitu cantik. Aku selalu
                 mengagumi hal-hal indah yang diciptakan di dunia ini, dan kamu
@@ -265,7 +574,7 @@
 
             <!-- Bagian 4 -->
             <div class="babak-card">
-              <h3 class="babak-title">4. Harap di Balik Konyolku</h3>
+              <h3 class="babak-title">Harap di Balik Konyolku</h3>
               <p>
                 Sampai detik ini, aku tidak pernah benar-benar tahu bagaimana
                 tepatnya kamu memandangku. Aku hanya bisa merapalkan harap,
@@ -278,7 +587,7 @@
 
             <!-- Bagian 5 -->
             <div class="babak-card">
-              <h3 class="babak-title">5. Ruang Kosong untukmu</h3>
+              <h3 class="babak-title">Ruang Kosong untukmu</h3>
               <p>
                 Jika aku harus menuliskan semua alasan mengapa kamu istimewa,
                 kurasa bab ini tidak akan pernah ada ujungnya. Jemariku sudah
@@ -319,9 +628,10 @@
               <p>
                 Aku sadar, hanya waktu yang memiliki jawaban paling jujur. Aku
                 meyakini satu hal; jika ini hanyalah ketertarikan biasa, mungkin
-                pada bulan kedua semuanya sudah terasa hambar dan membosankan.
-                Namun, semesta membuktikan sebaliknya. Nyatanya, rasa itu tidak
-                pernah pudar.
+                pada bulan kedua sejak kita pertama kali saling menemukan pada
+                bulan september tahun lalu semuanya sudah terasa hambar dan
+                membosankan. Namun, semesta membuktikan sebaliknya. Nyatanya,
+                rasa itu tidak pernah pudar.
               </p>
             </div>
 
@@ -440,6 +750,11 @@
       </template>
     </div>
 
+    <audio id="bg-music-1" src="assets/BAB_1.1.mp3"></audio>
+    <audio id="bg-music-2" src="assets/BAB_1.2.mp3"></audio>
+    <audio id="bg-music-3" src="assets/BAB_1.3.mp3"></audio>
+    <audio id="bg-music-4" src="assets/BAB_1.4.mp3"></audio>
+    <audio id="bg-music-5" src="assets/BAB_1.5.mp3"></audio>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="script.js"></script>
   </body>

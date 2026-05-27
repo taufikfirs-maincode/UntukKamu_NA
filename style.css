@@ -19,7 +19,7 @@ body {
     /* 100svh memperhitungkan address bar mobile; fallback ke 100vh */
     min-height: 100vh;
     min-height: 100svh;
-    padding: 24px 16px;
+    padding: 16px;
     overflow-x: hidden;
     text-align: center;
 }
@@ -48,16 +48,16 @@ p {
     margin: 0 auto 24px auto;
 }
 
-/* ===== Container — tinggi tetap agar selalu di tengah ===== */
+/* ===== Container — fills almost full viewport for a full reading-page feel ===== */
 .container {
     width: 100%;
     max-width: 720px;
     position: relative;
     /*
-     * Tinggi tetap = container tidak bergerak saat fase berganti.
-     * clamp(min, ideal, max) → min 400px, ideal 80vh, max 560px.
+     * calc(100svh - 32px) = viewport minus body padding (16px × 2).
+     * Clamped so it's never shorter than 600px or taller than 900px on desktop.
      */
-    height: clamp(400px, 80svh, 560px);
+    height: clamp(600px, calc(100svh - 32px), 900px);
 }
 
 /* ===== Ornament ===== */
@@ -260,6 +260,77 @@ button {
     margin-bottom: 0;
 }
 
+.quote-msg {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: #9C8A80;
+    line-height: 1.75;
+    margin-top: 14px;
+    margin-bottom: 0;
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeInUp 0.65s ease forwards;
+}
+
+/* ===== Hint button — muncul setelah 10 kali gagal ===== */
+.btn-hint {
+    background: transparent;
+    border: 1px dashed rgba(213, 189, 175, 0.55);
+    color: #B5A396;
+    font-size: 0.72rem;
+    padding: 7px 18px;
+    letter-spacing: 1.2px;
+    margin-top: 20px;
+    min-height: 36px;
+    animation: fadeInUp 0.65s ease forwards;
+}
+
+.btn-hint:hover,
+.btn-hint:active {
+    border-color: #C9A99A;
+    color: #9C8A80;
+    background: rgba(213, 189, 175, 0.09);
+    transform: none;
+    box-shadow: none;
+}
+
+/* ===== Hint clue box ===== */
+.hint-msg {
+    margin-top: 14px;
+    padding: 14px 16px;
+    border: 1px solid rgba(213, 189, 175, 0.38);
+    border-radius: 12px;
+    background: rgba(253, 251, 247, 0.9);
+    max-width: 292px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeInUp 0.65s ease forwards;
+}
+
+.hint-tag {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #C9A99A;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.hint-clue {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.81rem;
+    color: #7A6B62;
+    line-height: 1.78;
+    margin-bottom: 0;
+    text-align: left;
+}
+
 /* ===== Fade In Animation ===== */
 .fade-in {
     opacity: 0;
@@ -411,17 +482,17 @@ button {
 }
 
 .babak-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #E3D5CA;
-    transition: background 0.4s ease, transform 0.4s ease;
+    width: 18px;
+    height: 2px;
+    border-radius: 2px;
+    background: rgba(213, 189, 175, 0.45);
+    transition: background 0.4s ease, width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
     flex-shrink: 0;
 }
 
 .babak-dot.active {
     background: #C9A99A;
-    transform: scale(1.4);
+    width: 30px;
 }
 
 /* ===== Babak Wrapper ===== */
@@ -434,16 +505,37 @@ button {
     margin-bottom: 16px;
 }
 
+/* Scroll-fade overlay — fades out when card is scrolled to bottom */
+.babak-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 72px;
+    background: linear-gradient(to top,
+        rgba(253, 251, 247, 0.97) 0%,
+        rgba(253, 251, 247, 0.6) 45%,
+        transparent 100%);
+    pointer-events: none;
+    z-index: 2;
+    transition: opacity 0.5s ease;
+}
+
+.babak-wrapper.at-bottom::after {
+    opacity: 0;
+}
+
 /* ===== Babak Card ===== */
 .babak-card {
     position: absolute;
     top: 0; right: 0; bottom: 0; left: 0;
     overflow-y: auto;
-    padding: 6px 14px 8px;
+    padding: 14px 22px 20px;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.6s ease, visibility 0.6s ease;
+    transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.65s ease;
     scrollbar-width: thin;
     scrollbar-color: #D5BDAF transparent;
 }
@@ -459,11 +551,12 @@ button {
 }
 
 .babak-card p {
-    font-size: clamp(0.9rem, 2.4vw, 1rem);
-    line-height: 1.9;
-    margin-bottom: 14px;
+    font-size: clamp(0.95rem, 2.4vw, 1.05rem);
+    line-height: 1.95;
+    margin-bottom: 20px;
     color: #5A4A40;
     text-align: left;
+    max-width: 60ch;
 }
 
 .babak-card p:last-child { margin-bottom: 0; }
@@ -474,8 +567,8 @@ button {
 #phase-4,
 #phase-5 {
     justify-content: flex-start;
-    padding-top: 26px;
-    padding-bottom: 22px;
+    padding-top: 28px;
+    padding-bottom: 24px;
 }
 
 /* ===== Kartu pertanyaan final (fase 4 halaman 3) ===== */
@@ -523,6 +616,18 @@ button {
 
 /* ===== Nav tersembunyi di akhir cerita (fase belum dirilis) ===== */
 .nav-end-hidden {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+/* ===== Nav hidden until user scrolls to bottom ===== */
+#btn-next-2,
+#btn-next-3 {
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.btn-scroll-hidden {
     opacity: 0 !important;
     visibility: hidden !important;
     pointer-events: none !important;
@@ -579,14 +684,28 @@ button {
     letter-spacing: 0.2px;
     margin-bottom: 16px;
     text-align: center;
+    padding: 10px 16px;
+    border-radius: 8px;
+    background: rgba(253, 251, 247, 0.62);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(213, 189, 175, 0.2);
+    box-shadow: 0 2px 12px rgba(196, 169, 154, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.45);
 }
 
-/* ===== Wattpad Chapter Header ===== */
+/* ===== Wattpad Chapter Header — glass morphism ===== */
 .chapter-header {
     text-align: center;
     margin-bottom: 20px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid rgba(213, 189, 175, 0.32);
+    padding: 13px 18px 15px;
+    border-radius: 12px;
+    background: rgba(253, 251, 247, 0.72);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(213, 189, 175, 0.28);
+    box-shadow: 0 4px 20px rgba(196, 169, 154, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.55);
 }
 
 .chapter-num {
@@ -635,7 +754,7 @@ button {
     justify-content: center !important;
     align-items: center !important;
     text-align: center !important;
-    overflow: hidden !important;
+    overflow-y: auto !important;
     padding: 20px 24px !important;
     background: repeating-linear-gradient(
         -45deg,
@@ -693,7 +812,173 @@ button {
     margin-bottom: 0;
 }
 
-/* ===== Mobile — landscape / layar pendek ===== */
+/* ===== BAB II Spoiler — section title list ===== */
+.spoiler-sections {
+    width: 100%;
+    max-width: 210px;
+    margin: 12px auto 16px auto;
+    text-align: left;
+}
+
+.chapter-locked-card .spoiler-section-item {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 0.72rem !important;
+    color: #A89488 !important;
+    line-height: 1.65 !important;
+    margin-bottom: 2px !important;
+    letter-spacing: 0.2px;
+    opacity: 0.85;
+    padding-left: 1.35em;
+    text-indent: -1.35em;
+}
+
+.chapter-locked-card .spoiler-section-item:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* ===== Back to prev chapter button ===== */
+.btn-back-prev {
+    display: block;
+    background: transparent;
+    border: none;
+    color: #B5A396;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.7rem;
+    padding: 0 0 14px 0;
+    margin: 0;
+    letter-spacing: 0.03em;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(181, 163, 150, 0.45);
+    cursor: pointer;
+}
+
+.btn-back-prev:hover,
+.btn-back-prev:active {
+    color: #9C8A80;
+    text-decoration-color: rgba(156, 138, 128, 0.7);
+    transform: none;
+    box-shadow: none;
+}
+
+/* ===== Back to Chapter 1 button (di spoiler card) ===== */
+.btn-back-start {
+    background: transparent;
+    border: none;
+    color: #B5A396;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.7rem;
+    padding: 6px 0;
+    letter-spacing: 0.6px;
+    margin-top: 16px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(181, 163, 150, 0.45);
+    cursor: pointer;
+}
+
+.btn-back-start:hover,
+.btn-back-start:active {
+    color: #9C8A80;
+    text-decoration-color: rgba(156, 138, 128, 0.7);
+    transform: none;
+    box-shadow: none;
+}
+
+/* ===== Announce Phase — intro notice before Bab I ===== */
+#phase-announce {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.announce-card {
+    max-width: 340px;
+    text-align: center;
+    padding: 28px 28px;
+    background: rgba(253, 251, 247, 0.72);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(213, 189, 175, 0.32);
+    border-radius: 20px;
+    box-shadow: 0 8px 40px rgba(196, 169, 154, 0.13),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.announce-tag {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: #C9A99A;
+    margin-bottom: 28px;
+}
+
+.announce-body {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(0.88rem, 2.4vw, 0.97rem);
+    color: #5A4A40;
+    line-height: 1.85;
+    margin-bottom: 14px;
+}
+
+.announce-hint {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(0.88rem, 2.5vw, 1rem);
+    color: #7A6B62;
+    line-height: 1.85;
+    margin-top: 20px;
+    margin-bottom: 28px;
+}
+
+.announce-pulse {
+    display: block;
+    color: #C9A99A;
+    font-size: 0.8rem;
+    letter-spacing: 6px;
+    opacity: 0.7;
+    animation: announcePulse 2s ease-in-out infinite;
+}
+
+@keyframes announcePulse {
+    0%, 100% { opacity: 0.35; transform: scale(1); }
+    50%       { opacity: 0.85; transform: scale(1.18); }
+}
+
+/* ===== Scroll Reveal — 3D fade-up on element enter card viewport ===== */
+.fade-scroll {
+    opacity: 0;
+    transform: perspective(900px) translateY(26px) translateZ(-10px);
+    transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.fade-scroll.visible {
+    opacity: 1;
+    transform: perspective(900px) translateY(0) translateZ(0);
+}
+
+/* ===== Announce Phase — staggered entry on active ===== */
+#phase-announce .announce-card > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.85s ease, transform 0.85s ease;
+}
+
+#phase-announce.active .announce-card > * {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#phase-announce.active .announce-card > *:nth-child(1) { transition-delay: 0.15s; }
+#phase-announce.active .announce-card > *:nth-child(2) { transition-delay: 0.38s; }
+#phase-announce.active .announce-card > *:nth-child(3) { transition-delay: 0.58s; }
+#phase-announce.active .announce-card > *:nth-child(4) { transition-delay: 0.76s; }
+#phase-announce.active .announce-card > *:nth-child(5) { transition-delay: 0.94s; }
+
+/* ===== Mobile — landscape / short screen ===== */
 @media (max-height: 500px) {
     .container {
         height: auto;
@@ -720,9 +1005,9 @@ button {
     }
 }
 
-/* ===== Tablet & HP kecil ===== */
+/* ===== Tablet & small mobile ===== */
 @media (max-width: 480px) {
-    body { padding: 20px 12px; }
+    body { padding: 12px; }
 
     .btn-large {
         padding: 14px 32px;
@@ -739,4 +1024,477 @@ button {
     .ornament { letter-spacing: 6px; }
 
     p { margin-bottom: 18px; }
+}
+
+/* ================================================================
+   BOOMBOX — Secret Radio
+   ================================================================ */
+#phase-boombox { justify-content: center; }
+
+.bb-scene {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bb-antenna {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: min(300px, 88vw);
+    padding-right: 38px;
+}
+
+.bb-tip {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #C9A99A;
+    box-shadow: 0 0 6px rgba(201, 169, 154, 0.7);
+}
+
+.bb-stick {
+    width: 2px;
+    height: 28px;
+    background: linear-gradient(to bottom, #C9A99A, #D5BDAF);
+    border-radius: 2px;
+}
+
+.bb-body {
+    display: flex;
+    align-items: center;
+    width: min(300px, 88vw);
+    background: linear-gradient(150deg, #EAD9C9 0%, #D5BDAF 55%, #C9A99A 100%);
+    border-radius: 16px 16px 6px 6px;
+    padding: 14px 8px;
+    gap: 6px;
+    border: 1.5px solid rgba(255, 255, 255, 0.55);
+    box-shadow:
+        0 6px 28px rgba(196, 169, 154, 0.35),
+        inset 0 2px 4px rgba(255, 255, 255, 0.5),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.07);
+    transition: box-shadow 0.65s ease, filter 0.65s ease;
+}
+
+.bb-body.bb-playing {
+    box-shadow:
+        0 8px 44px rgba(196, 169, 154, 0.65),
+        0 0 50px rgba(201, 169, 154, 0.18),
+        inset 0 2px 4px rgba(255, 255, 255, 0.5);
+    filter: brightness(1.04);
+}
+
+/* Speakers — concentric rings via radial-gradient */
+.bb-spk {
+    flex-shrink: 0;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle, #1A1008 17%, transparent 17%),
+        radial-gradient(circle, transparent 26%, #3C2F27 26%, #3C2F27 31%, transparent 31%),
+        radial-gradient(circle, transparent 40%, #3C2F27 40%, #3C2F27 45%, transparent 45%),
+        radial-gradient(circle, transparent 54%, #3C2F27 54%, #3C2F27 59%, transparent 59%),
+        radial-gradient(circle, transparent 68%, #3C2F27 68%, #3C2F27 73%, transparent 73%),
+        #2A1F1A;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.45);
+    transition: box-shadow 0.4s ease;
+}
+
+.bb-body.bb-playing .bb-spk {
+    animation: spkPulse 0.85s ease-in-out infinite alternate;
+}
+
+@keyframes spkPulse {
+    from { filter: brightness(1); }
+    to   { filter: brightness(1.15) drop-shadow(0 0 6px rgba(201, 169, 154, 0.5)); }
+}
+
+/* Center panel */
+.bb-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+}
+
+/* LCD */
+.bb-lcd {
+    width: 100%;
+    background: #140E08;
+    border-radius: 5px;
+    padding: 5px 8px;
+    text-align: center;
+    border: 1px solid rgba(201, 169, 154, 0.25);
+    box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.7);
+}
+
+.bb-lcd span {
+    font-family: 'Poppins', monospace;
+    font-size: 0.46rem;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    color: #C9A99A;
+    text-shadow: 0 0 8px rgba(201, 169, 154, 0.85);
+    display: block;
+}
+
+.bb-body.bb-playing .bb-lcd span {
+    animation: lcdGlow 1.3s ease-in-out infinite;
+    color: #EDCFB5;
+    text-shadow: 0 0 14px rgba(237, 207, 181, 0.95);
+}
+
+@keyframes lcdGlow {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.68; }
+}
+
+/* Cassette */
+.bb-cassette {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 10px;
+    background: rgba(0, 0, 0, 0.22);
+    border-radius: 6px;
+    width: 100%;
+    justify-content: center;
+}
+
+.bb-reel {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 38% 35%, #5A4A40, #180E08);
+    border: 1.5px solid rgba(201, 169, 154, 0.22);
+    position: relative;
+}
+
+.bb-reel::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #C9A99A;
+}
+
+.bb-body.bb-playing .bb-reel             { animation: reelSpin 1.1s linear infinite; }
+.bb-body.bb-playing #bb-reel-r           { animation-direction: reverse; }
+
+@keyframes reelSpin { to { transform: rotate(360deg); } }
+
+.bb-tape-slot {
+    flex: 1;
+    height: 5px;
+    background: #100A06;
+    border-radius: 3px;
+}
+
+/* Controls inside boombox */
+.bb-controls {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.bb-label {
+    font-size: 0.54rem;
+    color: rgba(58, 38, 28, 0.82);
+    letter-spacing: 1.5px;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.bb-input {
+    width: 100%;
+    background: rgba(20, 14, 8, 0.8);
+    border: 1px solid rgba(201, 169, 154, 0.32);
+    border-radius: 5px;
+    color: #F5EBE0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    letter-spacing: 6px;
+    text-align: center;
+    padding: 6px 4px;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.bb-input:focus {
+    border-color: #C9A99A;
+    box-shadow: 0 0 0 2px rgba(201, 169, 154, 0.18);
+}
+
+.bb-input::placeholder { color: rgba(245, 235, 224, 0.38); letter-spacing: 8px; }
+
+.bb-play-btn {
+    background: linear-gradient(135deg, #C9A99A, #A87E72);
+    border: none;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 600;
+    padding: 6px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    letter-spacing: 1.5px;
+    min-height: unset;
+    -webkit-tap-highlight-color: transparent;
+    transition: all 0.25s ease;
+}
+
+.bb-play-btn:hover,
+.bb-play-btn:active {
+    background: linear-gradient(135deg, #B89489, #987062);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(196, 169, 154, 0.4);
+}
+
+.bb-err {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.6rem;
+    color: #5C2E20;
+    margin: 0;
+    text-align: center;
+    min-height: 1em;
+}
+
+/* Handle strip under body */
+.bb-handle {
+    width: min(170px, 50vw);
+    height: 11px;
+    background: linear-gradient(145deg, #C9A99A, #A87E72);
+    border-radius: 0 0 10px 10px;
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    border-top: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+    margin-bottom: 18px;
+}
+
+.bb-tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.82rem;
+    color: #9C8A80;
+    margin: 0;
+    opacity: 0.85;
+}
+
+/* ================================================================
+   MINI-GAME — Find the Cow
+   ================================================================ */
+/* game-card is a flex column so meadow fills whatever height is left */
+.game-card {
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* Non-meadow children must not shrink — only meadow adapts */
+.game-card > .btn-back-prev,
+.game-card > .chapter-header,
+.game-card > .game-intro {
+    flex-shrink: 0;
+}
+
+.game-intro {
+    font-style: italic !important;
+    font-size: 0.85rem !important;
+    color: #7A6B62 !important;
+    text-align: center !important;
+    line-height: 1.7 !important;
+    margin-bottom: 10px !important;
+    max-width: none !important;
+}
+
+.meadow {
+    width: 100%;
+    /* flex:1 fills remaining height in the game-card flex column */
+    flex: 1;
+    min-height: 140px;
+    position: relative;
+    background: linear-gradient(to bottom,
+        #A8CEE8 0%,
+        #C2D9B4 22%,
+        #B0CC9E 48%,
+        #8EB47E 100%);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1.5px solid rgba(142, 180, 126, 0.35);
+    box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.06);
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* Grass blade texture — two overlapping near-vertical stripe patterns */
+.meadow::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 58%;
+    background:
+        repeating-linear-gradient(
+            177deg,
+            transparent 0px, transparent 10px,
+            rgba(46, 102, 30, 0.16) 10px, rgba(46, 102, 30, 0.16) 12px
+        ),
+        repeating-linear-gradient(
+            183deg,
+            transparent 0px, transparent 17px,
+            rgba(38, 88, 22, 0.11) 17px, rgba(38, 88, 22, 0.11) 19px
+        );
+    pointer-events: none;
+}
+
+.mi {
+    position: absolute;
+    line-height: 1;
+    pointer-events: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.mi-cow {
+    pointer-events: auto;
+    cursor: pointer;
+    font-size: 1rem;
+    opacity: 0.78;
+    z-index: 2;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+                opacity   0.3s ease;
+}
+
+.mi-cow.found {
+    transform: scale(2.4) rotate(-14deg) !important;
+    opacity: 1;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.28));
+}
+
+/* Win overlay */
+.game-win {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(253, 251, 247, 0.94);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    z-index: 10;
+    animation: fadeInUp 0.45s ease forwards;
+}
+
+.game-win-box { text-align: center; padding: 16px 20px; }
+
+.game-win-icon {
+    font-size: 2.4rem;
+    display: block;
+    margin-bottom: 6px;
+    animation: bounceIn 0.55s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.game-win-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #3C2F27;
+    margin-bottom: 8px !important;
+    max-width: none !important;
+}
+
+.game-win-msg {
+    font-size: 0.88rem !important;
+    line-height: 1.7 !important;
+    color: #5A4A40 !important;
+    margin-bottom: 18px !important;
+    max-width: none !important;
+}
+
+.game-win-sub {
+    display: block;
+    font-style: italic;
+    color: #9C8A80;
+    font-size: 0.78rem;
+    margin-top: 4px;
+}
+
+.game-win-box .btn-primary {
+    font-size: 0.88rem;
+    padding: 11px 26px;
+}
+
+/* ================================================================
+   MOBILE HEIGHT COMPATIBILITY — game-card responsive compaction
+   Applies to phones shorter than ~700px (iPhone SE, iPhone 8, etc.)
+   ================================================================ */
+@media (max-height: 700px) {
+    /* Compact phase-2 header to give more vertical space to the card wrapper */
+    #phase-2 {
+        padding-top: 14px;
+        padding-bottom: 12px;
+    }
+
+    #phase-2 .ornament   { margin-bottom: 6px;  font-size: 0.7rem;  }
+    #phase-2 .phase-label { margin-bottom: 2px; }
+    #phase-2 .divider    { margin-bottom: 8px;  }
+    .babak-progress      { margin-bottom: 8px;  }
+    .babak-wrapper       { margin-bottom: 10px; }
+
+    /* Compact game-card inner elements */
+    .game-card > .btn-back-prev { padding-bottom: 6px; }
+
+    .game-card > .chapter-header {
+        padding: 8px 14px 10px;
+        margin-bottom: 8px;
+    }
+
+    .game-card > .chapter-header .chapter-num { margin-bottom: 5px; }
+
+    .game-card > .game-intro {
+        font-size: 0.8rem !important;
+        line-height: 1.6 !important;
+        margin-bottom: 6px !important;
+    }
+}
+
+/* Very short screens (landscape phones or iPhone SE 1st gen portrait) */
+@media (max-height: 580px) {
+    /* Hide decorative phase header items — babak-wrapper needs every pixel */
+    #phase-2 .ornament,
+    #phase-2 .divider { display: none; }
+
+    #phase-2 { padding-top: 10px; padding-bottom: 10px; }
+    #phase-2 .phase-label { font-size: 0.82rem; margin-bottom: 2px; }
+
+    .babak-progress  { margin-bottom: 6px; }
+    .babak-wrapper   { margin-bottom: 6px; }
+
+    .game-card > .chapter-header {
+        padding: 6px 12px 8px;
+        margin-bottom: 6px;
+    }
+
+    .game-card > .chapter-header .chapter-title { font-size: 0.95rem; }
+
+    .game-card > .game-intro {
+        font-size: 0.75rem !important;
+        line-height: 1.55 !important;
+        margin-bottom: 4px !important;
+    }
 }
