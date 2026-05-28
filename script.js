@@ -229,8 +229,10 @@ document.addEventListener("DOMContentLoaded", () => {
         btnEl.classList.add("nav-end-hidden");
       } else {
         btnEl.classList.remove("nav-end-hidden");
-        btnEl.textContent =
-          index === cards.length - 1 && lastLabel ? lastLabel : "Lanjut →";
+        var nextCard = cards[index + 1];
+        var advanceLabel = nextCard && nextCard.dataset.advanceLabel;
+        btnEl.textContent = advanceLabel
+          || (index === cards.length - 1 && lastLabel ? lastLabel : "Lanjut →");
       }
     }
 
@@ -522,7 +524,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ".btn-back-start",
     ].join(", ");
 
-    document.querySelectorAll(".babak-card").forEach(function (card) {
+    document.querySelectorAll(".babak-card:not(.prolog-card)").forEach(function (card) {
       var targets = Array.from(card.querySelectorAll(selector));
 
       targets.forEach(function (el) {
