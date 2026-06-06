@@ -878,8 +878,18 @@ body:has(#phase-4.active) .btn-floating-nav {
     text-decoration-color: rgba(201, 169, 154, 0.20);
 }
 #phase-4 .p4-nav {
-    color: rgba(201, 169, 154, 0.55);
-    border-color: rgba(201, 169, 154, 0.22);
+    color: rgba(237, 207, 181, 0.95) !important;
+    border-color: rgba(212, 181, 160, 0.55);
+    background: rgba(40, 24, 16, 0.78);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+}
+#phase-4 .p4-nav:hover,
+#phase-4 .p4-nav:active {
+    background: rgba(201, 169, 154, 0.18);
+    color: rgba(255, 235, 220, 1) !important;
+    border-color: rgba(212, 181, 160, 0.85);
+    transform: none;
 }
 #phase-4 .p4-closing {
     color: rgba(201, 169, 154, 0.35) !important;
