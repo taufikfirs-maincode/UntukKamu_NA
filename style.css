@@ -1,0 +1,2987 @@
+/* ===== Reset ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== Body ===== */
+body {
+    background-color: #FDFBF7;
+    background-image:
+        radial-gradient(ellipse at 15% 15%, rgba(227, 213, 202, 0.35) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 85%, rgba(213, 189, 175, 0.25) 0%, transparent 55%);
+    color: #4A3B32;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 100svh memperhitungkan address bar mobile; fallback ke 100vh */
+    min-height: 100vh;
+    min-height: 100svh;
+    padding: 16px;
+    overflow-x: hidden;
+    text-align: center;
+    transition: background-color 0.9s ease;
+}
+
+/* ===== Typography ===== */
+h1, h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    color: #3C2F27;
+    margin-bottom: 16px;
+}
+
+h1 { font-size: clamp(1.8rem, 5vw, 2.8rem); line-height: 1.35; }
+h2 { font-size: clamp(1.5rem, 4vw, 2rem); }
+
+p {
+    font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+    line-height: 1.95;
+    margin-bottom: 24px;
+    color: #5A4A40;
+}
+
+.text-content {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto 24px auto;
+}
+
+/* ===== Container — fills almost full viewport for a full reading-page feel ===== */
+.container {
+    width: 100%;
+    max-width: 720px;
+    position: relative;
+    /*
+     * calc(100svh - 32px) = viewport minus body padding (16px × 2).
+     * Clamped so it's never shorter than 600px or taller than 900px on desktop.
+     */
+    height: clamp(600px, calc(100svh - 32px), 900px);
+}
+
+/* ===== Ornament ===== */
+.ornament {
+    color: #C9A99A;
+    font-size: 0.85rem;
+    letter-spacing: 10px;
+    margin-bottom: 18px;
+    opacity: 0.65;
+}
+
+/* ===== Divider ===== */
+.divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 0 auto 20px auto;
+    width: min(280px, 80%);
+    color: #D5BDAF;
+    font-size: 1rem;
+}
+
+.divider::before {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(213, 189, 175, 0.7));
+}
+
+.divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to left, transparent, rgba(213, 189, 175, 0.7));
+}
+
+/* ===== Phase Management ===== */
+/*
+ * Semua phase mengisi container sepenuhnya (inset: 0).
+ * Konten di dalam di-center dengan flexbox — tidak ada lagi
+ * toggle position: absolute ↔ relative yang menyebabkan layout shift.
+ */
+.phase {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 28px 20px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.85s ease-in-out, visibility 0.85s ease-in-out;
+}
+
+.phase.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    /* Posisi tetap absolute — tidak ada layout shift */
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ===== Input Group ===== */
+.input-group {
+    width: 100%;
+    margin-top: 28px;
+}
+
+.hint {
+    font-size: 0.85rem;
+    color: #8C7B6C;
+    margin-bottom: 12px;
+}
+
+.hint-small {
+    opacity: 0.6;
+}
+
+input[type="password"] {
+    display: block;
+    margin: 0 auto 20px auto;
+    padding: 14px 28px;
+    /*
+     * Minimal 16px mencegah iOS zoom saat field difokus.
+     */
+    font-size: 16px;
+    border: 1.5px solid #E3D5CA;
+    border-radius: 40px;
+    background-color: rgba(253, 251, 247, 0.9);
+    color: #4A3B32;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.35s, box-shadow 0.35s;
+    font-family: 'Poppins', sans-serif;
+    width: min(270px, 90%);
+    letter-spacing: 4px;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+input[type="password"]:focus {
+    border-color: #C9A99A;
+    box-shadow: 0 0 0 4px rgba(213, 189, 175, 0.2), 0 4px 20px rgba(213, 189, 175, 0.2);
+}
+
+input[type="password"]::placeholder {
+    letter-spacing: 1px;
+    color: #C4B5AC;
+}
+
+/* ===== Buttons ===== */
+button {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    padding: 13px 34px;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border: none;
+    letter-spacing: 0.3px;
+    /* Hapus delay tap 300ms di mobile */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    /* Minimum area sentuh 44px sesuai rekomendasi Apple/Google */
+    min-height: 44px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #D5BDAF 0%, #C4A99A 100%);
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(196, 169, 154, 0.4);
+}
+
+.btn-primary:hover,
+.btn-primary:active {
+    background: linear-gradient(135deg, #C9A99A 0%, #B89489 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(196, 169, 154, 0.55);
+}
+
+.btn-glow {
+    animation: gentleGlow 2.8s ease-in-out infinite;
+}
+
+@keyframes gentleGlow {
+    0%, 100% { box-shadow: 0 4px 20px rgba(196, 169, 154, 0.4); }
+    50%       { box-shadow: 0 4px 38px rgba(196, 169, 154, 0.9), 0 0 24px rgba(213, 189, 175, 0.5); }
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 1.5px solid #D5BDAF;
+    color: #4A3B32;
+}
+
+.btn-secondary:hover,
+.btn-secondary:active {
+    background: linear-gradient(135deg, #D5BDAF 0%, #C4A99A 100%);
+    color: #fff;
+    border-color: transparent;
+    transform: translateY(-2px);
+}
+
+.btn-large {
+    padding: 15px 48px;
+    font-size: 1.1rem;
+    margin: 8px;
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 1.5px solid #E3D5CA;
+    color: #A89488;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    width: 100%;
+}
+
+.error {
+    color: #C0706A;
+    font-size: 0.85rem;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.quote-msg {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: #9C8A80;
+    line-height: 1.75;
+    margin-top: 14px;
+    margin-bottom: 0;
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeInUp 0.65s ease forwards;
+}
+
+/* ===== Hint button — muncul setelah 10 kali gagal ===== */
+.btn-hint {
+    background: transparent;
+    border: 1px dashed rgba(213, 189, 175, 0.55);
+    color: #B5A396;
+    font-size: 0.72rem;
+    padding: 7px 18px;
+    letter-spacing: 1.2px;
+    margin-top: 20px;
+    min-height: 36px;
+    animation: fadeInUp 0.65s ease forwards;
+}
+
+.btn-hint:hover,
+.btn-hint:active {
+    border-color: #C9A99A;
+    color: #9C8A80;
+    background: rgba(213, 189, 175, 0.09);
+    transform: none;
+    box-shadow: none;
+}
+
+/* ===== Hint clue box ===== */
+.hint-msg {
+    margin-top: 14px;
+    padding: 14px 16px;
+    border: 1px solid rgba(213, 189, 175, 0.38);
+    border-radius: 12px;
+    background: rgba(253, 251, 247, 0.9);
+    max-width: 292px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeInUp 0.65s ease forwards;
+}
+
+.hint-tag {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #C9A99A;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.hint-clue {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.81rem;
+    color: #7A6B62;
+    line-height: 1.78;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+/* ===== Fade In Animation ===== */
+.fade-in {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: fadeInUp 0.85s ease forwards;
+}
+
+.delay-1 { animation-delay: 0.4s; }
+.delay-2 { animation-delay: 0.85s; }
+.delay-3 { animation-delay: 1.3s; }
+
+@keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Typewriter Title ===== */
+.main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    color: #3C2F27;
+    min-height: 1.4em;
+    margin-bottom: 16px;
+    line-height: 1.35;
+}
+
+.cursor {
+    display: inline-block;
+    width: 2px;
+    height: 0.82em;
+    background-color: #7A6055;
+    margin-left: 3px;
+    vertical-align: text-bottom;
+    animation: blink 0.75s step-end infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+}
+
+/* ===== Final Question ===== */
+.final-question {
+    font-size: clamp(1.6rem, 4.5vw, 2.6rem);
+    line-height: 1.45;
+    font-style: italic;
+    color: #3C2F27;
+    margin-bottom: 0;
+}
+
+/* ===== Success Screen ===== */
+.heart-container {
+    margin: 0 auto 6px auto;
+}
+
+.big-heart {
+    display: inline-block;
+    font-size: clamp(3rem, 8vw, 4rem);
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    14%       { transform: scale(1.28); }
+    28%       { transform: scale(1); }
+    42%       { transform: scale(1.28); }
+    70%       { transform: scale(1); }
+}
+
+.bounce {
+    animation: bounceIn 0.95s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    opacity: 0;
+}
+
+@keyframes bounceIn {
+    0%   { transform: scale(0.3); opacity: 0; }
+    50%  { transform: scale(1.1); opacity: 1; }
+    70%  { transform: scale(0.94); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.success-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: #9C8A80;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+    margin-bottom: 10px;
+}
+
+.date-stamp {
+    font-size: 0.72rem;
+    color: #C4B5AC;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 4px;
+    margin-bottom: 0;
+}
+
+/* ===== Floating Petals ===== */
+.petal {
+    position: fixed;
+    top: -5%;
+    pointer-events: none;
+    -webkit-user-select: none;
+    user-select: none;
+    z-index: 0;
+    color: #C9A99A;
+    animation: petalFall linear infinite;
+    will-change: transform, opacity;
+}
+
+@keyframes petalFall {
+    0%   { opacity: 0;   transform: translateX(0)    translateY(0)      rotate(0deg); }
+    8%   { opacity: 0.7; }
+    92%  { opacity: 0.4; }
+    100% { opacity: 0;   transform: translateX(55px) translateY(115vh)  rotate(380deg); }
+}
+
+/* ===== Floating Hearts ===== */
+.floating-heart {
+    position: fixed;
+    pointer-events: none;
+    z-index: 10;
+    animation: floatUp linear forwards;
+    will-change: transform, opacity;
+}
+
+@keyframes floatUp {
+    0%   { transform: translateY(0) scale(0.4); opacity: 1; }
+    60%  { opacity: 0.9; }
+    100% { transform: translateY(-75vh) scale(0.9); opacity: 0; }
+}
+
+/* ===== Phase Label (subtitle kecil fase 2 & 3) ===== */
+.phase-label {
+    font-size: clamp(0.88rem, 2.5vw, 1.05rem) !important;
+    color: #A89488 !important;
+    font-style: italic;
+    margin-bottom: 4px;
+    letter-spacing: 0.4px;
+}
+
+/* ===== Progress Dots ===== */
+.babak-progress {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 14px;
+    flex-shrink: 0;
+}
+
+.babak-dot {
+    width: 18px;
+    height: 2px;
+    border-radius: 2px;
+    background: rgba(213, 189, 175, 0.45);
+    transition: background 0.4s ease, width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    flex-shrink: 0;
+}
+
+.babak-dot.active {
+    background: #C9A99A;
+    width: 30px;
+}
+
+/* ===== Babak Wrapper ===== */
+.babak-wrapper {
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+/* Scroll-fade overlay — subtle hint there's more content below */
+.babak-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 44px;
+    background: linear-gradient(to top,
+        rgba(253, 251, 247, 0.72) 0%,
+        transparent 100%);
+    pointer-events: none;
+    z-index: 2;
+    transition: opacity 0.5s ease;
+}
+
+/* Remove white fade for prolog dark card */
+#phase-2 .babak-wrapper:has(.prolog-card.active)::after {
+    background: linear-gradient(to top,
+        rgba(12, 8, 22, 0.97) 0%,
+        rgba(12, 8, 22, 0.50) 45%,
+        transparent 100%);
+}
+
+.babak-wrapper.at-bottom::after {
+    opacity: 0;
+}
+
+/* ===== Babak Card ===== */
+.babak-card {
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    overflow-y: auto;
+    padding: 14px 22px 20px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.65s ease;
+    scrollbar-width: thin;
+    scrollbar-color: #D5BDAF transparent;
+}
+
+.babak-card::-webkit-scrollbar       { width: 3px; }
+.babak-card::-webkit-scrollbar-track { background: transparent; }
+.babak-card::-webkit-scrollbar-thumb { background: #D5BDAF; border-radius: 2px; }
+
+.babak-card.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.babak-card p {
+    font-size: clamp(0.95rem, 2.4vw, 1.05rem);
+    line-height: 1.95;
+    margin-bottom: 20px;
+    color: #5A4A40;
+    text-align: left;
+    max-width: 60ch;
+}
+
+.babak-card p:last-child { margin-bottom: 0; }
+
+/* ===== Fase 2, 3, 4 & 5: layout dari atas ===== */
+#phase-2,
+#phase-3,
+#phase-4,
+#phase-5 {
+    justify-content: flex-start;
+    padding-top: 28px;
+    padding-bottom: 24px;
+}
+
+/* ===== Phase Nav — Gerbang Lorong Waktu ===== */
+#phase-nav {
+    justify-content: flex-start;
+    padding-top: 28px;
+    padding-bottom: 24px;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+#phase-nav::-webkit-scrollbar {
+    display: none;
+}
+
+.nav-gate {
+    width: 100%;
+    max-width: 360px;
+    text-align: center;
+    padding: 28px 24px 24px;
+    background: rgba(253, 251, 247, 0.72);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(213, 189, 175, 0.32);
+    border-radius: 20px;
+    box-shadow: 0 8px 40px rgba(196, 169, 154, 0.13),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.nav-gate-tag {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #C9A99A;
+    margin-bottom: 18px;
+}
+
+.nav-gate-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 4vw, 1.85rem);
+    font-weight: 600;
+    color: #3C2F27;
+    line-height: 1.35;
+    margin-bottom: 14px;
+}
+
+.nav-gate-body {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(0.84rem, 2.2vw, 0.92rem);
+    color: #5A4A40;
+    line-height: 1.88;
+    margin-bottom: 16px;
+}
+
+.nav-gate-question {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(0.88rem, 2.3vw, 0.98rem);
+    color: #7A6B62;
+    line-height: 1.7;
+    margin-bottom: 22px;
+}
+
+.nav-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+}
+
+.nav-option-btn {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    width: 100%;
+    background: rgba(253, 251, 247, 0.5);
+    border: 1px solid rgba(213, 189, 175, 0.38);
+    border-radius: 12px;
+    padding: 12px 14px;
+    cursor: pointer;
+    min-height: unset;
+    text-align: left;
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease,
+                box-shadow 0.25s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.nav-option-btn:hover,
+.nav-option-btn:active {
+    background: rgba(213, 189, 175, 0.22);
+    border-color: rgba(196, 169, 154, 0.6);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(196, 169, 154, 0.15);
+}
+
+.nav-option-marker {
+    font-size: 0.5rem;
+    color: rgba(196, 169, 154, 0.55);
+    margin-top: 6px;
+    flex-shrink: 0;
+}
+
+.nav-option-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.nav-option-title {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: #3C2F27;
+    line-height: 1.4;
+}
+
+.nav-option-sub {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #C9A99A;
+}
+
+/* ===== Nav BAB Sections (chapter list in gate) ===== */
+.nav-bab-section {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.nav-bab-label {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #C9A99A;
+    padding: 0 2px;
+    margin-bottom: 2px;
+}
+
+.nav-bab-chapters {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.nav-chapter-btn {
+    padding: 9px 12px;
+}
+
+/* Fase-5 nav hidden until reached */
+.nav-fase5-sep,
+.nav-fase5-section {
+    display: none;
+}
+body.fase5-reached .nav-fase5-sep,
+body.fase5-reached .nav-fase5-section {
+    display: flex;
+}
+body.fase5-reached .nav-fase5-sep {
+    display: block;
+}
+
+.nav-section-sep {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(213, 189, 175, 0.35), transparent);
+    margin: 2px 0;
+}
+
+/* Staggered entrance for nav-gate children */
+#phase-nav .nav-gate > * {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.85s ease, transform 0.85s ease;
+}
+
+#phase-nav.active .nav-gate > * {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#phase-nav.active .nav-gate > *:nth-child(1) { transition-delay: 0.15s; }
+#phase-nav.active .nav-gate > *:nth-child(2) { transition-delay: 0.35s; }
+#phase-nav.active .nav-gate > *:nth-child(3) { transition-delay: 0.55s; }
+#phase-nav.active .nav-gate > *:nth-child(4) { transition-delay: 0.72s; }
+#phase-nav.active .nav-gate > *:nth-child(5) { transition-delay: 0.88s; }
+
+/* ===== Kartu pertanyaan final (fase 4 bagian 6) ===== */
+.babak-card.is-question {
+    overflow-y: auto;
+    padding: 14px 22px 32px;
+}
+
+.babak-card.is-question .final-question {
+    margin-bottom: 0;
+}
+
+.babak-card.is-question .action-buttons {
+    margin-top: 36px;
+}
+
+/* ===== Paragraf jembatan (fase 4 halaman 2) ===== */
+.p4-bridge {
+    font-family: 'Playfair Display', serif !important;
+    font-style: italic !important;
+    font-size: clamp(1rem, 2.8vw, 1.15rem) !important;
+    line-height: 1.9 !important;
+    text-align: center !important;
+    color: #4A3B32 !important;
+    margin-bottom: 28px !important;
+}
+
+/* ===== Penutup bagian 6 fase 4 ===== */
+.p4-closing {
+    font-family: 'Playfair Display', serif !important;
+    font-style: italic !important;
+    font-size: clamp(0.82rem, 2.2vw, 0.9rem) !important;
+    color: #7A6B62 !important;
+    text-align: center !important;
+    margin-top: 24px !important;
+    line-height: 1.8 !important;
+    opacity: 0.82;
+}
+
+/* ===== Tombol navigasi fase 4 & 5 — memudar saat halaman terakhir ===== */
+.p4-nav,
+.p5-nav {
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.p4-nav.p4-nav-hidden,
+.p5-nav.p5-nav-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* ================================================================
+   FASE 4 — BAB III: Dark Starry Intimate Theme
+   ================================================================ */
+
+body:has(#phase-4.active) {
+    background-color: #08080F;
+    background-image: none;
+    color-scheme: dark;
+}
+/* Use twinkling p4-stars, not drifting il-stars */
+body:has(#phase-4.active) .il-stars { opacity: 0; }
+body:has(#phase-4.active) .p4-stars { opacity: 1; }
+/* Hide petals in phase-4 */
+body:has(#phase-4.active) .petal { display: none; }
+
+body:has(#phase-4.active) .il-vignette {
+    opacity: 0.72;
+    background: radial-gradient(ellipse 82% 86% at 50% 50%,
+        transparent 15%, rgba(1, 0, 8, 0.90) 100%);
+}
+body:has(#phase-4.active) .btn-floating-exit,
+body:has(#phase-4.active) .btn-floating-nav {
+    color: rgba(201, 169, 154, 0.52);
+    background: rgba(8, 8, 15, 0.72);
+    border-color: rgba(201, 169, 154, 0.20);
+}
+
+#phase-4 {
+    background-color: #08080F;
+    background-image: none;
+}
+#phase-4 .phase-label { color: rgba(201, 169, 154, 0.46) !important; }
+#phase-4 .ornament    { color: rgba(201, 169, 154, 0.24); }
+#phase-4 .babak-card p { color: rgba(232, 213, 196, 0.70); }
+#phase-4 .babak-wrapper::after {
+    background: linear-gradient(to top,
+        rgba(8, 8, 15, 0.97) 0%,
+        rgba(8, 8, 15, 0.50) 45%,
+        transparent 100%);
+}
+#phase-4 .chapter-header {
+    background: rgba(8, 8, 15, 0.58);
+    border-color: rgba(201, 169, 154, 0.14);
+    box-shadow: 0 4px 20px rgba(1, 0, 6, 0.42);
+}
+#phase-4 .chapter-num   { color: rgba(201, 169, 154, 0.46); }
+#phase-4 .chapter-title {
+    color: rgba(237, 207, 181, 0.92);
+    text-shadow: 0 0 18px rgba(220, 165, 100, 0.22);
+}
+#phase-4 .btn-back-prev {
+    color: rgba(201, 169, 154, 0.50);
+    text-decoration-color: rgba(201, 169, 154, 0.20);
+}
+#phase-4 .p4-nav {
+    color: rgba(201, 169, 154, 0.55);
+    border-color: rgba(201, 169, 154, 0.22);
+}
+#phase-4 .p4-closing {
+    color: rgba(201, 169, 154, 0.35) !important;
+}
+
+/* === Phase-4 twinkling star field === */
+.p4-stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 1.8s ease;
+}
+
+.p4-star {
+    position: absolute;
+    border-radius: 50%;
+    background: #fff;
+    animation: p4Twinkle ease-in-out infinite;
+}
+
+@keyframes p4Twinkle {
+    0%, 100% { opacity: 0.08; transform: scale(0.75); }
+    50%       { opacity: 1;    transform: scale(1.2);  }
+}
+
+/* === Question typewriter area === */
+.p4-question-wrap {
+    margin: 28px 0 22px;
+    padding: 22px 14px;
+    border-top: 1px solid rgba(201, 169, 154, 0.18);
+    border-bottom: 1px solid rgba(201, 169, 154, 0.18);
+    min-height: 72px;
+    position: relative;
+    text-align: center;
+}
+.p4-question-typed {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1.0rem, 2.7vw, 1.18rem);
+    color: rgba(237, 207, 181, 0.95);
+    line-height: 1.80;
+    text-align: center;
+    margin: 0;
+    display: inline;
+}
+.p4-cursor {
+    display: inline;
+    color: rgba(237, 207, 181, 0.72);
+    font-size: 1em;
+    animation: p4CursorBlink 0.7s step-end infinite;
+}
+.p4-cursor.p4-cursor-done { display: none; }
+@keyframes p4CursorBlink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+}
+
+/* === Action buttons — hidden until typewriter done === */
+#p4-action-buttons {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.9s ease;
+}
+#p4-action-buttons.revealed {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* === Yes button === */
+#phase-4 .btn-glow {
+    background: rgba(180, 60, 100, 0.10);
+    border-color: rgba(200, 100, 140, 0.42);
+    color: rgba(237, 207, 181, 0.88);
+    animation: p4YesPulse 2.8s ease-in-out infinite;
+}
+#phase-4 .btn-glow.pulse-strong {
+    animation: p4YesStrong 1.5s ease-in-out infinite !important;
+}
+#phase-4 .btn-glow:hover,
+#phase-4 .btn-glow:active {
+    background: rgba(200, 100, 140, 0.20);
+    border-color: rgba(200, 100, 140, 0.75);
+    color: rgba(255, 220, 230, 1);
+    box-shadow: 0 0 28px rgba(200, 100, 140, 0.28);
+    transform: none;
+}
+@keyframes p4YesPulse {
+    0%, 100% { box-shadow: 0 0 0 rgba(200,100,140,0); border-color: rgba(200,100,140,0.35); }
+    50%       { box-shadow: 0 0 18px rgba(200,100,140,0.22); border-color: rgba(200,100,140,0.60); }
+}
+@keyframes p4YesStrong {
+    0%, 100% { box-shadow: 0 0 6px rgba(200,100,140,0.15); border-color: rgba(200,100,140,0.52); }
+    50%       { box-shadow: 0 0 36px rgba(200,100,140,0.45); border-color: rgba(200,100,140,0.92); }
+}
+
+/* === No button (in dark theme) === */
+#phase-4 .btn-outline {
+    border-color: rgba(212, 181, 160, 0.85);
+    color: rgba(237, 207, 181, 0.95);
+    background: rgba(40, 24, 16, 0.85);
+    box-shadow: 0 0 14px rgba(0, 0, 0, 0.45);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    animation: p4NoGlow 1.8s ease-in-out infinite;
+}
+
+@keyframes p4NoGlow {
+    0%, 100% {
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0.45),
+                    0 0 0 rgba(212, 181, 160, 0);
+    }
+    50% {
+        box-shadow: 0 0 14px rgba(0, 0, 0, 0.5),
+                    0 0 16px rgba(212, 181, 160, 0.4);
+    }
+}
+
+/* When the button has jumped (fixed position), keep it bold & legible */
+#phase-4 .btn-outline[style*="position: fixed"],
+#phase-4 .btn-outline[style*="position:fixed"] {
+    z-index: 300;
+}
+
+/* === Floating no-message === */
+.p4-no-msg {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.80rem;
+    color: rgba(201, 169, 154, 0.52);
+    text-align: center;
+    min-height: 1.5em;
+    margin: 8px 0 0;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+}
+.p4-no-msg.visible { opacity: 1; }
+
+/* === "Iya" background transition === */
+body.p4-yes-transition {
+    transition: background-color 1.8s ease !important;
+    background-color: #1A0810 !important;
+}
+
+/* ===== Nav tersembunyi di akhir cerita (fase belum dirilis) ===== */
+.nav-end-hidden {
+    display: none !important;
+}
+
+/* ===== Nav hidden until user scrolls to bottom ===== */
+#btn-next-2,
+#btn-next-3 {
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.btn-scroll-hidden {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+/* ===== Penutup fase 5 (tanda tangan + tanggal) ===== */
+.p5-closing {
+    margin-top: 36px;
+    text-align: center;
+    border-top: 1px solid rgba(213, 189, 175, 0.30);
+    padding-top: 28px;
+}
+
+.p5-dedication {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(0.90rem, 2.3vw, 1.0rem);
+    color: #7A6B62;
+    line-height: 1.85;
+    margin-bottom: 14px;
+    max-width: 52ch;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.p5-welcome {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.05rem, 2.8vw, 1.2rem);
+    font-weight: 600;
+    color: #5A4A40;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+}
+
+.p5-closing .success-subtitle {
+    margin-bottom: 8px;
+}
+
+.p5-closing .date-stamp {
+    margin-bottom: 0;
+}
+
+/* ================================================================
+   EPILOG CARD — Halaman Terakhir
+   ================================================================ */
+.epilog-card {
+    background: linear-gradient(180deg, #130A08 0%, #1A0D0A 100%);
+    overflow-y: auto;
+    padding: 24px 24px 40px;
+    scroll-padding-bottom: 320px;
+}
+
+/* On touch devices, give room so the keyboard doesn't cover the reply box */
+@media (max-width: 600px) {
+    .epilog-card {
+        padding-bottom: 340px;
+    }
+}
+
+.epilog-header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.epilog-ornament {
+    display: block;
+    color: rgba(200, 120, 150, 0.55);
+    font-size: 0.85rem;
+    letter-spacing: 10px;
+    margin-bottom: 10px;
+}
+
+.epilog-label {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.60rem;
+    font-weight: 500;
+    letter-spacing: 4px;
+    color: rgba(201, 169, 154, 0.50);
+    text-transform: uppercase;
+}
+
+.epilog-p {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(0.90rem, 2.3vw, 1.0rem);
+    color: rgba(232, 213, 196, 0.72);
+    line-height: 1.95;
+    margin-bottom: 18px;
+}
+
+.epilog-p-bold {
+    color: rgba(237, 207, 181, 0.88);
+    font-weight: 400;
+}
+
+.epilog-divider {
+    display: flex;
+    align-items: center;
+    margin: 24px 0;
+}
+
+.epilog-divider::before,
+.epilog-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(201, 169, 154, 0.18);
+}
+
+.epilog-div-dot {
+    color: rgba(201, 169, 154, 0.35);
+    font-size: 0.55rem;
+    margin: 0 10px;
+}
+
+/* Lembaran kosong */
+.epilog-blank-page {
+    border: 1px dashed rgba(201, 169, 154, 0.28);
+    border-radius: 10px;
+    padding: 22px 20px;
+    text-align: center;
+    margin-bottom: 22px;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.epilog-blank-italic {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(0.95rem, 2.5vw, 1.08rem);
+    color: rgba(237, 207, 181, 0.72);
+    margin-bottom: 8px;
+}
+
+.epilog-blank-sub {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.78rem;
+    color: rgba(201, 169, 154, 0.45);
+    letter-spacing: 0.2px;
+}
+
+/* Timestamp */
+.epilog-timestamp {
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.epilog-dates {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.75rem;
+    color: rgba(201, 169, 154, 0.60);
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.epilog-dates-sub {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.80rem;
+    color: rgba(201, 169, 154, 0.42);
+    line-height: 1.7;
+}
+
+/* Reply section */
+.epilog-reply-section {
+    text-align: center;
+}
+
+.epilog-reply-prompt {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(0.88rem, 2.3vw, 0.98rem);
+    color: rgba(201, 169, 154, 0.58);
+    margin-bottom: 16px;
+}
+
+.epilog-input-wrap {
+    display: flex;
+    gap: 10px;
+    align-items: stretch;
+    width: 100%;
+    transition: opacity 0.6s ease;
+}
+
+.epilog-input-wrap.hidden-wrap {
+    display: none;
+}
+
+.epilog-input {
+    flex: 1 1 auto;
+    min-width: 0; /* allow shrinking so the button never gets pushed off */
+    width: 100%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(201, 169, 154, 0.30);
+    border-radius: 24px;
+    padding: 11px 16px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px; /* 16px prevents iOS auto-zoom on focus */
+    color: rgba(232, 213, 196, 0.85);
+    outline: none;
+    transition: border-color 0.25s ease;
+    min-height: unset;
+    box-sizing: border-box;
+}
+
+.epilog-input::placeholder { color: rgba(201, 169, 154, 0.35); }
+.epilog-input:focus { border-color: rgba(200, 120, 150, 0.55); }
+
+.epilog-submit {
+    flex: 0 0 auto; /* never shrink → text never gets clipped */
+    background: rgba(180, 60, 100, 0.70);
+    border: none;
+    border-radius: 24px;
+    padding: 11px 20px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    color: rgba(255, 220, 230, 0.92);
+    cursor: pointer;
+    min-height: unset;
+    transition: background 0.25s ease, box-shadow 0.25s ease;
+    white-space: nowrap;
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+}
+
+/* Narrow screens: stack the input and button so nothing is cut off */
+@media (max-width: 460px) {
+    .epilog-input-wrap {
+        flex-direction: column;
+        gap: 12px;
+    }
+    .epilog-submit {
+        width: 100%;
+        padding: 12px 20px;
+    }
+}
+
+.epilog-submit:hover,
+.epilog-submit:active {
+    background: rgba(200, 80, 120, 0.85);
+    box-shadow: 0 0 18px rgba(200, 80, 120, 0.25);
+    transform: none;
+}
+
+.epilog-reply-display {
+    margin-top: 14px;
+    min-height: 2em;
+}
+
+.epilog-reply-typed {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(0.95rem, 2.5vw, 1.08rem);
+    color: rgba(237, 207, 181, 0.88);
+    line-height: 1.75;
+    text-align: center;
+}
+
+/* Footer */
+.epilog-footer {
+    text-align: center;
+    padding-top: 4px;
+}
+
+.epilog-footer-italic {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(0.88rem, 2.3vw, 1.0rem);
+    color: rgba(200, 120, 150, 0.68);
+    line-height: 1.9;
+    margin-bottom: 12px;
+}
+
+.epilog-footer-date {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.72rem;
+    color: rgba(201, 169, 154, 0.42);
+    letter-spacing: 1.5px;
+}
+
+/* Show gerbang on phase-5 */
+body:has(#phase-5.active) .btn-floating-nav {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ================================================================
+   PHASE-YES — Jeda Setelah "Iya"
+   ================================================================ */
+
+#phase-yes {
+    background-color: #08080F;
+    background-image: none;
+}
+
+#phase-yes.active {
+    animation: pyWarm 7s ease forwards;
+}
+
+@keyframes pyWarm {
+    0%   { background-color: #08080F; }
+    40%  { background-color: #2A0A18; }
+    100% { background-color: #7a2840; }
+}
+
+body:has(#phase-yes.active) {
+    background-color: #7a2840;
+    background-image: none;
+    transition: background-color 7s ease;
+    color-scheme: dark;
+}
+
+/* Stars fade as background warms */
+body:has(#phase-yes.active) .p4-stars {
+    opacity: 0;
+    transition: opacity 4s ease;
+}
+body:has(#phase-yes.active) .il-vignette {
+    opacity: 0;
+    transition: opacity 3s ease;
+}
+
+.py-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 20px;
+    padding: 40px 28px;
+    text-align: center;
+}
+
+.py-line {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: rgba(255, 215, 225, 0.90);
+    opacity: 0;
+    transform: translateY(14px);
+}
+
+#phase-yes.active .py-line {
+    animation: pyFadeUp 1.4s ease forwards;
+}
+
+.py-line-1 {
+    font-size: clamp(3.2rem, 9vw, 4.8rem);
+    font-weight: 600;
+    letter-spacing: -1px;
+    animation-delay: 1.0s !important;
+}
+.py-line-2 {
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    font-weight: 400;
+    animation-delay: 3.2s !important;
+}
+.py-line-3 {
+    font-size: clamp(0.90rem, 2.4vw, 1.05rem);
+    color: rgba(255, 200, 215, 0.72);
+    animation-delay: 5.8s !important;
+}
+.py-line-4 {
+    font-size: clamp(0.90rem, 2.4vw, 1.05rem);
+    color: rgba(255, 200, 215, 0.72);
+    animation-delay: 7.8s !important;
+}
+
+.py-btn {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: pyFadeUp 1.2s ease forwards;
+    animation-delay: 10.5s !important;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 200, 215, 0.35);
+    border-radius: 32px;
+    color: rgba(255, 215, 225, 0.80);
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.92rem;
+    letter-spacing: 0.5px;
+    padding: 14px 36px;
+    min-height: unset;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    margin-top: 12px;
+}
+
+.py-btn:hover,
+.py-btn:active {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 200, 215, 0.65);
+    color: rgba(255, 225, 235, 1);
+    transform: none;
+    box-shadow: none;
+}
+
+@keyframes pyFadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Dark body + scroll fade when epilog card active */
+body:has(#phase-5.active .epilog-card.active) {
+    background-color: #130A08;
+    background-image: none;
+    color-scheme: dark;
+}
+#phase-5:has(.epilog-card.active) .babak-wrapper::after {
+    background: linear-gradient(to top,
+        rgba(19, 10, 8, 0.97) 0%,
+        rgba(19, 10, 8, 0.50) 45%,
+        transparent 100%);
+}
+
+/* Media (foto & video dalam babak) */
+.media-frame {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 14px 0;
+}
+
+.story-img,
+.story-video {
+    display: block;
+    max-width: 100%;
+    max-height: 220px;
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+    border: 1.5px solid rgba(213, 189, 175, 0.45);
+    box-shadow: 0 4px 18px rgba(196, 169, 154, 0.25);
+    object-fit: contain;
+}
+
+.story-video {
+    /* video butuh width eksplisit agar browser tahu dimensinya */
+    width: 100%;
+    max-height: 220px;
+    background-color: #F5EBE0;
+}
+
+.babak-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1rem, 3vw, 1.15rem);
+    font-weight: 600;
+    font-style: italic;
+    color: #3C2F27;
+    letter-spacing: 0.2px;
+    margin-bottom: 16px;
+    text-align: center;
+    padding: 10px 16px;
+    border-radius: 8px;
+    background: rgba(253, 251, 247, 0.62);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(213, 189, 175, 0.2);
+    box-shadow: 0 2px 12px rgba(196, 169, 154, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+/* ===== Wattpad Chapter Header — glass morphism ===== */
+.chapter-header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 13px 18px 15px;
+    border-radius: 12px;
+    background: rgba(253, 251, 247, 0.72);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(213, 189, 175, 0.28);
+    box-shadow: 0 4px 20px rgba(196, 169, 154, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+.chapter-num {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #C9A99A;
+    margin-bottom: 8px;
+}
+
+.chapter-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.05rem, 3.2vw, 1.28rem);
+    font-weight: 600;
+    font-style: italic;
+    color: #3C2F27;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* ===== Chapter End — Bersambung ===== */
+.chapter-end {
+    margin-top: 22px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(213, 189, 175, 0.32);
+    text-align: center;
+}
+
+.bersambung {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.88rem;
+    color: #A89488;
+    letter-spacing: 1.2px;
+    margin-bottom: 0;
+}
+
+/* ===== Locked / Coming-soon Chapter Card ===== */
+.chapter-locked-card {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    overflow-y: auto !important;
+    padding: 20px 24px !important;
+    background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 7px,
+        rgba(213, 189, 175, 0.055) 7px,
+        rgba(213, 189, 175, 0.055) 14px
+    );
+}
+
+.lock-icon {
+    font-size: 1.75rem;
+    margin-bottom: 18px;
+    opacity: 0.5;
+}
+
+.chapter-coming-soon {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #C9A99A;
+    margin-bottom: 14px;
+}
+
+.chapter-teaser-num {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: #B5A396;
+    margin-bottom: 10px;
+}
+
+.chapter-teaser-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1rem, 3vw, 1.18rem);
+    font-style: italic;
+    color: #7A6B62;
+    opacity: 0.78;
+    line-height: 1.45;
+    margin-bottom: 20px;
+}
+
+.chapter-update-hint {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.72rem;
+    color: #C4B5AC;
+    letter-spacing: 1px;
+    font-style: italic;
+    margin-bottom: 0;
+}
+
+/* ===== BAB II Spoiler — section title list ===== */
+.spoiler-sections {
+    width: 100%;
+    max-width: 210px;
+    margin: 12px auto 16px auto;
+    text-align: left;
+}
+
+.chapter-locked-card .spoiler-section-item {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 0.72rem !important;
+    color: #A89488 !important;
+    line-height: 1.65 !important;
+    margin-bottom: 2px !important;
+    letter-spacing: 0.2px;
+    opacity: 0.85;
+    padding-left: 1.35em;
+    text-indent: -1.35em;
+}
+
+.chapter-locked-card .spoiler-section-item:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* ===== Back to prev chapter button ===== */
+.btn-back-prev {
+    display: block;
+    background: transparent;
+    border: none;
+    color: #B5A396;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.7rem;
+    padding: 0 0 14px 0;
+    margin: 0;
+    letter-spacing: 0.03em;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(181, 163, 150, 0.45);
+    cursor: pointer;
+}
+
+.btn-back-prev:hover,
+.btn-back-prev:active {
+    color: #9C8A80;
+    text-decoration-color: rgba(156, 138, 128, 0.7);
+    transform: none;
+    box-shadow: none;
+}
+
+/* ===== Back to Chapter 1 button (di spoiler card) ===== */
+.btn-back-start {
+    background: transparent;
+    border: none;
+    color: #B5A396;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.7rem;
+    padding: 6px 0;
+    letter-spacing: 0.6px;
+    margin-top: 16px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(181, 163, 150, 0.45);
+    cursor: pointer;
+}
+
+.btn-back-start:hover,
+.btn-back-start:active {
+    color: #9C8A80;
+    text-decoration-color: rgba(156, 138, 128, 0.7);
+    transform: none;
+    box-shadow: none;
+}
+
+/* ===== Announce Phase — intro notice before Bab I ===== */
+#phase-announce {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.announce-card {
+    max-width: 340px;
+    text-align: center;
+    padding: 28px 28px;
+    background: rgba(253, 251, 247, 0.72);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(213, 189, 175, 0.32);
+    border-radius: 20px;
+    box-shadow: 0 8px 40px rgba(196, 169, 154, 0.13),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.announce-tag {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: #C9A99A;
+    margin-bottom: 28px;
+}
+
+.announce-body {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(0.88rem, 2.4vw, 0.97rem);
+    color: #5A4A40;
+    line-height: 1.85;
+    margin-bottom: 14px;
+}
+
+.announce-hint {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(0.88rem, 2.5vw, 1rem);
+    color: #7A6B62;
+    line-height: 1.85;
+    margin-top: 20px;
+    margin-bottom: 28px;
+}
+
+.announce-pulse {
+    display: block;
+    color: #C9A99A;
+    font-size: 0.8rem;
+    letter-spacing: 6px;
+    opacity: 0.7;
+    animation: announcePulse 2s ease-in-out infinite;
+}
+
+@keyframes announcePulse {
+    0%, 100% { opacity: 0.35; transform: scale(1); }
+    50%       { opacity: 0.85; transform: scale(1.18); }
+}
+
+/* ===== Scroll Reveal — 3D fade-up on element enter card viewport ===== */
+.fade-scroll {
+    opacity: 0;
+    transform: perspective(900px) translateY(26px) translateZ(-10px);
+    transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.fade-scroll.visible {
+    opacity: 1;
+    transform: perspective(900px) translateY(0) translateZ(0);
+}
+
+/* ===== Announce Phase — staggered entry on active ===== */
+#phase-announce .announce-card > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.85s ease, transform 0.85s ease;
+}
+
+#phase-announce.active .announce-card > * {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#phase-announce.active .announce-card > *:nth-child(1) { transition-delay: 0.15s; }
+#phase-announce.active .announce-card > *:nth-child(2) { transition-delay: 0.38s; }
+#phase-announce.active .announce-card > *:nth-child(3) { transition-delay: 0.58s; }
+#phase-announce.active .announce-card > *:nth-child(4) { transition-delay: 0.76s; }
+#phase-announce.active .announce-card > *:nth-child(5) { transition-delay: 0.94s; }
+
+/* ===== Mobile — landscape / short screen ===== */
+@media (max-height: 500px) {
+    .container {
+        height: auto;
+        min-height: 0;
+        padding: 20px 0;
+    }
+
+    .phase {
+        position: relative;
+        top: auto; right: auto; bottom: auto; left: auto;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+
+    .phase.active {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    .phase.hidden {
+        display: none !important;
+    }
+}
+
+/* ===== Tablet & small mobile ===== */
+@media (max-width: 480px) {
+    body { padding: 12px; }
+
+    .btn-large {
+        padding: 14px 32px;
+        font-size: 1rem;
+        width: min(220px, 90%);
+        margin: 6px auto;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .ornament { letter-spacing: 6px; }
+
+    p { margin-bottom: 18px; }
+}
+
+/* ================================================================
+   BOOMBOX — Secret Radio
+   ================================================================ */
+#phase-boombox { justify-content: center; }
+
+.bb-scene {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bb-antenna {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: min(300px, 88vw);
+    padding-right: 38px;
+}
+
+.bb-tip {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #C9A99A;
+    box-shadow: 0 0 6px rgba(201, 169, 154, 0.7);
+}
+
+.bb-stick {
+    width: 2px;
+    height: 28px;
+    background: linear-gradient(to bottom, #C9A99A, #D5BDAF);
+    border-radius: 2px;
+}
+
+.bb-body {
+    display: flex;
+    align-items: center;
+    width: min(300px, 88vw);
+    background: linear-gradient(150deg, #EAD9C9 0%, #D5BDAF 55%, #C9A99A 100%);
+    border-radius: 16px 16px 6px 6px;
+    padding: 14px 8px;
+    gap: 6px;
+    border: 1.5px solid rgba(255, 255, 255, 0.55);
+    box-shadow:
+        0 6px 28px rgba(196, 169, 154, 0.35),
+        inset 0 2px 4px rgba(255, 255, 255, 0.5),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.07);
+    transition: box-shadow 0.65s ease, filter 0.65s ease;
+}
+
+.bb-body.bb-playing {
+    box-shadow:
+        0 8px 44px rgba(196, 169, 154, 0.65),
+        0 0 50px rgba(201, 169, 154, 0.18),
+        inset 0 2px 4px rgba(255, 255, 255, 0.5);
+    filter: brightness(1.04);
+}
+
+/* Speakers — concentric rings via radial-gradient */
+.bb-spk {
+    flex-shrink: 0;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle, #1A1008 17%, transparent 17%),
+        radial-gradient(circle, transparent 26%, #3C2F27 26%, #3C2F27 31%, transparent 31%),
+        radial-gradient(circle, transparent 40%, #3C2F27 40%, #3C2F27 45%, transparent 45%),
+        radial-gradient(circle, transparent 54%, #3C2F27 54%, #3C2F27 59%, transparent 59%),
+        radial-gradient(circle, transparent 68%, #3C2F27 68%, #3C2F27 73%, transparent 73%),
+        #2A1F1A;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.45);
+    transition: box-shadow 0.4s ease;
+}
+
+.bb-body.bb-playing .bb-spk {
+    animation: spkPulse 0.85s ease-in-out infinite alternate;
+}
+
+@keyframes spkPulse {
+    from { filter: brightness(1); }
+    to   { filter: brightness(1.15) drop-shadow(0 0 6px rgba(201, 169, 154, 0.5)); }
+}
+
+/* Center panel */
+.bb-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+}
+
+/* LCD */
+.bb-lcd {
+    width: 100%;
+    background: #140E08;
+    border-radius: 5px;
+    padding: 5px 8px;
+    text-align: center;
+    border: 1px solid rgba(201, 169, 154, 0.25);
+    box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.7);
+}
+
+.bb-lcd span {
+    font-family: 'Poppins', monospace;
+    font-size: 0.46rem;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    color: #C9A99A;
+    text-shadow: 0 0 8px rgba(201, 169, 154, 0.85);
+    display: block;
+}
+
+.bb-body.bb-playing .bb-lcd span {
+    animation: lcdGlow 1.3s ease-in-out infinite;
+    color: #EDCFB5;
+    text-shadow: 0 0 14px rgba(237, 207, 181, 0.95);
+}
+
+@keyframes lcdGlow {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.68; }
+}
+
+/* Cassette */
+.bb-cassette {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 10px;
+    background: rgba(0, 0, 0, 0.22);
+    border-radius: 6px;
+    width: 100%;
+    justify-content: center;
+}
+
+.bb-reel {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 38% 35%, #5A4A40, #180E08);
+    border: 1.5px solid rgba(201, 169, 154, 0.22);
+    position: relative;
+}
+
+.bb-reel::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #C9A99A;
+}
+
+.bb-body.bb-playing .bb-reel             { animation: reelSpin 1.1s linear infinite; }
+.bb-body.bb-playing #bb-reel-r           { animation-direction: reverse; }
+
+@keyframes reelSpin { to { transform: rotate(360deg); } }
+
+.bb-tape-slot {
+    flex: 1;
+    height: 5px;
+    background: #100A06;
+    border-radius: 3px;
+}
+
+/* Controls inside boombox */
+.bb-controls {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.bb-label {
+    font-size: 0.54rem;
+    color: rgba(58, 38, 28, 0.82);
+    letter-spacing: 1.5px;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.bb-input {
+    width: 100%;
+    background: rgba(20, 14, 8, 0.8);
+    border: 1px solid rgba(201, 169, 154, 0.32);
+    border-radius: 5px;
+    color: #F5EBE0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    letter-spacing: 6px;
+    text-align: center;
+    padding: 6px 4px;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.bb-input:focus {
+    border-color: #C9A99A;
+    box-shadow: 0 0 0 2px rgba(201, 169, 154, 0.18);
+}
+
+.bb-input::placeholder { color: rgba(245, 235, 224, 0.38); letter-spacing: 8px; }
+
+.bb-play-btn {
+    background: linear-gradient(135deg, #C9A99A, #A87E72);
+    border: none;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 600;
+    padding: 6px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    letter-spacing: 1.5px;
+    min-height: unset;
+    -webkit-tap-highlight-color: transparent;
+    transition: all 0.25s ease;
+}
+
+.bb-play-btn:hover,
+.bb-play-btn:active {
+    background: linear-gradient(135deg, #B89489, #987062);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(196, 169, 154, 0.4);
+}
+
+.bb-err {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.6rem;
+    color: #5C2E20;
+    margin: 0;
+    text-align: center;
+    min-height: 1em;
+}
+
+/* Handle strip under body */
+.bb-handle {
+    width: min(170px, 50vw);
+    height: 11px;
+    background: linear-gradient(145deg, #C9A99A, #A87E72);
+    border-radius: 0 0 10px 10px;
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    border-top: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+    margin-bottom: 18px;
+}
+
+.bb-tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.82rem;
+    color: #9C8A80;
+    margin: 0;
+    opacity: 0.85;
+}
+
+/* ================================================================
+   MINI-GAME — Find the Cow
+   ================================================================ */
+/* game-card is a flex column so meadow fills whatever height is left */
+.game-card {
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* Non-meadow children must not shrink — only meadow adapts */
+.game-card > .btn-back-prev,
+.game-card > .chapter-header,
+.game-card > .game-intro {
+    flex-shrink: 0;
+}
+
+.game-intro {
+    font-style: italic !important;
+    font-size: 0.85rem !important;
+    color: #7A6B62 !important;
+    text-align: center !important;
+    line-height: 1.7 !important;
+    margin-bottom: 10px !important;
+    max-width: none !important;
+}
+
+.meadow {
+    width: 100%;
+    /* flex:1 fills remaining height in the game-card flex column */
+    flex: 1;
+    min-height: 140px;
+    position: relative;
+    background: linear-gradient(to bottom,
+        #A8CEE8 0%,
+        #C2D9B4 22%,
+        #B0CC9E 48%,
+        #8EB47E 100%);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1.5px solid rgba(142, 180, 126, 0.35);
+    box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.06);
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* Grass blade texture — two overlapping near-vertical stripe patterns */
+.meadow::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 58%;
+    background:
+        repeating-linear-gradient(
+            177deg,
+            transparent 0px, transparent 10px,
+            rgba(46, 102, 30, 0.16) 10px, rgba(46, 102, 30, 0.16) 12px
+        ),
+        repeating-linear-gradient(
+            183deg,
+            transparent 0px, transparent 17px,
+            rgba(38, 88, 22, 0.11) 17px, rgba(38, 88, 22, 0.11) 19px
+        );
+    pointer-events: none;
+}
+
+.mi {
+    position: absolute;
+    line-height: 1;
+    pointer-events: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.mi-cow {
+    pointer-events: auto;
+    cursor: pointer;
+    font-size: 1rem;
+    opacity: 0.78;
+    z-index: 2;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+                opacity   0.3s ease;
+}
+
+.mi-cow.found {
+    transform: scale(2.4) rotate(-14deg) !important;
+    opacity: 1;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.28));
+}
+
+/* Win overlay */
+.game-win {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(253, 251, 247, 0.94);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    z-index: 10;
+    animation: fadeInUp 0.45s ease forwards;
+}
+
+.game-win-box { text-align: center; padding: 16px 20px; }
+
+.game-win-icon {
+    font-size: 2.4rem;
+    display: block;
+    margin-bottom: 6px;
+    animation: bounceIn 0.55s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.game-win-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #3C2F27;
+    margin-bottom: 8px !important;
+    max-width: none !important;
+}
+
+.game-win-msg {
+    font-size: 0.88rem !important;
+    line-height: 1.7 !important;
+    color: #5A4A40 !important;
+    margin-bottom: 18px !important;
+    max-width: none !important;
+}
+
+.game-win-sub {
+    display: block;
+    font-style: italic;
+    color: #9C8A80;
+    font-size: 0.78rem;
+    margin-top: 4px;
+}
+
+.game-win-box .btn-primary {
+    font-size: 0.88rem;
+    padding: 11px 26px;
+}
+
+/* ================================================================
+   MOBILE HEIGHT COMPATIBILITY — game-card responsive compaction
+   Applies to phones shorter than ~700px (iPhone SE, iPhone 8, etc.)
+   ================================================================ */
+@media (max-height: 700px) {
+    /* Compact phase-2 header to give more vertical space to the card wrapper */
+    #phase-2 {
+        padding-top: 14px;
+        padding-bottom: 12px;
+    }
+
+    #phase-2 .ornament   { margin-bottom: 6px;  font-size: 0.7rem;  }
+    #phase-2 .phase-label { margin-bottom: 2px; }
+    #phase-2 .divider    { margin-bottom: 8px;  }
+    .babak-progress      { margin-bottom: 8px;  }
+    .babak-wrapper       { margin-bottom: 10px; }
+
+    /* Compact game-card inner elements */
+    .game-card > .btn-back-prev { padding-bottom: 6px; }
+
+    .game-card > .chapter-header {
+        padding: 8px 14px 10px;
+        margin-bottom: 8px;
+    }
+
+    .game-card > .chapter-header .chapter-num { margin-bottom: 5px; }
+
+    .game-card > .game-intro {
+        font-size: 0.8rem !important;
+        line-height: 1.6 !important;
+        margin-bottom: 6px !important;
+    }
+}
+
+/* Very short screens (landscape phones or iPhone SE 1st gen portrait) */
+@media (max-height: 580px) {
+    /* Hide decorative phase header items — babak-wrapper needs every pixel */
+    #phase-2 .ornament,
+    #phase-2 .divider { display: none; }
+
+    #phase-2 { padding-top: 10px; padding-bottom: 10px; }
+    #phase-2 .phase-label { font-size: 0.82rem; margin-bottom: 2px; }
+
+    .babak-progress  { margin-bottom: 6px; }
+    .babak-wrapper   { margin-bottom: 6px; }
+
+    .game-card > .chapter-header {
+        padding: 6px 12px 8px;
+        margin-bottom: 6px;
+    }
+
+    .game-card > .chapter-header .chapter-title { font-size: 0.95rem; }
+
+    .game-card > .game-intro {
+        font-size: 0.75rem !important;
+        line-height: 1.55 !important;
+        margin-bottom: 4px !important;
+    }
+}
+
+/* Hide floating exit on pages that manage their own navigation */
+body:has(#phase-2.active .prolog-card.active) .btn-floating-exit,
+body:has(.chapter-locked-card.active) .btn-floating-exit {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ===== Locked card navigation (3 buttons at bottom) ===== */
+.locked-card-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    margin-top: 20px;
+}
+
+.locked-card-nav .btn-back-prev {
+    padding: 4px 0;
+    margin: 0;
+}
+
+.btn-logout-page {
+    background: transparent;
+    border: none;
+    color: #C4A99A;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.7rem;
+    padding: 6px 0;
+    letter-spacing: 0.6px;
+    margin-top: 4px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(196, 169, 154, 0.45);
+    cursor: pointer;
+}
+
+.btn-logout-page:hover,
+.btn-logout-page:active {
+    color: #A08070;
+    text-decoration-color: rgba(160, 128, 112, 0.7);
+}
+
+/* ===== Floating Exit Button ===== */
+.btn-floating-exit {
+    position: fixed;
+    top: 14px;
+    right: 14px;
+    z-index: 200;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    color: rgba(74, 59, 50, 0.72);
+    background: rgba(253, 251, 247, 0.82);
+    border: 1px solid rgba(213, 189, 175, 0.55);
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    min-height: unset;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    transition: color 0.25s ease, background 0.25s ease,
+                border-color 0.25s ease, opacity 0.3s ease;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.btn-floating-exit:hover {
+    color: #4A3B32;
+    background: rgba(253, 251, 247, 0.97);
+    border-color: rgba(196, 169, 154, 0.80);
+    transform: none;
+    box-shadow: none;
+}
+
+/* Readable on dark prolog background too */
+#phase-2:has(.prolog-card.active) ~ .btn-floating-exit {
+    color: rgba(232, 213, 196, 0.75);
+    background: rgba(21, 13, 8, 0.55);
+    border-color: rgba(201, 169, 154, 0.35);
+}
+
+#phase-2:has(.prolog-card.active) ~ .btn-floating-exit:hover {
+    color: #EDCFB5;
+    background: rgba(21, 13, 8, 0.80);
+    border-color: rgba(201, 169, 154, 0.60);
+}
+
+/* ===== Floating Gerbang Button ===== */
+.btn-floating-nav {
+    position: fixed;
+    top: 14px;
+    left: 14px;
+    z-index: 200;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: rgba(74, 59, 50, 0.72);
+    background: rgba(253, 251, 247, 0.82);
+    border: 1px solid rgba(213, 189, 175, 0.55);
+    border-radius: 20px;
+    padding: 5px 14px;
+    cursor: pointer;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: color 0.25s ease, background 0.25s ease,
+                border-color 0.25s ease, opacity 0.3s ease;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.btn-floating-nav:hover {
+    color: #4A3B32;
+    background: rgba(253, 251, 247, 0.97);
+    border-color: rgba(196, 169, 154, 0.80);
+    transform: none;
+    box-shadow: none;
+}
+
+/* Show on reading pages */
+body:has(#phase-2.active) .btn-floating-nav,
+body:has(#phase-3.active) .btn-floating-nav,
+body:has(#phase-4.active) .btn-floating-nav {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Hide during prolog card (dark screen) */
+body:has(#phase-2.active .prolog-card.active) .btn-floating-nav {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Collapse bottom gap when locked card is active (no nav button below) */
+#phase-2:has(.chapter-locked-card.active) {
+    padding-bottom: 0;
+}
+#phase-2:has(.chapter-locked-card.active) .babak-wrapper {
+    margin-bottom: 0 !important;
+}
+
+/* ===== Phase-2 Dark Mode when Prolog Card is Active ===== */
+#phase-2 {
+    transition: background-color 0.9s ease;
+}
+
+#phase-2:has(.prolog-card.active) {
+    background-color: #150D08;
+}
+
+#phase-2:has(.prolog-card.active) .ornament {
+    color: rgba(201, 169, 154, 0.35);
+}
+
+#phase-2:has(.prolog-card.active) .phase-label {
+    color: rgba(201, 169, 154, 0.60) !important;
+    opacity: 0 !important;
+    pointer-events: none;
+}
+
+#phase-2:has(.prolog-card.active) .divider {
+    color: rgba(201, 169, 154, 0.30);
+}
+
+#phase-2:has(.prolog-card.active) .babak-dot {
+    background: rgba(201, 169, 154, 0.22);
+}
+
+#phase-2:has(.prolog-card.active) .babak-dot.active {
+    background: rgba(201, 169, 154, 0.80);
+}
+
+#phase-2:has(.prolog-card.active) #btn-next-2 {
+    color: rgba(232, 213, 196, 0.82);
+    border-color: rgba(201, 169, 154, 0.35);
+    background: transparent;
+}
+
+#phase-2:has(.prolog-card.active) #btn-next-2:hover,
+#phase-2:has(.prolog-card.active) #btn-next-2:active {
+    background: rgba(201, 169, 154, 0.12);
+    color: #EDCFB5;
+    border-color: rgba(201, 169, 154, 0.55);
+    transform: translateY(-2px);
+}
+
+#phase-2:has(.prolog-card.active) .babak-wrapper::after {
+    background: linear-gradient(to top,
+        rgba(21, 13, 8, 0.96) 0%,
+        rgba(21, 13, 8, 0.55) 45%,
+        transparent 100%);
+}
+
+/* ===== Prolog Card (BAB II Interlude) ===== */
+.prolog-card {
+    background: linear-gradient(145deg, #100A06 0%, #1E1208 55%, #150D08 100%) !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+}
+
+.prolog-card .btn-back-prev {
+    color: rgba(201, 169, 154, 0.70);
+    background: transparent;
+    border-color: rgba(201, 169, 154, 0.25);
+}
+
+.prolog-card .btn-back-prev:hover {
+    color: rgba(201, 169, 154, 1);
+    border-color: rgba(201, 169, 154, 0.55);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.prolog-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem 2rem 2.5rem;
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.prolog-tag {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #C9A99A;
+}
+
+.prolog-lead {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: #E8D5C4;
+}
+
+.prolog-body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.85;
+    color: rgba(232, 213, 196, 0.80);
+    text-align: left;
+    width: 100%;
+}
+
+.prolog-closing {
+    font-style: italic;
+    color: rgba(232, 213, 196, 0.70);
+    font-size: 0.86rem;
+}
+
+.prolog-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    line-height: 1.65;
+    color: #EDCFB5;
+    border-top: 1px solid rgba(201, 169, 154, 0.28);
+    border-bottom: 1px solid rgba(201, 169, 154, 0.28);
+    padding: 1.1rem 1rem;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+}
+
+/* Staggered fade-in for prolog elements */
+.prolog-card .prolog-inner > * {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.prolog-card.active .prolog-inner > *:nth-child(1) { transition-delay: 0.35s; }
+.prolog-card.active .prolog-inner > *:nth-child(2) { transition-delay: 0.95s; }
+.prolog-card.active .prolog-inner > *:nth-child(3) { transition-delay: 1.65s; }
+.prolog-card.active .prolog-inner > *:nth-child(4) { transition-delay: 2.40s; }
+.prolog-card.active .prolog-inner > *:nth-child(5) { transition-delay: 3.10s; }
+.prolog-card.active .prolog-inner > *:nth-child(6) { transition-delay: 3.75s; }
+
+.prolog-card.active .prolog-inner > * {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* "Lanjut" button on prolog — appears last, after all text fades in */
+.prolog-card .babak-nav-end {
+    margin-top: 0.5rem;
+}
+
+@media (max-width: 480px) {
+    .prolog-inner {
+        padding: 1.5rem 1.4rem 2rem;
+        gap: 1.2rem;
+    }
+    .prolog-lead  { font-size: 1rem; }
+    .prolog-quote { font-size: 1.05rem; }
+    .prolog-body  { font-size: 0.84rem; }
+}
+
+/* ===== Body goes dark when prolog card is active (only while phase-2 is shown) ===== */
+body:has(#phase-2.active .prolog-card.active) {
+    background-color: #0A0603;
+    background-image: none;
+    color-scheme: dark;
+}
+
+/* ===== Spotlight beam — lampu sorot dari atas ===== */
+#phase-2:has(.prolog-card.active) .babak-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: radial-gradient(ellipse 70% 55% at 50% -5%,
+        rgba(220, 172, 105, 0.26) 0%,
+        rgba(200, 148, 82, 0.10) 38%,
+        transparent 65%
+    );
+    pointer-events: none;
+    z-index: 1;
+    animation: spotlightBreathe 7s ease-in-out infinite;
+}
+
+@keyframes spotlightBreathe {
+    0%, 100% { opacity: 0.65; }
+    50%       { opacity: 1.0;  }
+}
+
+/* ===== Interlude advance button (shows "✦ Interlude" on Bagian 5) ===== */
+.btn-interlude-mode {
+    font-style: italic;
+    letter-spacing: 2px;
+}
+
+.btn-interlude-mode:not(.btn-scroll-hidden):not(.nav-end-hidden) {
+    animation: ilBtnPulse 2.6s ease-in-out infinite;
+}
+
+.btn-interlude-mode.btn-scroll-hidden {
+    animation: none;
+}
+
+@keyframes ilBtnPulse {
+    0%, 100% {
+        border-color: rgba(213, 189, 175, 0.42);
+        box-shadow: none;
+        color: #4A3B32;
+    }
+    50% {
+        border-color: rgba(213, 189, 175, 0.95);
+        box-shadow: 0 0 22px rgba(213, 189, 175, 0.45), 0 0 44px rgba(213, 189, 175, 0.14);
+        color: #3C2F27;
+    }
+}
+
+body.post-interlude .btn-interlude-mode:not(.btn-scroll-hidden):not(.nav-end-hidden) {
+    animation: ilBtnPulseDark 2.6s ease-in-out infinite;
+}
+
+@keyframes ilBtnPulseDark {
+    0%, 100% {
+        border-color: rgba(201, 169, 154, 0.30);
+        box-shadow: none;
+        color: rgba(232, 213, 196, 0.65);
+    }
+    50% {
+        border-color: rgba(201, 169, 154, 0.88);
+        box-shadow: 0 0 22px rgba(201, 169, 154, 0.38), 0 0 44px rgba(201, 169, 154, 0.12);
+        color: rgba(232, 213, 196, 0.95);
+    }
+}
+
+/* ================================================================
+   POST-INTERLUDE — (removed: interlude is now unlocked)
+   ================================================================ */
+/* ================================================================
+   INTERLUDE CARD — Jeda di Antara Waktu
+   ================================================================ */
+
+/* Full-phase dark when interlude active — only while phase-3 is visible */
+body:has(#phase-3.active .interlude-card.active) {
+    background-color: #03020A;
+    background-image: none;
+    color-scheme: dark;
+}
+
+/* Vignette overlay */
+.il-vignette {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 1.6s ease;
+    background: radial-gradient(ellipse 72% 78% at 50% 50%, transparent 26%, rgba(1, 0, 6, 0.93) 100%);
+}
+
+body:has(#phase-3.active .interlude-card.active) .il-vignette {
+    opacity: 1;
+}
+
+/* Stars overlay */
+.il-stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 2.2s ease;
+}
+
+body:has(#phase-3.active .interlude-card.active) .il-stars {
+    opacity: 1;
+}
+
+.il-star {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    animation: ilStarDrift linear infinite;
+    opacity: 0;
+}
+
+@keyframes ilStarDrift {
+    0%   { transform: translateY(8px) scale(1); opacity: 0; }
+    8%   { opacity: 1; }
+    92%  { opacity: 0.55; }
+    100% { transform: translateY(-110vh) scale(0.35); opacity: 0; }
+}
+
+/* Card */
+.interlude-card {
+    background: radial-gradient(ellipse at 50% 30%, #0F0A1F 0%, #03020A 75%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-y: auto;
+    scrollbar-width: none;
+    padding: 0;
+}
+
+.interlude-card::-webkit-scrollbar { display: none; }
+
+/* Inner layout */
+.interlude-inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2.6rem 1.8rem 3.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    text-align: center;
+}
+
+/* Stagger fade-in for all 9 children */
+.interlude-inner > * {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.interlude-card.active .interlude-inner > * {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.interlude-card.active .interlude-inner > *:nth-child(1)  { transition-delay: 0.4s;  }
+.interlude-card.active .interlude-inner > *:nth-child(2)  { transition-delay: 1.8s;  }
+.interlude-card.active .interlude-inner > *:nth-child(3)  { transition-delay: 3.4s;  }
+.interlude-card.active .interlude-inner > *:nth-child(4)  { transition-delay: 5.2s;  }
+.interlude-card.active .interlude-inner > *:nth-child(5)  { transition-delay: 6.6s;  }
+.interlude-card.active .interlude-inner > *:nth-child(6)  { transition-delay: 8.2s;  }
+.interlude-card.active .interlude-inner > *:nth-child(7)  { transition-delay: 9.6s;  }
+.interlude-card.active .interlude-inner > *:nth-child(8)  { transition-delay: 10.8s; }
+.interlude-card.active .interlude-inner > *:nth-child(9)  { transition-delay: 12.0s; }
+.interlude-card.active .interlude-inner > *:nth-child(10) { transition-delay: 13.0s; }
+.interlude-card.active .interlude-inner > *:nth-child(11) { transition-delay: 14.2s; }
+.interlude-card.active .interlude-inner > *:nth-child(12) { transition-delay: 15.6s; }
+.interlude-card.active .interlude-inner > *:nth-child(13) { transition-delay: 17.2s; }
+.interlude-card.active .interlude-inner > *:nth-child(14) { transition-delay: 19.0s; }
+
+/* Tag */
+.interlude-tag {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: rgba(201, 169, 154, 0.58);
+    min-height: 1.2em;
+}
+
+/* Body paragraphs */
+.interlude-p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(0.88rem, 2.3vw, 0.97rem);
+    line-height: 1.97;
+    color: rgba(232, 213, 196, 0.70);
+    text-align: center;
+    max-width: 45ch;
+    margin: 0 auto;
+}
+
+/* Status system */
+.il-status-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 11px;
+}
+
+.il-status-line {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: clamp(0.56rem, 1.5vw, 0.62rem);
+    color: rgba(201, 169, 154, 0.52);
+    letter-spacing: 1.5px;
+}
+
+.il-star-static {
+    color: rgba(201, 169, 154, 0.70);
+    font-size: 0.65rem;
+}
+
+@keyframes ilDotPulse {
+    0%, 100% { opacity: 0.1; }
+    50%       { opacity: 0.95; }
+}
+
+/* Progress bar */
+.il-bar {
+    width: min(200px, 55%);
+    height: 2px;
+    background: rgba(255, 255, 255, 0.07);
+    border-radius: 1px;
+    overflow: hidden;
+}
+
+.il-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: rgba(201, 169, 154, 0.48);
+    border-radius: 1px;
+}
+
+.interlude-card.active .il-bar-fill {
+    animation: ilLoadTo99 18s ease forwards;
+    animation-delay: 10.5s;
+}
+
+/* Unlocked state: bar instantly full */
+.il-bar-fill.il-bar-done {
+    animation: ilBarDone 1.2s ease forwards;
+    animation-delay: 16.5s;
+}
+
+@keyframes ilBarDone {
+    0%   { width: 0%; }
+    60%  { width: 100%; }
+    100% { width: 100%; background: rgba(201, 169, 154, 0.75); }
+}
+
+@keyframes ilLoadTo99 {
+    0%   { width: 0%; }
+    80%  { width: 96%; }
+    100% { width: 99%; }
+}
+
+/* Reveal text — slightly brighter */
+.il-reveal {
+    color: rgba(232, 213, 196, 0.90) !important;
+    font-style: italic;
+}
+
+/* Unlock section */
+.il-unlock-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-bab3-unlock {
+    background: rgba(255, 255, 255, 0.04);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(201, 169, 154, 0.35);
+    border-radius: 24px;
+    color: rgba(237, 207, 181, 0.82);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    padding: 11px 30px;
+    min-height: unset;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    animation: ilBtnUnlock 2.8s ease-in-out infinite;
+    transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-bab3-unlock:hover,
+.btn-bab3-unlock:active {
+    background: rgba(201, 169, 154, 0.12);
+    border-color: rgba(201, 169, 154, 0.65);
+    color: rgba(237, 207, 181, 1);
+    transform: none;
+    box-shadow: 0 0 22px rgba(201, 169, 154, 0.18);
+}
+
+@keyframes ilBtnUnlock {
+    0%, 100% {
+        border-color: rgba(201, 169, 154, 0.30);
+        box-shadow: 0 0 0px rgba(201, 169, 154, 0);
+        color: rgba(237, 207, 181, 0.70);
+    }
+    50% {
+        border-color: rgba(201, 169, 154, 0.65);
+        box-shadow: 0 0 18px rgba(201, 169, 154, 0.14);
+        color: rgba(237, 207, 181, 0.95);
+    }
+}
+
+/* Hide falling petals only when interlude is actually visible */
+body:has(#phase-3.active .interlude-card.active) .petal {
+    display: none;
+}
+
+/* Floating buttons adapt to interlude dark theme */
+body:has(#phase-3.active .interlude-card.active) .btn-floating-exit,
+body:has(#phase-3.active .interlude-card.active) .btn-floating-nav {
+    color: rgba(201, 169, 154, 0.52);
+    background: rgba(3, 2, 10, 0.68);
+    border-color: rgba(201, 169, 154, 0.20);
+}
+
+/* Phase-3 header fades when interlude active */
+#phase-3:has(.interlude-card.active) {
+    background-color: #03020A;
+}
+
+#phase-3:has(.interlude-card.active) .phase-label,
+#phase-3:has(.interlude-card.active) .ornament,
+#phase-3:has(.interlude-card.active) .divider {
+    opacity: 0 !important;
+}
+
+#phase-3:has(.interlude-card.active) .babak-dot {
+    background: rgba(201, 169, 154, 0.18);
+}
+
+#phase-3:has(.interlude-card.active) .babak-dot.active {
+    background: rgba(201, 169, 154, 0.62);
+}
+
+#phase-3:has(.interlude-card.active) .babak-wrapper::after {
+    background: linear-gradient(to top,
+        rgba(3, 2, 10, 0.97) 0%,
+        rgba(3, 2, 10, 0.50) 45%,
+        transparent 100%);
+}

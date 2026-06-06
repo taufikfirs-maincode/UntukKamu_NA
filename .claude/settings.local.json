@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir \"c:\\\\Users\\\\Hype\\\\Desktop\\\\Nabila Aisyah\\\\assets\" /B)",
+      "Bash(Select-String -Path \"c:\\\\Users\\\\Hype\\\\Desktop\\\\Nabila Aisyah\\\\Style.css\" -Pattern \"prolog|scroll-reveal|scrollReveal\" -n)",
+      "Bash(Select-Object -First 20)",
+      "Bash(python3 -c \"import hashlib; print\\('pw:', hashlib.sha256\\(b'13092025'\\).hexdigest\\(\\)\\); print\\('song:', hashlib.sha256\\(b'1309'\\).hexdigest\\(\\)\\)\")",
+      "Bash(dir \"c:\\\\Users\\\\Hype\\\\Desktop\\\\Nabila Aisyah\\\\assets\")",
+      "Bash(node -c script.js)",
+      "Bash(node -c \"c:\\\\Users\\\\Hype\\\\Desktop\\\\Nabila Aisyah\\\\script.js\")"
+    ]
+  }
+}

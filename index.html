@@ -1,0 +1,1860 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Untuk Kamu, Nabila Aisyah</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♡</text></svg>"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      window.va =
+        window.va ||
+        function () {
+          (window.vaq = window.vaq || []).push(arguments);
+        };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Fase 1: Gerbang Masuk -->
+      <section id="phase-1" class="phase active">
+        <div class="ornament fade-in">&#10022; &#10022; &#10022;</div>
+        <h1 id="greeting-text" class="main-title"></h1>
+        <p class="fade-in delay-1">
+          Ada sesuatu yang ingin aku tunjukkan<br />khusus untuk kamu.
+        </p>
+        <div class="input-group fade-in delay-2">
+          <p class="hint">Masukkan kode ajaib untuk membuka pesan ini</p>
+          <input
+            type="password"
+            id="password-input"
+            placeholder="..."
+            maxlength="8"
+            autocomplete="off"
+          />
+          <button id="btn-login" class="btn-primary">Buka Pesan</button>
+          <p id="error-msg" class="error hidden">
+            Sepertinya ada yang salah, coba ingat lagi ya &#9825;
+          </p>
+          <p id="quote-msg" class="quote-msg hidden"></p>
+          <button id="btn-hint" class="btn-hint hidden">
+            Tampilkan Petunjuk
+          </button>
+          <div id="hint-msg" class="hint-msg hidden">
+            <span class="hint-tag">[ Keamanan Lorong Waktu ]</span>
+            <p class="hint-clue">
+              Clue: Lorong waktu ini membutuhkan sandi kenangan agar bisa
+              terbuka. Jika kamu mengingat di mana dan kapan mata (dan suara)
+              kita pertama kali saling menemukan, kamu pasti tahu deretan angka
+              apa yang kusembunyikan di sini.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Fase Announce: Pemberitahuan sebelum Bab I -->
+      <section id="phase-announce" class="phase hidden">
+        <div class="announce-card">
+          <p class="announce-body">
+            Ada melodi yang sengaja kusiapkan untuk menemanimu di halaman ini.
+          </p>
+          <p class="announce-body">
+            Tolong pastikan perangkatmu tidak dalam mode bisu ya, Cantik.
+          </p>
+          <p class="announce-hint">
+            Jika semua sudah siap, sentuh layar ini dan mari kita mulai
+            menelusuri lorong waktu kita bersama.
+          </p>
+          <span class="announce-pulse">&#10022;</span>
+        </div>
+      </section>
+
+      <!-- Fase Boombox: Radio Rahasia -->
+      <section id="phase-boombox" class="phase hidden">
+        <div class="bb-scene">
+          <div class="bb-antenna">
+            <div class="bb-tip"></div>
+            <div class="bb-stick"></div>
+          </div>
+          <div class="bb-body" id="boombox">
+            <div class="bb-spk"></div>
+            <div class="bb-panel">
+              <div class="bb-lcd"><span id="bb-lcd">RADIO RAHASIA</span></div>
+              <div class="bb-cassette">
+                <div class="bb-reel" id="bb-reel-l"></div>
+                <div class="bb-tape-slot"></div>
+                <div class="bb-reel" id="bb-reel-r"></div>
+              </div>
+              <div class="bb-controls">
+                <p class="bb-label">Masukkan ID Lagu</p>
+                <input
+                  type="text"
+                  id="song-id-input"
+                  class="bb-input"
+                  placeholder="&#183; &#183; &#183; &#183;"
+                  maxlength="8"
+                  inputmode="numeric"
+                  autocomplete="off"
+                />
+                <button type="button" id="btn-play-song" class="bb-play-btn">
+                  &#9654; PUTAR
+                </button>
+                <p id="song-error" class="bb-err hidden">
+                  ~ Bukan itu kodemu ~
+                </p>
+              </div>
+            </div>
+            <div class="bb-spk"></div>
+          </div>
+          <div class="bb-handle"></div>
+          <p class="bb-tagline">Kode rahasia untuk membuka musiknya &#9825;</p>
+        </div>
+      </section>
+
+      <!-- Phase Nav: Gerbang Lorong Waktu -->
+      <section id="phase-nav" class="phase hidden">
+        <div class="nav-gate">
+          <span class="nav-gate-tag">[ Gerbang Lorong Waktu Terbuka ]</span>
+          <h2 class="nav-gate-title">Halo, Cantik.</h2>
+          <p class="nav-gate-body">
+            Selamat datang di mesin waktu yang sengaja kubangun hanya untukmu.
+            Di dalam sini, terekam rapi setiap detik, tawa, dan debar sejak hari
+            pertama takdir mempertemukan kita.
+          </p>
+          <p class="nav-gate-question">
+            Ke mana kompas waktumu ingin berlabuh hari ini?
+          </p>
+          <div class="nav-options">
+            <div class="nav-bab-section">
+              <span class="nav-bab-label"
+                >BAB I &mdash; Menapaki Lorong Takdir</span
+              >
+              <div class="nav-bab-chapters">
+                <button
+                  type="button"
+                  class="nav-option-btn nav-chapter-btn"
+                  data-card="0"
+                  data-phase="phase-2"
+                >
+                  <span class="nav-option-marker">&#10022;</span>
+                  <span class="nav-option-content">
+                    <span class="nav-option-title">Prolog</span>
+                    <span class="nav-option-sub"
+                      >Sebelum Semua Ini Dimulai</span
+                    >
+                  </span>
+                </button>
+                <button
+                  type="button"
+                  class="nav-option-btn nav-chapter-btn"
+                  data-card="1"
+                  data-phase="phase-2"
+                >
+                  <span class="nav-option-marker">&#9632;</span>
+                  <span class="nav-option-content">
+                    <span class="nav-option-title"
+                      >Suara di Antara Piksel dan Sebuah Foto di Layar
+                      Kaca</span
+                    >
+                    <span class="nav-option-sub">Chapter 1</span>
+                  </span>
+                </button>
+                <button
+                  type="button"
+                  class="nav-option-btn nav-chapter-btn"
+                  data-card="2"
+                  data-phase="phase-2"
+                >
+                  <span class="nav-option-marker">&#9632;</span>
+                  <span class="nav-option-content">
+                    <span class="nav-option-title"
+                      >Ritme Malam dan Sandi Kelakar Kita</span
+                    >
+                    <span class="nav-option-sub">Chapter 2</span>
+                  </span>
+                </button>
+                <button
+                  type="button"
+                  class="nav-option-btn nav-chapter-btn"
+                  data-card="3"
+                  data-phase="phase-2"
+                >
+                  <span class="nav-option-marker">&#9632;</span>
+                  <span class="nav-option-content">
+                    <span class="nav-option-title"
+                      >Cari Sapi di Padang Rumput</span
+                    >
+                    <span class="nav-option-sub">Mini Game</span>
+                  </span>
+                </button>
+                <button
+                  type="button"
+                  class="nav-option-btn nav-chapter-btn"
+                  data-card="4"
+                  data-phase="phase-2"
+                >
+                  <span class="nav-option-marker">&#9632;</span>
+                  <span class="nav-option-content">
+                    <span class="nav-option-title">Jembatan Menuju Nyata</span>
+                    <span class="nav-option-sub">Chapter 3</span>
+                  </span>
+                </button>
+                <button
+                  type="button"
+                  class="nav-option-btn nav-chapter-btn"
+                  data-card="5"
+                  data-phase="phase-2"
+                >
+                  <span class="nav-option-marker">&#9632;</span>
+                  <span class="nav-option-content">
+                    <span class="nav-option-title"
+                      >Sepenggal Sesal di Bawah Lampu Kota</span
+                    >
+                    <span class="nav-option-sub">Chapter 4</span>
+                  </span>
+                </button>
+                <button
+                  type="button"
+                  class="nav-option-btn nav-chapter-btn"
+                  data-card="6"
+                  data-phase="phase-2"
+                >
+                  <span class="nav-option-marker">&#9632;</span>
+                  <span class="nav-option-content">
+                    <span class="nav-option-title"
+                      >Sebuah Pertukaran yang Mengubah Semesta</span
+                    >
+                    <span class="nav-option-sub">Chapter 5</span>
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div class="nav-section-sep"></div>
+            <div class="nav-bab-section">
+              <span class="nav-bab-label"
+                >BAB II &mdash; Alasan Waktu Berhenti Padamu</span
+              >
+              <div class="nav-bab-chapters">
+                <button
+                  type="button"
+                  class="nav-option-btn nav-chapter-btn"
+                  data-card="0"
+                  data-phase="phase-3"
+                >
+                  <span class="nav-option-marker">&#9632;</span>
+                  <span class="nav-option-content">
+                    <span class="nav-option-title"
+                      >Magnet Sebuah Kedewasaan</span
+                    >
+                    <span class="nav-option-sub">Bagian 1</span>
+                  </span>
+                </button>
+                <button
+                  type="button"
+                  class="nav-option-btn nav-chapter-btn"
+                  data-card="1"
+                  data-phase="phase-3"
+                >
+                  <span class="nav-option-marker">&#9632;</span>
+                  <span class="nav-option-content">
+                    <span class="nav-option-title">Melodi dalam Suaramu</span>
+                    <span class="nav-option-sub">Bagian 2</span>
+                  </span>
+                </button>
+                <button
+                  type="button"
+                  class="nav-option-btn nav-chapter-btn"
+                  data-card="2"
+                  data-phase="phase-3"
+                >
+                  <span class="nav-option-marker">&#9632;</span>
+                  <span class="nav-option-content">
+                    <span class="nav-option-title"
+                      >Sebuah Fakta Bernama Keindahan</span
+                    >
+                    <span class="nav-option-sub">Bagian 3</span>
+                  </span>
+                </button>
+                <button
+                  type="button"
+                  class="nav-option-btn nav-chapter-btn"
+                  data-card="3"
+                  data-phase="phase-3"
+                >
+                  <span class="nav-option-marker">&#9632;</span>
+                  <span class="nav-option-content">
+                    <span class="nav-option-title"
+                      >Harap di Balik Konyolku</span
+                    >
+                    <span class="nav-option-sub">Bagian 4</span>
+                  </span>
+                </button>
+                <button
+                  type="button"
+                  class="nav-option-btn nav-chapter-btn"
+                  data-card="4"
+                  data-phase="phase-3"
+                >
+                  <span class="nav-option-marker">&#9632;</span>
+                  <span class="nav-option-content">
+                    <span class="nav-option-title">Ruang Kosong untukmu</span>
+                    <span class="nav-option-sub">Bagian 5</span>
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div class="nav-section-sep"></div>
+            <div class="nav-bab-section">
+              <span class="nav-bab-label"
+                >BAB III &mdash; Muara Segala Rasa</span
+              >
+              <div class="nav-bab-chapters">
+                <button
+                  type="button"
+                  class="nav-option-btn nav-chapter-btn"
+                  data-card="0"
+                  data-phase="phase-4"
+                >
+                  <span class="nav-option-marker">&#9632;</span
+                  ><span class="nav-option-content"
+                    ><span class="nav-option-title"
+                      >Sebelum Kalimat Ini Lahir</span
+                    ><span class="nav-option-sub">Bagian 1</span></span
+                  >
+                </button>
+                <button
+                  type="button"
+                  class="nav-option-btn nav-chapter-btn"
+                  data-card="1"
+                  data-phase="phase-4"
+                >
+                  <span class="nav-option-marker">&#9632;</span
+                  ><span class="nav-option-content"
+                    ><span class="nav-option-title"
+                      >Hal yang Tidak Pernah Kuceritakan</span
+                    ><span class="nav-option-sub">Bagian 2</span></span
+                  >
+                </button>
+                <button
+                  type="button"
+                  class="nav-option-btn nav-chapter-btn"
+                  data-card="2"
+                  data-phase="phase-4"
+                >
+                  <span class="nav-option-marker">&#9632;</span
+                  ><span class="nav-option-content"
+                    ><span class="nav-option-title">Surat untuk Keraguanmu</span
+                    ><span class="nav-option-sub">Bagian 3</span></span
+                  >
+                </button>
+                <button
+                  type="button"
+                  class="nav-option-btn nav-chapter-btn"
+                  data-card="3"
+                  data-phase="phase-4"
+                >
+                  <span class="nav-option-marker">&#9632;</span
+                  ><span class="nav-option-content"
+                    ><span class="nav-option-title"
+                      >Tentang Jarak dan Sesuatu yang Tetap Utuh</span
+                    ><span class="nav-option-sub">Bagian 4</span></span
+                  >
+                </button>
+                <button
+                  type="button"
+                  class="nav-option-btn nav-chapter-btn"
+                  data-card="4"
+                  data-phase="phase-4"
+                >
+                  <span class="nav-option-marker">&#9632;</span
+                  ><span class="nav-option-content"
+                    ><span class="nav-option-title"
+                      >Hal Terakhir Sebelum Pertanyaan Itu</span
+                    ><span class="nav-option-sub">Bagian 5</span></span
+                  >
+                </button>
+                <button
+                  type="button"
+                  class="nav-option-btn nav-chapter-btn"
+                  data-card="5"
+                  data-phase="phase-4"
+                >
+                  <span class="nav-option-marker">&#9632;</span
+                  ><span class="nav-option-content"
+                    ><span class="nav-option-title"
+                      >Akhirnya, Pertanyaan Itu</span
+                    ><span class="nav-option-sub">Bagian 6</span></span
+                  >
+                </button>
+              </div>
+            </div>
+            <div class="nav-section-sep nav-fase5-sep"></div>
+            <div class="nav-bab-section nav-fase5-section">
+              <span class="nav-bab-label"
+                >Fase V &mdash; Sebuah Awal Bernama Kita</span
+              >
+              <div class="nav-bab-chapters">
+                <button
+                  type="button"
+                  class="nav-option-btn nav-chapter-btn"
+                  data-card="0"
+                  data-phase="phase-5"
+                >
+                  <span class="nav-option-marker">&#9632;</span
+                  ><span class="nav-option-content"
+                    ><span class="nav-option-title"
+                      >Kata yang Paling Lama Kutunggu</span
+                    ><span class="nav-option-sub">Babak 1</span></span
+                  >
+                </button>
+                <button
+                  type="button"
+                  class="nav-option-btn nav-chapter-btn"
+                  data-card="1"
+                  data-phase="phase-5"
+                >
+                  <span class="nav-option-marker">&#9632;</span
+                  ><span class="nav-option-content"
+                    ><span class="nav-option-title"
+                      >Hal yang Perlu Kamu Tahu Sejak Hari Pertama Ini</span
+                    ><span class="nav-option-sub">Babak 2</span></span
+                  >
+                </button>
+                <button
+                  type="button"
+                  class="nav-option-btn nav-chapter-btn"
+                  data-card="2"
+                  data-phase="phase-5"
+                >
+                  <span class="nav-option-marker">&#9632;</span
+                  ><span class="nav-option-content"
+                    ><span class="nav-option-title"
+                      >Ini Bukan Akhir. Ini Justru Sebaliknya.</span
+                    ><span class="nav-option-sub">Babak 3</span></span
+                  >
+                </button>
+                <button
+                  type="button"
+                  class="nav-option-btn nav-chapter-btn"
+                  data-card="3"
+                  data-phase="phase-5"
+                >
+                  <span class="nav-option-marker">&#9632;</span
+                  ><span class="nav-option-content"
+                    ><span class="nav-option-title"
+                      >Satu Hal Kecil di Penghujung Halaman</span
+                    ><span class="nav-option-sub">Babak 4</span></span
+                  >
+                </button>
+                <button
+                  type="button"
+                  class="nav-option-btn nav-chapter-btn"
+                  data-card="4"
+                  data-phase="phase-5"
+                >
+                  <span class="nav-option-marker">&#9632;</span
+                  ><span class="nav-option-content"
+                    ><span class="nav-option-title">Epilog</span
+                    ><span class="nav-option-sub">Penutup</span></span
+                  >
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Fase 2: Menapaki Lorong Takdir -->
+      <section id="phase-2" class="phase hidden">
+        <div class="ornament fade-in">&#10022;</div>
+        <h2 class="fade-in phase-label">BAB I: Menapaki Lorong Takdir</h2>
+        <div class="divider fade-in delay-1">&#10023;</div>
+        <div class="babak-progress" id="p2-dots"></div>
+
+        <div class="babak-wrapper">
+          <!-- ✦ PROLOG — card pertama -->
+          <div
+            class="babak-card prolog-card active"
+            data-gerbang="true"
+            data-btn-label="✦ Menuju Gerbang Lorong Waktu"
+          >
+            <div class="prolog-inner">
+              <span class="prolog-tag">[ Prolog ]</span>
+
+              <p class="prolog-lead">
+                Sebelum kamu membalik halaman pertama dari semua ini, ada satu
+                hal yang ingin kusampaikan terlebih dahulu.
+              </p>
+
+              <p class="prolog-body">
+                Aku bukan seorang penulis. Aku tidak pernah mengklaim demikian.
+                Yang kutahu hanyalah bahwa ada sesuatu di dalam dadaku yang
+                sudah terlalu lama tidak menemukan jalan keluarnya &mdash;
+                sesuatu yang terasa terlalu besar untuk muat dalam pesan biasa,
+                terlalu dalam untuk sekadar diucapkan di sela-sela obrolan, dan
+                terlalu nyata untuk kudiamkan lebih lama.
+              </p>
+
+              <p class="prolog-body">
+                Maka kubangunlah tempat ini. Sebuah lorong waktu dari kata-kata,
+                kenangan, dan rasa yang selama ini tinggal diam di suatu tempat
+                yang hanya aku yang tahu.
+              </p>
+
+              <p class="prolog-body">
+                Di dalam halaman-halaman yang akan kamu temukan setelah ini,
+                tersimpan rapi kisah kita &mdash; diceritakan dari sudut
+                pandangku, dengan segala kepolosan dan kekonyolan yang melekat
+                pada diriku. Kamu mungkin akan tertawa. Mungkin juga mengerutkan
+                dahi sambil bergumam sesuatu soal &ldquo;lebay&rdquo;. Dan itu
+                tidak apa-apa.
+              </p>
+
+              <p class="prolog-body">
+                Tapi di sela-sela semua itu, aku berharap kamu menemukan satu
+                hal yang paling ingin kubagi:
+              </p>
+
+              <blockquote class="prolog-quote">
+                &ldquo;Bahwa semua yang tertulis di sini adalah nyata.&rdquo;
+              </blockquote>
+
+              <p class="prolog-body">
+                Setiap kenangan yang kucatat, setiap kata yang kupilih, setiap
+                detik yang kusimpan dengan hati-hati di halaman ini &mdash;
+                bukan rekayasa, bukan pertunjukan. Melainkan bukti bahwa ada
+                seseorang yang sudah memperhatikanmu jauh lebih lama dari yang
+                kamu sadari. Seseorang yang akhirnya memilih untuk tidak diam
+                lebih lama.
+              </p>
+
+              <p class="prolog-body prolog-closing">
+                Baiklah, Cantik. Halaman pertama sudah menunggumu.<br />
+                Mari kita telusuri lorong waktu kita bersama.
+              </p>
+            </div>
+          </div>
+
+          <!-- Chapter 1 -->
+          <div class="babak-card">
+            <button type="button" class="btn-back-prev">
+              &#8592; Kembali ke Prolog
+            </button>
+            <div class="chapter-header">
+              <span class="chapter-num">&#8212; Chapter 1 &#8212;</span>
+              <h3 class="chapter-title">
+                Suara di Antara Piksel dan Sebuah Foto di Layar Kaca
+              </h3>
+            </div>
+            <p>
+              Mari kita putar waktu sejenak ke tahun lalu, tepatnya pada tanggal
+              13 September 2025. Kala itu, hari-hariku berjalan seperti biasa.
+              Pagi hingga petang kuhabiskan untuk bekerja, mencoba menyelesaikan
+              segala tanggung jawab dengan tenang, meski tak jarang penat dan
+              stres diam-diam menumpuk di pundak.
+            </p>
+            <p>
+              Hingga tibalah malam itu&mdash;sebuah malam Minggu. Untuk mengusir
+              jenuh dan sunyi di tengah kota yang entah mengapa terasa asing
+              ini, aku memutuskan untuk login ke Roblox. Aneh memang, di dunia
+              nyata, berinteraksi dengan banyak orang karena urusan pekerjaan
+              seringkali terasa begitu menguras energi. Namun, di dalam semesta
+              game ini, segalanya terasa berbeda. Aku bisa menikmati pelarian
+              sejenak, tertawa lepas, dan menyapa jiwa-jiwa baru tanpa beban.
+            </p>
+            <p>
+              Malam itu, langkah digitalku membawaku masuk ke sebuah map
+              pendakian bernama Mount Kucing. Seperti biasa, aku bermain santai
+              sambil sesekali membantu pemain lain yang kesusahan (ya,
+              hitung-hitung karena aku memang jago saja, hehe). Namun, di tengah
+              rute pendakian itu, pergerakanku terhenti. Aku melihat dua orang
+              pemain yang tampak kebingungan dan kesulitan. Aku pun mendekat dan
+              menawarkan bantuan. Siapa sangka, sapaan sederhana itu dibalas
+              dengan obrolan yang begitu mengalir. Kesan pertamaku malam itu:
+              kalian sangat asyik. Sampai-sampai, di sela-sela pendakian, aku
+              sengaja menjahili kalian.
+            </p>
+            <p>
+              Masihkah kamu mengingatnya? Percayalah, di antara riuhnya
+              orang-orang maya yang berlalu-lalang malam itu, ada daya tarik
+              yang sangat berbeda saat aku menemukanmu. Entah apa namanya, aku
+              pun tak punya kuasa untuk menjelaskannya. Ssstt... tolong jangan
+              sebut aku berlebihan kali ini. Tapi sungguh, saat pertama kali
+              mendengar suaramu&mdash;meski dengan segala kepolosanku yang tak
+              tahu rupa aslimu, bahkan sempat ragu apakah kau dan Ela
+              benar-benar perempuan di balik layar itu&mdash;<span
+                class="mem-glow"
+                >ada benih rasa yang diam-diam mengambil tempat di hatiku</span
+              >. Mungkin, semua itu tumbuh sesederhana karena tawamu yang lepas,
+              atau caramu membuat segalanya terasa jauh lebih hidup.
+            </p>
+            <p>
+              Menjelang puncak gunung maya tersebut, aku memberanikan diri untuk
+              menawarkan pertemanan, dan betapa leganya aku saat kalian berdua
+              menyambutnya dengan tangan terbuka. Lalu, tibalah kita di puncak
+              Mount Kucing. Saat sesi perayaan itu, kalian berdua memintaku
+              untuk ikut bergabung berfoto bersama.
+            </p>
+            <p>
+              Dan tahukah kamu? Kenangan itu masih kusimpan dengan rapi sampai
+              detik ini. Sejujurnya agak memalukan untuk diakui, tapi waktu itu
+              aku sama sekali tidak mengerti bagaimana cara mengambil screenshot
+              langsung dari dalam game. Alhasil, dengan polosnya aku memotret
+              layar monitorku menggunakan kamera HP, hahaha.
+            </p>
+            <p>
+              Kamu bisa melihat buktinya... foto penuh sejarah itu kusematkan
+              tepat di halaman ini. Sungguh, sebuah pertemuan maya yang tak
+              disengaja, namun menjadi awal dari kisah paling indah dalam
+              hidupku.
+            </p>
+            <div class="media-frame">
+              <img
+                src="assets/01.jpeg"
+                alt="Momen pertama kita"
+                class="story-img"
+              />
+            </div>
+          </div>
+
+          <!-- Chapter 2 -->
+          <div class="babak-card">
+            <button type="button" class="btn-back-prev">
+              &#8592; Chapter sebelumnya
+            </button>
+            <div class="chapter-header">
+              <span class="chapter-num">&#8212; Chapter 2 &#8212;</span>
+              <h3 class="chapter-title">Ritme Malam dan Sandi Kelakar Kita</h3>
+            </div>
+            <p>
+              Setelah pertemuan pertama di Mount Kucing itu, dengan segala
+              kesopananmu, kamu mengajakku untuk kembali menjelajahi map-map
+              yang lain. Kamu tidak pernah tahu betapa bahagianya aku kala itu.
+              Sejujurnya, saat itu aku berteman dengan banyak orang di game
+              hanya demi formalitas bermain dan mengobrol. Aku bahkan sering
+              merasa segan untuk sekadar bergabung dengan mereka. Namun,
+              segalanya mendadak berbeda jika itu kamu. Setiap kali kamu
+              mengajakku, aku selalu menyambutnya dengan letup semangat yang tak
+              bisa kusembunyikan.
+            </p>
+            <p>
+              Lembar cerita kita pun meluas. Kamu mengenalkanku pada
+              teman-temanmu satu per satu; sejak saat itulah aku mulai mengenal
+              Rereh dan Muffin. Hari-hari berlalu di bawah langit game yang
+              sama, kita semakin sering menghabiskan waktu bertualang berdua
+              setiap malam. Perlahan, malam hari menjelma menjadi waktu yang
+              paling kutunggu-tunggu dalam hidupku&mdash;hanya demi bisa bermain
+              bersamamu. Ketika suatu malam kamu berhalangan hadir atau memiliki
+              kesibukan lain, ada secuil rasa sepi yang menyelinap di hatiku.
+              Tapi tidak apa-apa, saat itu aku bahkan belum menyadari kalau
+              benih perasaan ini akan tumbuh sebesar sekarang.
+            </p>
+            <p>
+              Banyak sekali memori jenaka yang terekam di sana. Ingatkah kamu
+              saat aku mengajakmu dan Ela bermain di map gunung Indonesia, Mount
+              Salak? Momen legendaris ketika Ela tiba-tiba terjatuh di jembatan.
+              Karena saat itu aku mengambil role sebagai tim SAR, hanya aku yang
+              bisa menyelamatkannya, ditonton oleh banyak orang yang ada di
+              sana. Sungguh sebuah fragmen komedi yang mengocok perut kalau
+              diingat-ingat kembali&mdash;anggap saja ini caraku menggoda Ela.
+            </p>
+            <p>
+              Canda tawa yang mengiringi setiap ketukan keyboard dan klik mouse
+              kita malam itu justru membuatku semakin jatuh hati padamu. Semakin
+              larut, obrolan kita pun semakin tidak karuan, hingga akhirnya kita
+              menemukan lelucon internal yang tak terlupakan: &ldquo;Sapi di
+              Padang Rumput&rdquo;.
+            </p>
+            <p>
+              Semua bermula dari senjata kunai yang dipegang oleh avatar
+              Roblox-ku saat itu, yang menurutmu membuat gayaku mirip seperti
+              sapi padang. Dengan keras kepala aku menyela, &ldquo;Emang ada
+              sapi padang?&rdquo; Aku langsung mencarinya di Google dengan kata
+              kunci itu. Ketika muncul foto seekor sapi Eropa di tengah padang
+              rumput yang hijau, aku langsung mengirimkannya kepadamu dan Rereh
+              sambil bertanya, &ldquo;Ini sapi padang?&rdquo; Kamu spontan
+              menjawab, &ldquo;Bukan!&rdquo; lalu mengirimkan foto sapi padang
+              yang sebenarnya. Saat kuteliti kembali dengan saksama, ternyata
+              foto awal yang kukirimkan itu bertuliskan &ldquo;Sapi di Padang
+              Rumput&rdquo;&mdash;aku membacanya terlalu cepat karena
+              terburu-buru, hahaha. Kejadian konyol itu sukses membuat kita
+              tertawa lepas, menjadi jokes internal kita, dan bahkan diabadikan
+              menjadi nama grup Discord kita hingga hari ini.
+            </p>
+            <p>
+              Lalu, ada banyak momen lain saat aku sengaja mengajakmu bermain
+              game horor. Jujur saja, itu hanyalah strategi kecilku agar bisa
+              terus menghabiskan waktu bersamamu dan mendengarkan betapa lucunya
+              suaramu ketika sedang ketakutan. Maafkan muslihat kecilku ini ya,
+              Cantik. Belum lagi momen manis saat karakter kita saling meminta
+              gendong di dalam game&mdash;sebuah interaksi sederhana yang sukses
+              membuat hatiku berteriak kegirangan dan bibirku tersenyum sendiri
+              di balik layar. Ssstt... aku tahu kamu pasti akan bilang ini lebay
+              lagi. Stop deh, bodo amat, wleee... Momen-momen itulah yang kini
+              menjadi hal paling sulit untuk dilupakan.
+            </p>
+          </div>
+
+          <!-- Mini-Game: Cari Sapi di Padang Rumput -->
+          <div class="babak-card game-card" data-minigame="true">
+            <button type="button" class="btn-back-prev">
+              &#8592; Chapter sebelumnya
+            </button>
+            <div class="chapter-header">
+              <span class="chapter-num">&#8212; Mini Game &#8212;</span>
+              <h3 class="chapter-title">Cari Sapi di Padang Rumput</h3>
+            </div>
+            <p class="game-intro">
+              Kamu masih ingat jokes kita soal &#8220;Sapi di Padang&#8221;?
+              Sekarang buktikan &#8212; temukan sapi yang bersembunyi di suatu
+              tempat di dalam padang ini. Sentuh dia jika sudah ketemu!
+            </p>
+            <div class="meadow" id="meadow">
+              <span class="mi mi-cow" id="hidden-cow">&#128004;</span>
+            </div>
+            <div class="game-win hidden" id="game-win">
+              <div class="game-win-box">
+                <p class="game-win-icon">&#127881;</p>
+                <p class="game-win-title">Ketemu!</p>
+                <p class="game-win-msg">
+                  Selamat! Kamu menemukan Sapi di Padang Rumput.<br /><span
+                    class="game-win-sub"
+                    >(Bukan sapi padang ya!)</span
+                  >
+                </p>
+                <button type="button" id="btn-game-next" class="btn-primary">
+                  Lanjut ke Chapter 3 &#9825;
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chapter 3 -->
+          <div class="babak-card">
+            <button type="button" class="btn-back-prev">
+              &#8592; Chapter sebelumnya
+            </button>
+            <div class="chapter-header">
+              <span class="chapter-num">&#8212; Chapter 3 &#8212;</span>
+              <h3 class="chapter-title">Jembatan Menuju Nyata</h3>
+            </div>
+            <p>
+              Hari demi hari berganti, lembar cerita kita pun berevolusi. Dari
+              sekadar pesan singkat di dalam game, kita melangkah ke Discord.
+              Aku mulai menjadi seseorang yang keras kepala, tanpa henti merajut
+              obrolan denganmu&mdash;meski aku tahu betul, di awal kau mungkin
+              membalas rentetan pesanku hanya sekadar bentuk kesopanan semata.
+            </p>
+            <p>
+              Kali ini, aku ingin jujur padamu tentang sebuah rahasia kecil.
+              Ketika momen itu akhirnya tiba&mdash;hari di mana kita berencana
+              untuk bertatap muka pertama kalinya dalam acara buka puasa
+              bersama&mdash;sejujurnya situasi saat itu sama sekali tidak
+              berpihak padaku. Secara realistis, aku belum bisa dan sangat tidak
+              memungkinkan untuk pulang ke Samarinda lalu pergi ke Balikpapan
+              demi bertemu dengan kalian di dunia nyata. Namun, aku memilih
+              untuk menantang kemustahilan itu. Bagiku, hari itu adalah momentum
+              krusial; sebuah langkah awal untuk membuktikan bahwa perasaanku
+              padamu bukanlah sekadar bualan fiksi di balik layar kaca. Aku
+              mengusahakan segalanya dengan segenap daya, hingga entah bagaimana
+              keajaiban itu datang: cutiku disetujui. Aku bisa pulang, dan tentu
+              saja, tujuan utamaku tak lain hanyalah untuk menemuimu.
+            </p>
+            <p>
+              Melihatmu secara langsung di tengah riuhnya tawa teman-teman yang
+              lain... detik itu juga membungkam segala keraguanku. Mataku seolah
+              hanya menemukan satu titik fokus: kamu. Walaupun, jika boleh
+              jujur, di balik tatapan itu ada debar jantung yang tak karuan. Aku
+              terlalu gugup untuk benar-benar menatap kedua matamu berlama-lama.
+              Kalau kamu menyadarinya, mungkin kamu melihatku beberapa kali
+              memalingkan wajah dengan canggung karena terlalu gugup, haha.
+              Ternyata, menatap langsung mata seseorang yang kita suka adalah
+              hal yang luar biasa sulit.
+            </p>
+            <p>
+              Tetapi ketahuilah, Cantik... di saat kamu sedang tertawa atau
+              berpaling ke arah lain, aku sering kali mencuri waktu untuk
+              menatapmu dalam diam. Dan
+              <span class="mem-glow"
+                >pada detik-detik curi pandang dalam keheningan itulah, aku
+                semakin yakin bahwa perasaanku padamu benar-benar nyata</span
+              >.
+            </p>
+          </div>
+
+          <!-- Chapter 4 -->
+          <div class="babak-card">
+            <button type="button" class="btn-back-prev">
+              &#8592; Chapter sebelumnya
+            </button>
+            <div class="chapter-header">
+              <span class="chapter-num">&#8212; Chapter 4 &#8212;</span>
+              <h3 class="chapter-title">Sepenggal Sesal di Bawah Lampu Kota</h3>
+            </div>
+            <div class="media-frame">
+              <video
+                src="assets/02.mp4"
+                class="story-video"
+                controls
+                playsinline
+              ></video>
+            </div>
+            <p>
+              Foto ini adalah satu-satunya kepingan kenangan yang kumiliki dari
+              hari itu. Sejujurnya, di lubuk hati terdalam, aku sangat ingin
+              memiliki potret yang hanya berisi kita berdua. Namun, apa daya,
+              rasaku kalah oleh gugup dan rasa segan pada yang lain.
+            </p>
+            <p>
+              Ingatkah kamu saat kita hendak berpisah di sekitar H&amp;M? Indra
+              sempat berbisik, seolah bisa membaca isi kepalaku, &ldquo;Kamu
+              nggak mau foto berdua?&rdquo; Jawabku kala itu penuh keraguan yang
+              menutupi gengsi, &ldquo;Pengen sih... tapi yaudahlah, nanti
+              saja.&rdquo; Indra hanya menyela cepat, &ldquo;Kapan lagi,
+              bodoh.&rdquo; Aku terdiam.
+            </p>
+            <p>
+              Dan benar saja, begitu malam merengkuh dan aku terdiam di
+              kesunyian kamar hotel, penyesalan itu datang menyergap. Bayangan
+              hari itu terus berputar, menghantuiku. Di tengah kecamuk pikiran,
+              aku mengirimkan sebuah pesan padamu: &ldquo;Kabari aku kalau sudah
+              sampai dengan selamat, ya.&rdquo;
+            </p>
+            <p>
+              Detik demi detik merayap, menit berganti jam, namun layar ponselku
+              tetap membisu. Kegelisahan mulai menjalar dan menyelimuti rongga
+              dada. Di dalam kepalaku yang bising, aku mulai menerka-nerka hal
+              yang tidak-tidak. Apakah ada sikapku di pertemuan tatap muka
+              pertama ini yang mengganggumu? Apakah ada yang salah dari diriku?
+            </p>
+            <p>
+              Hingga tiba-tiba, sebuah notifikasi memecah keheningan. Namun,
+              bukan namamu yang muncul di layar, melainkan Rereh. Sebuah pesan
+              yang membawa kabar duka yang begitu mengejutkan malam
+              itu&mdash;ayahandanya telah berpulang. (Untuk detail haru yang
+              satu ini, biarlah tidak kumasukkan ke dalam tulisan ini ya, hehe).
+            </p>
+            <p>
+              Tak lama berselang dari kabar itu, barulah pesan darimu akhirnya
+              tiba. Dadaku yang sedari tadi sesak oleh rasa cemas perlahan
+              mengembuskan napas lega. Ternyata, keterdiamanmu sama sekali bukan
+              karena hal-hal buruk yang sempat kutakutkan di kepalaku, melainkan
+              karena situasi duka tak terduga yang sedang menyelimuti malam itu.
+            </p>
+            <p>
+              Keesokan harinya, saat roda kendaraan membawaku melintasi jalan
+              tol kembali pulang menuju Samarinda, hatiku lagi-lagi merutuki
+              diri sendiri. Sambil menatap jalanan yang membentang, suara Indra
+              seolah kembali terngiang, &ldquo;Benar juga, kenapa aku tidak
+              mengajakmu foto berdua semalam?&rdquo; Penyesalan manis itu terasa
+              begitu nyata, tertinggal sebagai jejak rindu di setiap kilometer
+              yang kulewati.
+            </p>
+          </div>
+
+          <!-- Chapter 5 -->
+          <div class="babak-card">
+            <button type="button" class="btn-back-prev">
+              &#8592; Chapter sebelumnya
+            </button>
+            <div class="chapter-header">
+              <span class="chapter-num">&#8212; Chapter 5 &#8212;</span>
+              <h3 class="chapter-title">
+                Sebuah Pertukaran yang Mengubah Semesta
+              </h3>
+            </div>
+            <p>
+              Sejak perpisahan hari itu, komunikasi kita berlabuh di lembaran
+              baru&mdash;obrolan panjang yang berpindah haluan ke WhatsApp.
+              Sebuah &lsquo;pertukaran&rsquo; manis yang sangat sepadan, dan
+              biarlah itu menjadi rahasia kecil kita berdua (terutama jika kau
+              masih ingat betul taktik seperti apa yang kugunakan demi bisa
+              mendapatkan nomormu saat itu, hehe).
+            </p>
+            <p>
+              Waktu pun terus mengalir dengan lembut. Perlahan, kita mulai
+              saling bertukar serpihan hari. Mengirimkan kabar, hingga bertukar
+              PAP tentang hal-hal sederhana&mdash;entah itu aktivitas acak yang
+              sedang dilakukan atau sekadar pamer menu makanan. Sederhana, tapi
+              entah mengapa semuanya tampak begitu manis dan menggemaskan di
+              mataku.
+            </p>
+            <p>
+              Kamu mulai terbuka. Kamu mulai menceritakan kepingan keseharianmu,
+              hiruk-pikuk pekerjaanmu, hingga membagikan keluh kesah dan rasa
+              lelahmu. Percayalah, meskipun kamu sedang mengeluh, selalu ada
+              rasa hangat dan senyum yang diam-diam merekah di wajahku setiap
+              kali melihat indikator &ldquo;typing...&rdquo; darimu muncul di
+              layar.
+            </p>
+            <p>
+              Semakin hari, aku pun semakin berani melempar gombalan-gombalan
+              absurd dan hal-hal aneh hanya demi bisa menghiburmu. Maaf ya kalau
+              terkadang terasa aneh, tapi memang beginilah diriku yang suka
+              sekali mengarang cerita. Tapi satu hal yang harus kamu pegang:
+              dari semua hal yang suka kukarang,
+              <span class="mem-glow"
+                >perasaanku kepadamu tidak pernah sedikit pun aku rekayasa</span
+              >. Kalau yang satu ini seratus persen realll, jyahhhh!
+            </p>
+            <p>
+              (Hehe, maaf, maaf... tolong berhenti bilang aku lebay di dalam
+              kepalamu. Sudah berapa kali kata &lsquo;lebay&rsquo; itu kau
+              ucapkan dalam hati sejak awal membaca cerita ini? MALESIN
+              BGTTTT...)
+            </p>
+            <p>
+              Sungguh, aku tidak pernah menyangka bahwa sosok di balik layar
+              yang kutemui di dunia maya itu, kini telah berakar kuat menjadi
+              seseorang yang begitu penting dalam setiap denyut nadiku. Sejak
+              hari itu, perlahan namun pasti, kamu menyihir
+              duniaku&mdash;mengubah percakapan biasa dan hal-hal sederhana
+              menjadi sesuatu yang jauh lebih indah dari cerita fiksi mana pun.
+            </p>
+          </div>
+        </div>
+
+        <button id="btn-next-2" class="btn-secondary">Lanjut &rarr;</button>
+      </section>
+
+      <!-- Fase 3: Alasan Waktu Berhenti Padamu -->
+      <section id="phase-3" class="phase hidden">
+        <div class="ornament fade-in">&#10022;</div>
+        <h2 class="fade-in phase-label">
+          BAB II: Alasan Waktu Berhenti Padamu
+        </h2>
+        <div class="divider fade-in delay-1">&#10023;</div>
+        <div class="babak-progress" id="p3-dots"></div>
+
+        <div class="babak-wrapper">
+          <!-- Bagian 1 -->
+          <div class="babak-card active">
+            <div class="chapter-header">
+              <span class="chapter-num">&#8212; Bagian 1 &#8212;</span>
+              <h3 class="chapter-title">Magnet Sebuah Kedewasaan</h3>
+            </div>
+            <p>
+              Kali pertama aku mulai menyadari betapa berbedanya kamu dari siapa
+              pun yang pernah kukenal, jawabannya tidak kutemukan dalam
+              percakapan yang panjang atau momen yang dramatis. Aku menemukannya
+              justru pada hal yang paling sederhana: caramu merawat dan
+              mencintai duniamu sendiri.
+            </p>
+            <p>
+              Aku melihat bagaimana kamu menjadi seorang kakak&mdash;bukan
+              sekadar gelar, melainkan sebuah peran yang kamu emban dengan
+              begitu hangat, begitu sabar, dan dengan kasih yang tidak pernah
+              menuntut imbalan apa pun. Ada sesuatu yang sangat meneduhkan dalam
+              caramu mengayomi; kehangatan itu bukan sesuatu yang kamu
+              pilih&mdash;ia memang sudah lama menjadi bagian dari siapa dirimu
+              yang sesungguhnya.
+            </p>
+            <p>
+              Dan percayalah, Cantik&mdash;di situlah hatiku pertama kali
+              tersandung.
+            </p>
+            <p>
+              Karena ironi paling manis dari semua ini adalah: kedewasaanmu yang
+              tenang itu justru seperti ditakdirkan untuk melengkapi diriku yang
+              kadang masih seperti anak kecil yang keras kepala dan tidak mau
+              kalah. Di sisimu, aku merasa ada tempat yang cukup hangat untuk
+              pulang. Dan itu&mdash;tanpa kamu sadari&mdash;adalah salah satu
+              alasan paling kuat mengapa aku tidak bisa berhenti memilihmu.
+            </p>
+          </div>
+
+          <!-- Bagian 2 -->
+          <div class="babak-card">
+            <button type="button" class="btn-back-prev">
+              &#8592; Bagian sebelumnya
+            </button>
+            <div class="chapter-header">
+              <span class="chapter-num">&#8212; Bagian 2 &#8212;</span>
+              <h3 class="chapter-title">Melodi dalam Suaramu</h3>
+            </div>
+            <p>
+              Jika mataku yang pertama kali memperhatikanmu, maka telingaku yang
+              pertama kali jatuh cinta.
+            </p>
+            <p>
+              Suaramu menyimpan sesuatu yang tak bisa dijelaskan oleh logika
+              mana pun. Ia mengalir dengan nada yang nyaman&mdash;dengan ritme
+              yang entah bagaimana selalu berhasil menenangkan dan sekaligus
+              menghidupkan sesuatu di dalam dadaku secara bersamaan. Malam
+              pertama mendengarnya, aku sudah tahu: ini bukan suara yang akan
+              mudah kulupakan.
+            </p>
+            <p>
+              Kamu tidak perlu bercerita tentang hal-hal besar untuk membuatku
+              terpesona. Keluh kesahmu tentang hari yang melelahkan, tawa
+              kecilmu atas hal-hal yang konyol, nada bicaramu ketika kamu sedang
+              antusias tentang sesuatu&mdash;semuanya, tanpa terkecuali,
+              menjelma menjadi melodi paling indah yang pernah kudengar.
+            </p>
+            <p>
+              Aku tidak bohong ketika mengatakan ini: jika waktu memberi aku
+              pilihan, aku akan memilih menghabiskannya hanya untuk
+              mendengarkanmu&mdash;berulang kali, tanpa pernah bosan. Karena
+              <span class="mem-glow"
+                >suaramu adalah lagu paling personal yang selalu ingin kuputar
+                ulang</span
+              >
+              setiap kali dunia terasa terlalu bising.
+            </p>
+          </div>
+
+          <!-- Bagian 3 -->
+          <div class="babak-card">
+            <button type="button" class="btn-back-prev">
+              &#8592; Bagian sebelumnya
+            </button>
+            <div class="chapter-header">
+              <span class="chapter-num">&#8212; Bagian 3 &#8212;</span>
+              <h3 class="chapter-title">Sebuah Fakta Bernama Keindahan</h3>
+            </div>
+            <p>
+              Baiklah&mdash;mari kita bicara tentang sesuatu yang mungkin akan
+              membuatmu tersipu, tapi tetap perlu kusampaikan dengan
+              terang-terangan: kamu cantik. Bukan sekadar cantik yang biasa.
+              Kamu adalah jenis keindahan yang membuat orang berhenti sejenak
+              dan diam-diam bersyukur kepada semesta karena masih diizinkan
+              menyaksikan hal-hal seindah ini di dunia.
+            </p>
+            <p>
+              Wajahmu itu punya caranya sendiri untuk membuat aku lupa apa yang
+              hendak kukatakan. Ada kelembutan di sana, ada keanggunan yang
+              tidak dibuat-buat, dan ada pancaran hangat yang membuat siapa pun
+              yang menatapmu ingin berlama-lama berada di dekatmu. Itu bukan
+              lebay&mdash;itu hanya jujur.
+            </p>
+            <p>
+              Tapi yang jauh melampaui apa yang tampak oleh mata adalah karisma
+              itu. Cara kamu membawa dirimu, cara kamu tersenyum, cara kamu
+              tertawa&mdash;ada magnetisme di sana yang sungguh tidak bisa
+              diabaikan. Kamu memancarkan sesuatu yang membuat orang-orang di
+              sekitarmu merasa nyaman, dan aku&mdash;yang sudah sejak awal
+              terpesona&mdash;hanya bisa semakin dalam terjatuh.
+            </p>
+            <p>
+              Jadi ya, terimalah pujian ini dengan lapang dada. Kamu memang
+              secantik itu. Dan aku sangat, sangat beruntung bisa menjadi salah
+              satu orang yang tahu betapa spesialnya kamu.
+            </p>
+          </div>
+
+          <!-- Bagian 4 -->
+          <div class="babak-card">
+            <button type="button" class="btn-back-prev">
+              &#8592; Bagian sebelumnya
+            </button>
+            <div class="chapter-header">
+              <span class="chapter-num">&#8212; Bagian 4 &#8212;</span>
+              <h3 class="chapter-title">Harap di Balik Konyolku</h3>
+            </div>
+            <p>
+              Di balik semua kata-kata yang sudah kutulis di sini, ada satu hal
+              kecil yang sampai detik ini masih menjadi tanda tanya diam-diam di
+              hatiku: bagaimana kamu memandangku?
+            </p>
+            <p>
+              Aku tidak bisa membaca pikiranmu. Dan sering kali, di sela-sela
+              sepinya malam, aku mendapati diriku diam-diam
+              berharap&mdash;semoga kepingan kesan yang tersimpan di benakmu
+              tentangku adalah sesuatu yang baik. Semoga dari semua kekonyolan,
+              candaan tidak jelas, dan tingkah absurd yang sudah kamu saksikan
+              dariku, kamu melihat seseorang yang&mdash;meskipun sedikit
+              &ldquo;gila&rdquo;&mdash;sungguh-sungguh tulus.
+            </p>
+            <p>
+              Mungkin kamu harus tahu satu hal: Aku tidak pernah memaksakan diri
+              atau dibuat-buat untuk menjadi konyol. Namun, saat bersamamu,
+              sifat asliku itu seolah menemukan tujuan yang paling tepat. Setiap
+              lelucon receh yang mengalir begitu saja itu selalu membawa satu
+              harapan sederhana: aku hanya ingin melihatmu tersenyum. Dan
+              sungguh, aku merasa sangat beruntung karena ternyata diriku yang
+              apa adanya&mdash;dan mungkin sedikit 'gila' ini&mdash;bisa menjadi
+              sesuatu yang cukup ampuh untuk menghibur harimu.
+            </p>
+          </div>
+
+          <!-- Bagian 5 -->
+          <div class="babak-card">
+            <button type="button" class="btn-back-prev">
+              &#8592; Bagian sebelumnya
+            </button>
+            <div class="chapter-header">
+              <span class="chapter-num">&#8212; Bagian 5 &#8212;</span>
+              <h3 class="chapter-title">Ruang Kosong untukmu</h3>
+            </div>
+            <p>
+              Jika aku harus menuliskan semua alasan mengapa kamu adalah orang
+              yang paling istimewa di mataku, aku yakin tidak ada jumlah halaman
+              yang akan pernah cukup menampungnya.
+            </p>
+            <p>
+              Aku bisa terus menulis&mdash;tentang cara kamu tertawa, tentang
+              detail-detail kecil yang mungkin tidak kamu sadari sendiri namun
+              selalu berhasil membuatku jatuh lebih dalam, tentang hal-hal
+              sederhana yang mendadak menjadi luar biasa hanya karena
+              melibatkanmu. Tapi kata-kata yang kutemukan pun rasanya tak akan
+              pernah cukup adil untuk menggambarkan kamu secara utuh.
+            </p>
+            <p>
+              Jadi, untuk semua alasan yang belum sempat
+              tertuliskan&mdash;biarkan halaman ini menyisakan ruang yang
+              kosong. Ruang itu untukmu, Cantik. Isi sendiri dengan apa yang
+              kamu rasakan saat membaca semua ini: dengan senyummu, dengan debar
+              kecil yang mungkin ada di dadamu, atau bahkan dengan tawa kecil
+              karena merasa tulisan ini terlalu lebay.
+            </p>
+            <p>
+              Apa pun yang kamu rasakan&mdash;aku hanya ingin kamu tahu satu
+              hal: kamu layak untuk dipuji sepanjang itu, dan bahkan jauh lebih
+              dari yang bisa kutulis.
+            </p>
+          </div>
+
+          <!-- Interlude: Kunci yang Akhirnya Tiba -->
+          <div
+            class="babak-card interlude-card"
+            id="interlude-card"
+            data-advance-label="✦ Interlude"
+          >
+            <div class="interlude-inner">
+              <span class="interlude-tag" id="il-tag"></span>
+              <p class="interlude-p">Kamu masih ingat halaman ini?</p>
+              <p class="interlude-p">
+                Dulu, saat pertama kali kamu sampai di sini, ada sebuah gembok
+                yang menutup jalan. Ada sebuah tulisan yang memintamu untuk
+                menunggu &mdash; menunggu momen yang tepat, menunggu kunci yang
+                hanya bisa datang dari dunia nyata, menunggu semesta berpihak
+                dengan cara yang benar-benar terasa pas.
+              </p>
+              <p class="interlude-p">
+                Aku pun tidak tahu jawabannya saat itu. Yang aku tahu hanyalah
+                satu hal &mdash; aku tidak mau membuka halaman berikutnya
+                sebelum ada sesuatu yang nyata terjadi di antara kita. Bukan
+                karena aku ingin terlihat dramatis (meskipun kamu sudah hafal
+                betul bahwa memang begini adanya). Tapi karena BAB III adalah
+                kepingan cerita yang terlalu berharga untuk sekadar dirilis
+                begitu saja tanpa alasan.
+              </p>
+              <p class="interlude-p">Ia membutuhkan momen yang tepat.</p>
+              <p class="interlude-p il-reveal">
+                Dan momen itu&hellip; sudah tiba.
+              </p>
+              <p class="interlude-p">
+                Aku tidak akan berpanjang-panjang di halaman ini &mdash; karena
+                kali ini, bukan jeda yang ingin kuberikan. Tidak ada lagi ruang
+                tunggu. Tidak ada lagi gembok.
+              </p>
+              <p class="interlude-p">
+                Yang ada hanyalah pintu yang sudah terbuka lebar, menunggumu
+                melangkah masuk.
+              </p>
+              <p class="interlude-p">
+                Semua yang ingin kukatakan, semua yang selama ini menunggu
+                giliran di balik halaman yang terkunci itu &mdash; kini sudah
+                siap untukmu baca. Dengan segenap keberanian yang aku kumpulkan,
+                dan dengan semua rasa yang tidak pernah sekalipun aku buat-buat.
+              </p>
+              <p class="interlude-p">
+                Kalau dulu aku memintamu untuk menunggu &mdash;
+              </p>
+              <p class="interlude-p il-reveal">
+                Sekarang, aku memintamu untuk melanjutkan.
+              </p>
+              <div class="il-status-wrap">
+                <div class="il-status-line">
+                  <span class="il-status-txt"
+                    >Status Sistem: Kunci Telah Diberikan &mdash; Gerbang
+                    Terbuka</span
+                  >&ensp;<span class="il-star-static">&#10022;</span>
+                </div>
+                <div class="il-bar">
+                  <div class="il-bar-fill il-bar-done"></div>
+                </div>
+              </div>
+              <p class="interlude-p">
+                Ambil napas pelan-pelan, Cantik. Halaman berikutnya adalah
+                halaman yang paling lama aku simpan untukmu.
+              </p>
+              <div class="il-unlock-wrap">
+                <button
+                  type="button"
+                  class="btn-bab3-unlock"
+                  id="btn-bab3-unlock"
+                >
+                  [ Masuk ke BAB III &#8594; ]
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" id="btn-next-3" class="btn-secondary">
+          Lanjut &rarr;
+        </button>
+      </section>
+
+      <!-- Fase 4: BAB III Muara Segala Rasa -->
+      <section id="phase-4" class="phase hidden">
+        <div class="ornament fade-in">&#10022; &#10022; &#10022;</div>
+        <h2 class="fade-in phase-label">BAB III: Muara Segala Rasa</h2>
+
+        <div class="babak-wrapper">
+          <!-- Bagian 1 -->
+          <div class="babak-card active">
+            <div class="chapter-header">
+              <span class="chapter-num">&#8212; Bagian 1 &#8212;</span>
+              <h3 class="chapter-title">Sebelum Kalimat Ini Lahir</h3>
+            </div>
+            <p>
+              Jika kamu sampai di halaman ini, itu artinya kamu sudah menempuh
+              perjalanan yang sama panjangnya denganku.
+            </p>
+            <p>
+              Kamu sudah membaca tentang malam Minggu yang tak disengaja di
+              Mount Kucing. Tentang tawa yang mengalir deras di sela-sela
+              ketikan dan klik mouse. Tentang sebuah foto layar monitor yang
+              polos, penyesalan di koridor H&amp;M, pertukaran nomor yang penuh
+              muslihat, dan semua alasan diam-diam yang membuatku terus
+              memilihmu setiap harinya.
+            </p>
+            <p>Dan kini, kita berdua berdiri di ujung lorong yang sama.</p>
+            <p>
+              Aku ingin memulai bagian ini dengan sebuah pengakuan kecil:
+              menulis fase ini adalah hal yang paling banyak membuatku menghapus
+              dan mengulang dari awal. Bukan karena aku kehabisan kata &mdash;
+              kamu tahu betul aku tidak pernah kehabisan kata, bahkan untuk
+              hal-hal yang tidak perlu sekalipun. Tapi karena kalimat yang ingin
+              kutulis di sini terasa terlalu besar untuk sembarangan kupilih.
+              Terlalu berharga untuk kutulis tergesa-gesa.
+            </p>
+            <p>Karena bagian ini bukan sekadar lanjutan cerita.</p>
+            <p>Ini adalah alasannya.</p>
+          </div>
+
+          <!-- Bagian 2 -->
+          <div class="babak-card">
+            <button type="button" class="btn-back-prev">
+              &#8592; Bagian sebelumnya
+            </button>
+            <div class="chapter-header">
+              <span class="chapter-num">&#8212; Bagian 2 &#8212;</span>
+              <h3 class="chapter-title">Hal yang Tidak Pernah Kuceritakan</h3>
+            </div>
+            <p>
+              Ada satu hal yang belum pernah kusampaikan secara langsung, bahkan
+              di antara semua obrolan panjang kita yang tidak pernah terasa
+              cukup.
+            </p>
+            <p>
+              Aku pernah, di satu malam yang sangat sepi, bertanya pada diriku
+              sendiri dengan jujur: &ldquo;Apakah kamu benar-benar siap dengan
+              semua konsekuensi dari perasaan ini?&rdquo;
+            </p>
+            <p>
+              Karena aku tahu betul &mdash; mencintai seseorang bukan hanya
+              tentang menikmati momen manisnya. Bukan hanya tentang tawa yang
+              pecah di tengah permainan, atau obrolan malam yang terasa tidak
+              ingin berhenti, atau detak jantung yang tidak karuan setiap kali
+              namamu muncul di notifikasi ponselku.
+            </p>
+            <p>
+              Mencintai seseorang itu juga berarti bersedia hadir di hari-hari
+              yang tidak mudah. Di hari ketika kamu merasa lelah dan tidak ingin
+              bercerita kepada siapa pun. Di hari ketika duniamu terasa terlalu
+              berat dan kata-kata pun tidak lagi terasa cukup. Di hari ketika
+              kamu mungkin tidak sesempurna versi dirimu yang selalu kamu
+              tunjukkan ke dunia luar &mdash; dan percayalah, aku sudah melihat
+              celah-celah kecil itu, dan aku tidak pergi.
+            </p>
+            <p>
+              Aku bertanya pada diriku sendiri malam itu, dan jawabannya datang
+              jauh lebih cepat dari yang kukira.
+            </p>
+            <p>Ya. Aku siap.</p>
+            <p>
+              Bukan karena aku tidak takut. Tapi karena ketika aku membayangkan
+              menjalani semua itu tanpamu di sisi yang sama, semuanya terasa
+              jauh lebih menakutkan.
+            </p>
+          </div>
+
+          <!-- Bagian 3 -->
+          <div class="babak-card">
+            <button type="button" class="btn-back-prev">
+              &#8592; Bagian sebelumnya
+            </button>
+            <div class="chapter-header">
+              <span class="chapter-num">&#8212; Bagian 3 &#8212;</span>
+              <h3 class="chapter-title">Surat untuk Keraguanmu</h3>
+            </div>
+            <p>Cantik, aku tahu kamu belum sepenuhnya yakin.</p>
+            <p>
+              Dan aku tidak ingin berpura-pura tidak menyadari itu. Kamu adalah
+              seseorang yang tidak mudah memberikan kepercayaan &mdash; dan
+              sejujurnya, itu adalah salah satu hal yang paling aku kagumi
+              darimu. Kamu tidak gegabah. Kamu tidak membiarkan siapa pun masuk
+              begitu saja hanya karena kata-katanya terdengar indah.
+            </p>
+            <p>
+              Maka biarkan aku berbicara langsung kepada bagian darimu yang
+              masih ragu itu.
+            </p>
+            <p>
+              Mungkin kamu bertanya: &ldquo;Apakah ini nyata, atau hanya fase
+              sementara?&rdquo; Aku mengerti pertanyaan itu. Kita hidup di zaman
+              di mana kata-kata &ldquo;aku suka kamu&rdquo; terasa seringan
+              cuitan di media sosial yang hilang dalam hitungan jam. Di mana
+              perasaan datang secepat ia pergi. Di mana seseorang bisa terasa
+              begitu hadir hari ini, lalu menguap tanpa jejak esok harinya.
+            </p>
+            <p>
+              Tapi izinkan aku menunjukkan satu bukti sederhana: aku masih di
+              sini.
+            </p>
+            <p>
+              Bukan aku yang hadir hanya di momen-momen yang menyenangkan. Aku
+              hadir di saat kamu menceritakan hari yang melelahkan dan tidak ada
+              yang bisa kamu lakukan selain mengeluh. Aku hadir ketika kamu
+              kesal dan kata-katamu keluar lebih tajam dari biasanya. Aku hadir
+              ketika jarak di antara kita terasa seperti dinding beton yang
+              tidak bisa ditembus dengan cara apa pun. Dan setiap kali aku
+              memilih untuk tetap hadir di momen-momen itu &mdash; itu bukan
+              karena aku tidak punya pilihan lain.
+            </p>
+            <p>Itu karena aku memilihmu.</p>
+            <p>
+              Mungkin kamu juga bertanya: &ldquo;Bagaimana kita bisa tahu ini
+              akan berhasil?&rdquo; Dan untuk pertanyaan itu, aku ingin jujur
+              &mdash; aku tidak tahu. Tidak ada satu pun manusia di muka bumi
+              ini yang bisa menjawab pertanyaan itu dengan kepastian seratus
+              persen. Tidak ada peta, tidak ada jaminan, tidak ada formula ajaib
+              yang bisa membuktikan bahwa dua orang akan selalu baik-baik saja.
+              Yang ada hanyalah pilihan. Pilihan yang dibuat setiap harinya,
+              secara sadar, bahkan di hari-hari yang tidak mudah.
+            </p>
+            <p>
+              Dan aku sudah memilih, jauh sebelum halaman ini kubuka untukmu.
+            </p>
+            <p>
+              Aku tidak menawarkan kepadamu sesuatu yang sempurna. Aku tidak
+              bisa berjanji bahwa aku tidak akan pernah membuatmu frustrasi
+              &mdash; kamu sudah cukup mengenalku untuk tahu bahwa itu hampir
+              mustahil. Aku orangnya keras kepala, terkadang absurd, dan kadang
+              kelewat dramatis dalam mengekspresikan sesuatu &mdash; ya, aku
+              tahu kamu sedang berpikir &ldquo;ini buktinya&rdquo; sambil
+              membaca kalimat ini. Tapi di balik semua kekonyolan itu, ada satu
+              hal yang tidak pernah berubah sejak malam pertama kita di gunung
+              maya itu:
+            </p>
+            <p>Aku serius dengan perasaanku padamu.</p>
+          </div>
+
+          <!-- Bagian 4 -->
+          <div class="babak-card">
+            <button type="button" class="btn-back-prev">
+              &#8592; Bagian sebelumnya
+            </button>
+            <div class="chapter-header">
+              <span class="chapter-num">&#8212; Bagian 4 &#8212;</span>
+              <h3 class="chapter-title">
+                Tentang Jarak dan Sesuatu yang Tetap Utuh
+              </h3>
+            </div>
+            <p>
+              Aku ingin bicara tentang sesuatu yang mungkin selama ini
+              menggantung diam-diam di antara kita.
+            </p>
+            <p>Jarak.</p>
+            <p>
+              Aku tahu itu bukan hal kecil. Aku tahu bahwa ketika kamu merasa
+              lelah di akhir hari, yang kamu butuhkan kadang bukan kata-kata
+              lewat layar, melainkan seseorang yang bisa duduk di sampingmu
+              dalam diam. Aku tahu bahwa ada momen-momen di mana kehadiran fisik
+              tidak bisa digantikan oleh pesan suara sepanjang apa pun. Dan aku
+              tidak akan berpura-pura bahwa jarak itu mudah, atau bahwa hal itu
+              sama sekali tidak relevan.
+            </p>
+            <p>Tapi izinkan aku juga mengatakan ini:</p>
+            <p>
+              Jarak hanya membuktikan satu hal &mdash; bahwa apa yang tumbuh di
+              antara kita bukan sesuatu yang dibangun atas kebiasaan semata.
+              Bukan karena kita kebetulan tinggal dekat dan sering bertemu.
+              Bukan karena tidak ada pilihan lain. Tapi karena di tengah semua
+              keterbatasan itu, kita tetap memilih untuk saling hadir &mdash;
+              dengan cara apapun yang bisa kita lakukan.
+            </p>
+            <p>
+              Dan setiap kali aku berhasil menemukan cara untuk hadir meskipun
+              jarak berkata tidak &mdash; seperti malam itu ketika aku nekat
+              mengusahakan cuti demi bisa menemuimu di dunia nyata &mdash; aku
+              berharap kamu tahu bahwa itu bukan kebetulan. Itu pilihan.
+            </p>
+            <p>
+              Aku akan selalu menemukan cara untuk hadir, Cantik. Itu bukan
+              janji yang kubuat dengan ringan. Itu adalah sesuatu yang sudah
+              terbukti, meskipun hanya sekali, dan aku bersedia membuktikannya
+              lagi, dan lagi, sebanyak yang diperlukan &mdash; sampai kamu
+              akhirnya percaya.
+            </p>
+          </div>
+
+          <!-- Bagian 5 -->
+          <div class="babak-card">
+            <button type="button" class="btn-back-prev">
+              &#8592; Bagian sebelumnya
+            </button>
+            <div class="chapter-header">
+              <span class="chapter-num">&#8212; Bagian 5 &#8212;</span>
+              <h3 class="chapter-title">
+                Hal Terakhir yang Ingin Kukatakan Sebelum Pertanyaan Itu
+              </h3>
+            </div>
+            <p>
+              Kamu pernah, entah sadar atau tidak, mengatakan sesuatu yang
+              membekas sangat dalam di benakku.
+            </p>
+            <p>
+              Kamu bilang bahwa kamu tidak mudah percaya. Bahwa kamu sudah
+              terlalu sering melihat kata-kata yang ternyata tidak setara dengan
+              tindakannya. Bahwa kamu lelah dengan hal-hal yang terasa nyata di
+              awal, lalu menguap begitu saja sebelum sempat berakar.
+            </p>
+            <p>Aku mendengarmu.</p>
+            <p>
+              Dan karena aku mendengarmu, aku tidak ingin datang kepadamu hanya
+              dengan kata-kata.
+            </p>
+            <p>
+              Web ini &mdash; dengan semua halaman, semua bab, semua kenangan
+              yang kucatat dengan rapi &mdash; bukan semata-mata karena aku
+              pandai merangkai kalimat. Aku membuatnya karena aku ingin kamu
+              tahu bahwa aku menyimpan semuanya. Aku menyimpan tanggal 13
+              September itu. Aku menyimpan foto polos yang kupotret dengan
+              kamera HP karena tidak tahu cara screenshot. Aku menyimpan setiap
+              detail kecil, setiap lelucon internal, setiap momen yang mungkin
+              sudah kamu lupakan namun masih hidup jelas di ingatanku.
+            </p>
+            <p>
+              Karena itulah yang dilakukan seseorang ketika perasaannya bukan
+              sekadar perasaan.
+            </p>
+            <p>
+              Aku tidak memintamu untuk langsung percaya seratus persen. Aku
+              tidak memintamu untuk meninggalkan semua keraguanmu dalam sekejap
+              hanya karena kamu sudah membaca halaman ini. Keraguan adalah hal
+              yang sangat manusiawi, dan kamu berhak untuk merasakannya.
+            </p>
+            <p>
+              Yang aku minta hanyalah satu kesempatan. Kesempatan untuk
+              membuktikan &mdash; bukan lewat kata-kata, tapi lewat hari-hari
+              nyata yang kita jalani bersama &mdash; bahwa aku adalah seseorang
+              yang layak dipercaya dengan hatimu.
+            </p>
+            <p>Kamu tidak harus yakin seratus persen hari ini.</p>
+            <p>Tapi izinkan aku hadir, dan biarkan waktu yang berbicara.</p>
+          </div>
+
+          <!-- Bagian 6: Pertanyaan -->
+          <div class="babak-card is-question">
+            <button type="button" class="btn-back-prev">
+              &#8592; Bagian sebelumnya
+            </button>
+            <div class="chapter-header">
+              <span class="chapter-num">&#8212; Bagian 6 &#8212;</span>
+              <h3 class="chapter-title">Akhirnya, Pertanyaan Itu</h3>
+            </div>
+            <p>Dari semua yang sudah kamu baca sejak halaman pertama&hellip;</p>
+            <p>
+              Dari sebuah gunung virtual di malam Minggu yang tidak
+              direncanakan, hingga momen curi pandang di tengah keramaian. Dari
+              jokes soal &ldquo;sapi di padang rumput&rdquo; hingga penyesalan
+              di koridor H&amp;M yang masih terasa sampai sekarang. Dari suara
+              di antara piksel yang pertama kali membuatku berhenti, hingga
+              semua alasan yang akhirnya membuatku tidak pernah bisa berhenti
+              memilihmu.
+            </p>
+            <p>Aku sadar satu hal:</p>
+            <p>
+              Semua perjalanan itu, sepanjang dan seindah apapun, hanyalah
+              prolog. Bukan cerita sesungguhnya. Karena cerita sesungguhnya
+              &mdash; yang benar-benar ingin aku tulis bersamamu &mdash; belum
+              dimulai.
+            </p>
+            <p>Dan hari ini, di ujung halaman ini, aku mengulurkan tangan.</p>
+            <p>
+              Bukan sebagai seseorang yang menawarkan kesempurnaan. Tapi sebagai
+              seseorang yang sudah membuktikan, semampunya, bahwa ia
+              sungguh-sungguh. Sebagai seseorang yang memilihmu bukan karena
+              kebetulan, melainkan karena sebuah kesadaran penuh bahwa tidak ada
+              orang lain yang ingin ia pilih.
+            </p>
+            <p>
+              Maka, dengan semua keberanian yang aku kumpulkan &mdash; dan
+              dengan segala kecemasan yang aku sembunyikan di balik
+              kalimat-kalimat ini &mdash; izinkan aku akhirnya bertanya:
+            </p>
+            <div class="p4-question-wrap">
+              <p class="p4-question-typed" id="p4-question-typed"></p>
+              <span class="p4-cursor" id="p4-cursor">|</span>
+            </div>
+            <div class="action-buttons" id="p4-action-buttons">
+              <button
+                type="button"
+                id="btn-yes"
+                class="btn-primary btn-large btn-glow"
+              >
+                Iya, Aku mau &#9825;
+              </button>
+              <button type="button" id="btn-no" class="btn-outline btn-large">
+                Nggak
+              </button>
+            </div>
+            <p id="p4-no-msg" class="p4-no-msg"></p>
+            <p class="p4-closing">
+              &mdash; dan apapun jawabanmu, ketahuilah bahwa kamu sudah mengubah
+              hidupku sejak malam pertama itu. Terima kasih sudah membaca sampai
+              sejauh ini, Cantik.
+            </p>
+          </div>
+        </div>
+
+        <button type="button" id="btn-next-4" class="btn-secondary p4-nav">
+          Lanjut &rarr;
+        </button>
+      </section>
+
+      <!-- ═══ PHASE-YES — Jeda Setelah "Iya" ═══ -->
+      <section id="phase-yes" class="phase hidden">
+        <div class="py-inner">
+          <p class="py-line py-line-1">Iya.</p>
+          <p class="py-line py-line-2">Akhirnya.</p>
+          <p class="py-line py-line-3">
+            Terima kasih sudah memilih untuk percaya.
+          </p>
+          <p class="py-line py-line-4">Kita mulai dari sini.</p>
+          <button type="button" class="py-btn" id="btn-yes-continue">
+            Lanjut ke cerita kita &#8594;
+          </button>
+        </div>
+      </section>
+
+      <!-- ═══ FASE 5 — aktif hanya saat tombol Iya diklik ═══ -->
+      <template id="phase-5-template">
+        <!-- Fase 5: Sebuah Awal Bernama Kita -->
+        <section id="phase-5" class="phase hidden">
+          <div class="ornament fade-in">&#10022; &#10084;&#65039; &#10022;</div>
+          <h2 class="fade-in phase-label">Sebuah Awal Bernama Kita</h2>
+          <div class="divider fade-in delay-1">&#10023;</div>
+          <div class="babak-progress" id="p5-dots"></div>
+
+          <div class="babak-wrapper">
+            <!-- Babak 1 -->
+            <div class="babak-card active">
+              <h3 class="babak-title">Kata yang Paling Lama Kutunggu</h3>
+              <p>Aku tidak akan berpura-pura tenang.</p>
+              <p>
+                Ketika kamu akhirnya menjawab &mdash; ketika kata itu
+                benar-benar keluar darimu &mdash; ada beberapa detik di mana aku
+                hanya diam. Bukan karena tidak percaya. Tapi karena ada semacam
+                kelegaan yang terlalu besar untuk langsung kuproses, sebuah rasa
+                yang datang terlalu penuh hingga tidak tahu harus pergi ke mana
+                lebih dulu: ke mataku, ke dadaku, atau ke senyum yang tiba-tiba
+                tidak bisa kusembunyikan.
+              </p>
+              <p>
+                Aku sudah menyiapkan banyak kata untuk momen ini. Sudah beberapa
+                kali membayangkan apa yang akan kukatakan. Tapi ternyata, saat
+                momennya benar-benar tiba, semua kalimat itu menguap begitu saja
+                &mdash; dan yang tersisa hanyalah satu perasaan sederhana yang
+                sulit dijabarkan:
+              </p>
+              <p>Akhirnya.</p>
+              <p>
+                Bukan akhirnya dalam arti lega karena penantian yang melelahkan
+                &mdash; meskipun, jujur, ada sedikit itu juga. Tapi akhirnya
+                dalam arti yang jauh lebih dalam: bahwa semua perjalanan itu,
+                dari malam Minggu di gunung virtual itu hingga detik ini,
+                ternyata memang menuju ke sini. Ke kamu. Ke jawaban itu.
+              </p>
+              <p>
+                Terima kasih, Cantik &mdash; bukan sekadar karena menjawab iya,
+                tapi karena kamu mau mempercayaiku dengan sesuatu yang tidak
+                mudah kamu berikan kepada siapa pun.
+              </p>
+              <p>Aku tidak akan menyia-nyiakan kepercayaan itu.</p>
+            </div>
+
+            <!-- Babak 2 -->
+            <div class="babak-card">
+              <button type="button" class="btn-back-prev">
+                &#8592; Babak sebelumnya
+              </button>
+              <h3 class="babak-title">
+                Hal yang Perlu Kamu Tahu Sejak Hari Pertama Ini
+              </h3>
+              <p>Aku tidak mau memulai hubungan ini dengan ilusi.</p>
+              <p>
+                Jadi biarkan aku jujur dari awal: LDR itu berat. Aku tidak akan
+                berlagak seolah jarak adalah hal kecil yang bisa diabaikan, atau
+                bahwa cinta saja cukup untuk membuat segalanya terasa mudah
+                &mdash; karena tidak. Akan ada malam-malam di mana kamu merasa
+                kesepian meskipun kita sedang mengobrol. Akan ada momen di mana
+                kamu butuh seseorang yang bisa hadir secara fisik, dan aku hanya
+                bisa hadir lewat layar. Akan ada hari-hari yang terasa berat,
+                dan jarak itu akan terasa dua kali lebih menyebalkan dari
+                biasanya.
+              </p>
+              <p>Aku mengakui semua itu.</p>
+              <p>
+                Tapi izinkan aku juga mengatakan ini: aku bukan orang yang
+                memilihmu karena mudah. Aku memilihmu justru karena tahu
+                konsekuensinya, dan tetap memilih. Bukan karena aku tidak punya
+                pilihan lain &mdash; tapi karena setelah semua pertimbangan itu,
+                tidak ada satu nama pun selain namamu yang ingin kusebut.
+              </p>
+              <p>
+                Yang bisa kujanjikan bukan ketiadaan kesulitan. Yang bisa
+                kujanjikan adalah bahwa di tengah semua kesulitan itu, aku tidak
+                akan pergi. Aku akan tetap hadir &mdash; dengan cara terbaik
+                yang bisa aku lakukan, semampu yang aku punya. Bahwa di
+                hari-hari yang berat sekalipun, kamu tidak perlu bertanya-tanya
+                ke mana arah pikiranku &mdash; karena jawabannya tidak pernah
+                berubah sejak malam pertama di gunung virtual itu.
+              </p>
+              <p>Selalu ke kamu.</p>
+            </div>
+
+            <!-- Babak 3 -->
+            <div class="babak-card">
+              <button type="button" class="btn-back-prev">
+                &#8592; Babak sebelumnya
+              </button>
+              <h3 class="babak-title">
+                Ini Bukan Akhir. Ini Justru Sebaliknya.
+              </h3>
+              <p>
+                Ada sesuatu yang terasa sedikit ironis saat menulis bagian ini.
+              </p>
+              <p>
+                Seluruh web ini kubuat untuk menceritakan bagaimana kita saling
+                menemukan. Setiap bab, setiap chapter, setiap detail kecil yang
+                kutulis dengan hati-hati &mdash; semuanya bergerak menuju satu
+                titik: halaman ini. Dan kini aku sudah sampai di sini, di
+                halaman terakhir, dan aku menyadari satu hal:
+              </p>
+              <p>Ini bukan penutup. Ini adalah halaman pertama.</p>
+              <p>
+                Semua yang sudah kamu baca &mdash; Mount Kucing, &ldquo;sapi di
+                padang rumput&rdquo;, momen H&amp;M, pertukaran nomor dengan
+                muslihat kecilku, semua obrolan tengah malam yang tidak ingin
+                berhenti &mdash; itu semua hanyalah prolog dari cerita yang
+                sesungguhnya. Dan cerita sesungguhnya itu belum ditulis, karena
+                ia baru saja dimulai hari ini, bersamamu.
+              </p>
+              <p>
+                Aku tidak tahu apa yang akan tertulis di halaman-halaman
+                berikutnya. Tapi untuk pertama kalinya dalam waktu yang lama,
+                aku tidak merasa perlu tahu. Karena yang terpenting bukan ke
+                mana cerita ini akan pergi &mdash; melainkan dengan siapa aku
+                menjalaninya.
+              </p>
+              <p>Dan itu sudah terjawab.</p>
+            </div>
+
+            <!-- Babak 4 — Penutup -->
+            <div class="babak-card">
+              <button type="button" class="btn-back-prev">
+                &#8592; Babak sebelumnya
+              </button>
+              <h3 class="babak-title">Satu Hal Kecil di Penghujung Halaman</h3>
+              <p>Oh, sebelum aku benar-benar menutup buku ini &mdash;</p>
+              <p>
+                Ada satu pembaruan kecil yang perlu aku sampaikan. Semacam
+                koreksi administratif, kalau boleh kusebutnya begitu.
+              </p>
+              <p>
+                Selama berbulan-bulan, aku memanggilmu Cantik di setiap halaman
+                ini. Dan itu tidak salah &mdash; karena kamu memang cantik, dan
+                aku tidak akan berhenti mengatakan itu. Tapi hari ini, rasanya
+                ada satu panggilan baru yang jauh lebih tepat untuk kugunakan.
+              </p>
+              <p>Boleh, kan?</p>
+              <p>&hellip;Sa &mdash; yang.</p>
+              <p>
+                (Iya, aku tau kamu tidak menyukainya, tapi akan tetap
+                kukatakan..hehe.)
+              </p>
+              <div class="p5-closing">
+                <p class="p5-dedication">
+                  Untuk kamu seorang &mdash; yang tanpa sadar mengubah
+                  malam-malam biasaku menjadi sesuatu yang jauh lebih berharga
+                  dari yang pernah kubayangkan.
+                </p>
+                <p class="p5-welcome">
+                  Selamat datang di cerita kita, Nabila Aisyah. &#10022;
+                </p>
+                <p class="success-subtitle">
+                  &mdash; ditulis dengan sepenuh hati, untuk satu orang yang
+                  paling layak menerimanya.
+                </p>
+                <p class="date-stamp" id="confession-date"></p>
+              </div>
+            </div>
+
+            <!-- Epilog -->
+            <div class="babak-card epilog-card">
+              <button type="button" class="btn-back-prev">
+                &#8592; Babak sebelumnya
+              </button>
+              <div class="epilog-header">
+                <span class="epilog-ornament">&#10022; &#10022; &#10022;</span>
+                <span class="epilog-label">&mdash; EPILOG &mdash;</span>
+              </div>
+
+              <p class="epilog-p">
+                Kalau kamu membaca baris ini, itu artinya kita sudah berada di
+                sisi yang sama dari cerita ini.
+              </p>
+              <p class="epilog-p">
+                Aku tidak akan mengisi halaman ini dengan kata-kata yang lebih
+                banyak lagi. Semua yang ingin kukatakan sudah tertulis di
+                halaman-halaman sebelumnya &mdash; dan lebih dari itu, sudah
+                terucap langsung di dunia nyata. Halaman ini bukan milikku untuk
+                kuisi sendirian.
+              </p>
+              <p class="epilog-p epilog-p-bold">
+                Halaman ini milik kita berdua.
+              </p>
+
+              <div class="epilog-divider">
+                <span class="epilog-div-dot">&#10022;</span>
+              </div>
+
+              <!-- Lembaran Kosong -->
+              <div class="epilog-blank-page">
+                <p class="epilog-blank-italic">Lembaran ini kosong.</p>
+                <p class="epilog-blank-sub">
+                  Biarkan waktu yang mengisinya &mdash; bersama kita.
+                </p>
+              </div>
+
+              <!-- Timestamp -->
+              <div class="epilog-timestamp">
+                <p class="epilog-dates">
+                  Mulai ditulis: 13 September 2025 &nbsp;&middot;&nbsp; Dibaca:
+                  <span id="epilog-read-date"></span>
+                </p>
+                <p class="epilog-dates-sub">
+                  Di antara dua waktu itu, tidak satu hari pun aku berhenti
+                  memikirkanmu.
+                </p>
+              </div>
+
+              <div class="epilog-divider">
+                <span class="epilog-div-dot">&#10022;</span>
+              </div>
+
+              <!-- Reply Section -->
+              <div class="epilog-reply-section">
+                <p class="epilog-reply-prompt">
+                  Satu kalimat darimu, untuk menutup bab ini.
+                </p>
+                <div id="epilog-input-wrap" class="epilog-input-wrap">
+                  <input
+                    type="text"
+                    id="epilog-input"
+                    class="epilog-input"
+                    placeholder="Tulis sesuatu..."
+                    maxlength="120"
+                    autocomplete="off"
+                  />
+                  <button
+                    type="button"
+                    id="epilog-submit"
+                    class="epilog-submit"
+                  >
+                    Kirim &#9825;
+                  </button>
+                </div>
+                <div id="epilog-reply-display" class="epilog-reply-display">
+                  <p id="epilog-reply-typed" class="epilog-reply-typed"></p>
+                </div>
+              </div>
+
+              <div class="epilog-divider">
+                <span class="epilog-div-dot">&#10022;</span>
+              </div>
+
+              <!-- Footer -->
+              <div class="epilog-footer">
+                <p class="epilog-footer-italic">
+                  untuk seorang Nabila Aisyah,<br />
+                  dengan segenap rasa yang sesungguhnya.
+                </p>
+                <p class="epilog-footer-date" id="epilog-footer-date"></p>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" id="btn-next-5" class="btn-secondary p5-nav">
+            Lanjut &rarr;
+          </button>
+        </section>
+      </template>
+    </div>
+
+    <!-- Interlude overlays (vignette + stars) -->
+    <div class="il-vignette"></div>
+    <div class="il-stars" id="il-stars"></div>
+
+    <!-- Phase-4 twinkling stars -->
+    <div class="p4-stars" id="p4-stars"></div>
+
+    <!-- Tombol Gerbang (muncul saat di BAB I / II) -->
+    <button
+      id="btn-floating-nav"
+      type="button"
+      class="btn-floating-nav hidden"
+      aria-label="Kembali ke navigasi"
+    >
+      &#10022; Gerbang
+    </button>
+
+    <!-- Tombol Keluar tetap (muncul saat sudah login, di semua halaman) -->
+    <button
+      id="btn-floating-exit"
+      type="button"
+      class="btn-floating-exit hidden"
+      aria-label="Keluar dari halaman"
+    >
+      &#10005;
+    </button>
+
+    <!-- Background music tracks -->
+    <audio id="mus-summer" src="assets/One Summer's Day.mp3" loop></audio>
+    <audio id="mus-chill-1" src="assets/Chill_1.mp3"></audio>
+    <audio id="mus-chill-2" src="assets/Chill_2.mp3"></audio>
+    <audio id="mus-chill-3" src="assets/Chill_3.mp3"></audio>
+    <audio id="mus-chill-4" src="assets/Chill_4.mp3"></audio>
+    <audio id="mus-chill-5" src="assets/Chill_5.mp3"></audio>
+    <audio id="mus-nothing" src="assets/Nothing.mp3" loop></audio>
+    <audio id="mus-bab2" src="assets/BAB_2.1.mp3" loop></audio>
+    <audio id="mus-bersamamu" src="assets/Bersamamu.mp3" loop></audio>
+    <audio id="mus-tenerife" src="assets/Tenerifea Sea.mp3" loop></audio>
+    <audio id="mus-satutuju" src="assets/Satu Tuju.mp3" loop></audio>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
